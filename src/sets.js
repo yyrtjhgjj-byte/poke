@@ -11,7 +11,7 @@
     S4:  {label: 'S-4 いかく起点作り', nat: 'impish', ev: {hp: 252, def: 252, spd: 4}, skin: false, intim: true},
     D1:  {label: 'D-1 いかくロンド', nat: 'careful', ev: {hp: 252, def: 60, spd: 196}, skin: false, intim: true},
     D3:  {label: 'D-3 竜皮アタッカー（クリアチャーム）', nat: 'jolly', ev: {hp: 4, atk: 252, spe: 252}, skin: true, item: ''},
-    D4:  {label: 'D-4 輪舞ブイズ（いのちのたま）', nat: 'jolly', ev: {hp: 4, atk: 252, spe: 252}, skin: true, item: 'lo'},
+    D4:  {label: 'D-4 輪舞ブイズ（おんみつマント）', nat: 'jolly', ev: {hp: 4, atk: 252, spe: 252}, skin: true, item: ''},
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = {SETS};
   else root.RondoSets = {SETS};

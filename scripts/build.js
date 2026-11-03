@@ -107,7 +107,7 @@ function skinTable() {
     h += `<tr><th class="rowh">${C.DM[ms[0]].jp}</th><td class="num">${f(b => b)}</td><td class="num">${f(sv)}</td><td class="num">${f(b => sv(b) * stab)}</td><td class="num">${f(b => sv(b) * tera)}</td><td>${note}</td></tr>`;
   }
   const r = C.DM.rondo.bp, rs = C.SP.draffia.t.includes(C.DM.rondo.type) ? [1.5, 2] : [1, 1.5];
-  h += `<tr><th class="rowh">${C.DM.rondo.jp}</th><td class="num">—</td><td class="num">${r}</td><td class="num">${n(r * rs[0])}</td><td class="num">${n(r * rs[1])}</td><td>優先度+1。妖・氷に抜群（比較用）</td></tr>`;
+  h += `<tr><th class="rowh">${C.DM.rondo.jp}</th><td class="num">—</td><td class="num">${r}</td><td class="num">${n(r * rs[0])}</td><td class="num">${n(r * rs[1])}</td><td>優先度+${C.DM.rondo.pri}。妖・氷に抜群（比較用）</td></tr>`;
   return h + '</tbody></table></div>';
 }
 
@@ -120,7 +120,7 @@ function singlesAtk() {
     ['陽気珠 +1 テラス竜<br><span class="muted">S-3 竜舞後</span>', 'S3'],
   ];
   const groups = [
-    ['ドラゴニックロンド（優先度+1）', 'rondo', [
+    [`ドラゴニックロンド（優先度+${C.DM.rondo.pri}）`, 'rondo', [
       ['flutter_cs'], ['flutter_cs', {tera: 'Normal'}, 'テラスノーマル'], ['chienpao_as', null, 'タスキ除く'], ['miraidon_cs'], ['miraidon_cs', {tera: 'Fairy'}, 'テラスフェアリー'],
       ['koraidon_as'], ['koraidon_as', {tera: 'Fire'}, 'テラス炎'], ['calyrexs_cs', {tera: 'Fairy'}, 'テラスフェアリー'], ['grimmsnarl_hb'], ['mimikyu_as'], ['zacianc_as'], ['calyrexi_ha']]],
     [`すてみタックル（スキン・威力${skinBp('doubleedge')}）`, 'doubleedge', [
@@ -323,20 +323,55 @@ function expFacade() {
   return h + '</tbody></table></div><p class="prose small" style="margin-top:10px">からげんきはやけどでも威力が落ちず、スキンで{{bp facadest skin}}になる。すてみより約17%強く反動もない。眠り・まひにならないため、ダブルのキノコのほうし（モロバレル・ドーブル）とあくびを無視できる。</p><p class="prose small" style="margin-top:6px">ただしかえんだまはロンドの威力も半減させ、ハバタクカミへのロンドは{{dmg AS rondo flutter_cs burn full}}まで落ちる。どくどくだまならロンドは落ちないが、毒のダメージが1/16、2/16、3/16と増えていく。ロンドを主力にするなら毒、すてみの代わりとして使い切るなら火傷が向く。</p>';
 }
 function expSyl() {
-  const syl = C.stats('sylveon', 'modest', {spa: 252, spe: 252});
-  const s0 = C.stats('sylveon', 'modest', {hp: 252, spa: 252}).spe, s1 = syl.spe, s2 = C.stats('sylveon', 'timid', {spa: 252, spe: 252}).spe;
+  const syl = C.stats('sylveon', 'modest', {hp: 4, spa: 252, spe: 252});
+  const s0 = C.stats('sylveon', 'modest', {hp: 252, spa: 252}).spe, s1 = syl.spe, s2 = C.stats('sylveon', 'timid', {hp: 4, spa: 252, spe: 252}).spe;
   let h = '<div class="cols"><div class="scroll"><table class="tbl compact"><thead><tr><th>ニンフィアの配分</th><th class="num">素早さ</th><th class="num">ロンド後（+2）</th><th>抜ける相手</th></tr></thead><tbody>';
   const beat = (s) => { const b = SPEED_LIST.filter(([, v]) => v < s); return b.length === SPEED_LIST.length ? `${b[0][0]}（${b[0][1]}）を含む一覧のすべて` : b.length ? `${b[0][0]}（${b[0][1]}）まで` : '—'; };
   h += `<tr><td>無振り</td><td class="num">${s0}</td><td class="num">${E.boost(s0, 2)}</td><td>${beat(E.boost(s0, 2))}</td></tr>`;
   h += `<tr><td>無補正S252</td><td class="num">${s1}</td><td class="num">${E.boost(s1, 2)}</td><td>${beat(E.boost(s1, 2))}</td></tr>`;
   h += `<tr><td>おくびょうS252</td><td class="num">${s2}</td><td class="num">${E.boost(s2, 2)}</td><td>${beat(E.boost(s2, 2))}</td></tr>`;
-  h += '</tbody></table></div><div class="scroll"><table class="tbl compact"><thead><tr><th>ハイパーボイス（全体）→</th><th class="num">控えめC252</th></tr></thead><tbody>';
-  for (const k of ['koraidon_as', 'urshifur_as', 'chienpao_as', 'miraidon_cs', 'tornadus_h', 'rilla_ha', 'calyrexs_cs', 'incin_hd']) {
+  h += '</tbody></table></div>';
+  h += '<div class="panel stack" style="gap:8px"><h4 style="margin:0">ロンドがブイズに渡す能力上昇</h4><ul class="points small">' +
+    '<li><b>スキン版</b>：攻撃が当たるたびに、隣のイーブイ系のA・C・S+2。優先度+' + C.DM.rondo.pri + 'で先に動くため、同じターンの味方の技から乗る。</li>' +
+    '<li><b>いかく版</b>：隣のイーブイ系のA・C・S+2（変化技なので防がれにくい）。ドラフィアは退き、相手より遅ければ後から出るイーブイ系はA+1・C+1・S+2。</li>' +
+    '<li><b>シングル</b>：隣がいないため、いかく版で後から出るイーブイ系のA+1・C+1・S+2だけが残る。</li></ul></div></div>';
+  const tg = ['koraidon_as', 'urshifur_as', 'chienpao_as', 'miraidon_cs', 'ironhands_ha', 'ogerpon_as', 'rilla_ha', 'tornadus_h', 'calyrexs_cs', 'farigiraf_hb', 'incin_hd', 'calyrexi_ha', 'kingambit_ha', 'zamazenta_hb', 'zacianc_as', 'gholdengo_h'];
+  const cols = [['±0', 0, 'ロンドなし'], ['+1', 1, 'いかく版で後から着地'], ['+2', 2, 'ロンド1回'], ['+4', 4, 'ロンド2回']];
+  const ko1 = {}; cols.forEach(([, st]) => { ko1[st] = []; });
+  h += `<div class="scroll" style="margin-top:16px"><table class="tbl"><thead><tr><th>ハイパーボイス（全体）→<br><span class="muted">ニンフィア 控えめC252・持ち物なし</span></th>${cols.map(([l, , n]) => `<th class="num">C${l}<br><span class="muted">${n}</span></th>`).join('')}</tr></thead><tbody>`;
+  for (const k of tg) {
     const t = C.target(k), ef = E.eff('Fairy', C.SP[t.sp].t);
-    const s = E.summarize(E.rolls({bp: 90, bpMods: [4915], atk: syl.spa, def: t.st.spd, stab: 6144, eff: ef, spread: true}), t.st.hp);
-    h += `<tr><th class="rowh" style="white-space:normal">${esc(t.label)}</th><td class="num">${fmtPct(s.minPct)}–${fmtPct(s.maxPct)}%<span class="ko ${koClass(s.ko)}">${shortKO(s.ko)}</span></td></tr>`;
+    h += `<tr><th class="rowh" style="white-space:normal">${esc(t.label)}</th>`;
+    for (const [, st] of cols) {
+      const s = E.summarize(E.rolls({bp: 90, bpMods: [4915], atk: syl.spa, atkStage: st, def: t.st.spd, defStage: 0, stab: 6144, eff: ef, spread: true, finalMods: t.final || []}), t.st.hp);
+      if (s.ko && s.ko.n === 1 && s.ko.p >= 0.9999) ko1[st].push(C.SP[t.sp].jp);
+      h += `<td class="num">${fmtPct(s.minPct)}–${fmtPct(s.maxPct)}%<span class="ko ${koClass(s.ko)}">${shortKO(s.ko)}</span></td>`;
+    }
+    h += '</tr>';
   }
-  return h + '</tbody></table></div></div><p class="cap" style="margin-top:8px">「抜ける相手」は図3-1の一覧で、+2後の素早さより遅い最速の相手。</p><p class="prose small" style="margin-top:10px">ダブルではスキンのロンドを撃つだけで、隣のニンフィアのすばやさが2段階上がる。無補正S252なら黒バドレックスを抜き、フェアリースキンのハイパーボイスでコライドンと連撃ウーラオスをまとめて落とせる。両者の弱点は、ドラフィアの竜をニンフィアが無効にし、ニンフィアの鋼・毒をドラフィアが等倍で受ける関係にある。</p>';
+  const newly = ko1[2].filter(n => !ko1[0].includes(n));
+  h += '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-4</b>　フェアリースキン（威力×1.2）・タイプ一致・ダブルの全体技補正（×0.75）込み。「抜ける相手」は図3-1の一覧で、+2後の素早さより遅い最速の相手。</p>';
+  h += `<p class="prose small" style="margin-top:10px">ロンド1回（+2）で、確定1発の相手に${newly.join('・')}が加わる。持ち物なしでもこの火力で、+2のすばやさ（無補正S252で${E.boost(s1, 2)}）は一覧のすべてを抜く。ロンド2回（+4）では${ko1[4].filter(n => !ko1[2].includes(n)).join('・') || '新たな確定1発はない'}${ko1[4].filter(n => !ko1[2].includes(n)).length ? 'も確定1発になる' : ''}。残る壁は鋼と炎（ガオガエン・ザマゼンタ・ザシアン・サーフゴー）で、ここはドラフィアのロンドも通りにくい。</p>`;
+  h += '<p class="prose small" style="margin-top:6px">止め方は3つある。①ねこだましでドラフィアを怯ませる（おんみつマントで防げる）。②ロンドの対象をまもる・サイコフィールド・しっぽアーマーで防ぐ（いかく版なら止まらない）。③上がったニンフィアに、鋼・毒の打点やくろいきり・ほえるで対応する。v1ではS+2だけだったため「踊った回数を記録する構築」だったが、A・C+2が加わり、ニンフィアの隣に置く理由として十分な強さになった。</p>';
+  return h;
+}
+function expES() {
+  const dn = C.stats('dragonite', 'adamant', {atk: 252, spe: 252});
+  const tg = ['flutter_cs', 'calyrexs_cs', 'miraidon_cs', 'koraidon_as', 'chienpao_as', 'calyrexi_ha', 'whims_h', 'grimmsnarl_hb', 'urshifur_as', 'kyogre_cs', 'ogerpon_as', 'incin_hb', 'zacianc_as', 'kingambit_ha'];
+  const es = (t, stab) => { return E.summarize(E.rolls({bp: 80, atk: dn.atk, atkMods: [6144], def: t.st.def, defStage: t.defStage || 0, stab, eff: E.eff('Normal', C.SP[t.sp].t), finalMods: t.final || []}), t.st.hp); };
+  let h = `<div class="scroll"><table class="tbl"><thead><tr><th>相手</th><th class="num">ロンド<br><span class="muted">S-1 陽気ハチマキ（A${ST.S1.atk}）</span></th><th class="num">しんそく<br><span class="muted">カイリュー 意地ハチマキ（A${dn.atk}）・テラスノーマル</span></th><th class="num">しんそく<br><span class="muted">同・テラスなし</span></th></tr></thead><tbody>`;
+  let win = 0, winT = 0;
+  for (const k of tg) {
+    const t = tgt(k), ro = atk(atkOpts('S1', {move: 'rondo', target: t})), a = es(t, 6144), b = es(t, 4096);
+    if (ro.maxPct > a.maxPct) win++;
+    if (ro.maxPct > b.maxPct) winT++;
+    h += `<tr><th class="rowh" style="white-space:normal">${esc(t.label)}</th>${cell(ro)}${cell(a)}${cell(b)}</tr>`;
+  }
+  const u = tgt('urshifur_as'), rU = atk(atkOpts('S1', {move: 'rondo', target: u})), eU = es(u, 6144), nU = es(u, 4096);
+  h += `</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-5</b>　どちらも優先度+2。同じ優先度の中は素早さ順なので、最速ドラフィア（${ST.S1.spe}）が最速カイリュー（${C.stats('dragonite', 'jolly', {spe: 252}).spe}）より先に動く。</p>`;
+  h += `<p class="prose small" style="margin-top:10px">${tg.length}体のうち、ロンドがテラスノーマルのしんそくより多く削る相手は${win}体、テラスなしのしんそくより多く削る相手は${winT}体。等倍の相手（連撃ウーラオス）で比べると、テラスノーマルのしんそくはロンドの約${(eU.maxPct / rU.maxPct).toFixed(2)}倍、テラスなしのしんそくは約${(nU.maxPct / rU.maxPct).toFixed(2)}倍。<b>テラスを切らない限りロンドの方が強く、テラスノーマルと比べても、竜・妖・氷に抜群を取れてゴーストに無効化されないぶん、レギュIの上位相手にはロンドが勝る。</b></p>`;
+  h += '<p class="prose small" style="margin-top:6px">差が出るのは耐久で、カイリューはH{{base dragonite hp}}・B{{base dragonite def}}・D{{base dragonite spd}}にマルチスケイル、ドラフィアはH{{base hp}}・B{{base def}}・D{{base spd}}。ドラフィアは先制で殴れる代わりに、上から1発もらうと落ちる（§2.5）。「しんそく並みの先制技を持つ、紙耐久のアタッカー」という見立ては計算上も成り立つ。</p>';
+  return h;
 }
 
 /* ---------- forecast ---------- */
@@ -375,7 +410,7 @@ let body = fs.readFileSync(P('templates/body.html'), 'utf8');
 const parts = {
   TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
   RADAR: radar(), RADARTABLE: radarTable(), STATBARS: statBars(), SINGLES_ATK: singlesAtk(), SINGLES_DEF: singlesDef(), CHEER: cheer(),
-  SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_CAT: expCat(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(),
+  SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_CAT: expCat(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
   RANKAXIS: rankAxis(), ADOPT_S: adopt(CFG.adoptS, false), ADOPT_D: adopt(CFG.adoptD, true),
 };
 for (const k in parts) {

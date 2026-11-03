@@ -54,7 +54,7 @@
 
   // Draffia move list (user-specified learnset)
   const DM = {
-    rondo:       {jp:'ドラゴニックロンド', bp:75, type:'Dragon', rondo:true, pri:1, note:'専用・音技・優先度+1'},
+    rondo:       {jp:'ドラゴニックロンド', bp:75, type:'Dragon', rondo:true, pri:2, priIntim:1, note:'専用・音技・優先度+2（いかく版は+1の変化技）'},
     doubleedge:  {jp:'すてみタックル', bp:120, type:'Normal', skin:true, recoil:'1/3'},
     bodyslam:    {jp:'のしかかり', bp:85, type:'Normal', skin:true, note:'まひ30%'},
     facade:      {jp:'からげんき', bp:70, type:'Normal', skin:true, facade:true},

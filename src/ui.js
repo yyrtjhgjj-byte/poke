@@ -228,7 +228,7 @@
       statused: $('ca-st').checked || $('ca-burn').checked, doubles: $('ca-dbl').checked, target: tgt};
     var r = C.drfAtk(o);
     var head = 'ドラフィア（' + C.NAT[nat].jp + ' A' + ev + '・実数値' + st.atk + '）→ ' + t0.label;
-    if (!r) { renderOut(head, null, t0.st.hp, ['いかくのときロンドは変化技（優先度+1の交代）']); return; }
+    if (!r) { renderOut(head, null, t0.st.hp, ['いかくのときロンドは変化技（優先度+' + C.DM.rondo.priIntim + 'の交代）']); return; }
     var notes = [];
     notes.push(JP[r.type] + (r.skinned ? '（スキン変換・×1.2）' : ''));
     notes.push(r.cat === 'phys' ? '物理' : '特殊（A≦Cで判定）');
