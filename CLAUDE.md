@@ -21,28 +21,60 @@
 1. `spec/draffia.md` に新仕様を追記（原文は残す）。
 2. `src/data.js` の `SP.draffia`（`b` 種族値、`t` タイプ、`skin` 変換先）と `DM`（技）を更新。
    - 専用技の挙動：`src/core.js` の `drfAtk`（`mv.rondo` 分岐、A/C比較）と `src/engine.js` の `eff(…, {rondo})`（妖・氷を×2に上書き）。
-3. `npm run all`：照合 13/13 → `dist/draffia.html` → `notes/calc-snapshot.md`。
-4. `git diff notes/calc-snapshot.md` で変化した計算を把握する。
-5. 下の「手書きの数値・判定」を見直す。数値はスナップショットを正とする。
-6. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。
-7. ダブルの耐久配分を詰め直すなら `scripts/analysis/opt.js`（ベンチマークを満たすB/D配分を探索）。
+3. 型の配分を変えるなら `src/sets.js`。ダブル耐久型は `scripts/analysis/opt.js` で探索できる。
+4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md`。
+5. `git diff notes/claims.md` で、本文中のどの数値が変わったかを見る。値の前後の判定（有利・不利、「耐える」「抜ける」などの言い回し）が数値と食い違っていないかを確認し、`templates/body.html` を直す。
+6. 主観の値（総合評価、予想順位、レーダー、採用率）は `src/report.config.js` で見直す。
+7. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。
 
 ## 自動で追従するもの
 
-`scripts/build.js` が `templates/body.html` の `<!--@NAME-->` を埋める。
-RADAR（値は build.js に手書き）、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、ADOPT_S/ADOPT_D（値は build.js に手書き）。
-ページ内の実数値計算機・ダメージ計算機・すばやさチェッカーも `src/` を読むので追従する。
+- 生成表：`scripts/build.js` が `templates/body.html` の `<!--@NAME-->` を埋める（同じ名前が複数あってもすべて置換）。
+  TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、RANKAXIS、ADOPT_S、ADOPT_D。
+- 本文中の数値：`{{…}}` トークン（下記）。ビルド時に計算し、`notes/claims.md` に「章・値・前後の文・トークン」を一覧で書き出す。
+- 型の定義：`src/sets.js`。本文・生成表・スナップショットが同じ定義を使う。
+- 主観の値：`src/report.config.js`（評価、順位、レーダーの値と根拠、採用率）。
+- ページ内の実数値計算機・ダメージ計算機・すばやさチェッカーも `src/` を読むので追従する。
 
-## 手書きの数値・判定（性能を変えたら要確認）
+## 手書きのまま残っているもの（性能を変えたら要確認）
 
-- マストヘッド：種族値チップ、メタ欄の判定。
-- §0 要旨：総合評価と予想順位、所見1〜5の数値、評価内訳表、build.js の RADAR 値。
-- §1 検体：1.1 の比較文、1.3 の説明、1.5 のロンド仕様と注記（陽気A252は攻撃-3で特殊化）、1.6 の★評価。
-- §2 シングル：2.1 対面表（%と有利・不利）、2.2 強み弱み、2.3 型カードの実数値と%、2.6、2.7。
-- §3 ダブル：3.1 関係表（%）、3.3 ガオガエン比較の数値、3.4 型カードの実数値と%、3.8。
-- §4 育成論：4.7 持ち物表、4.8 すばやさ表（実数値）。4.1〜4.6 の計算行は自動。説明文の数値は手書き。
-- §5 パーティ：役割文の数値（例：+1コライドン307）。
-- §7 予測：順位バンド（body.html の style 位置）、採用率（build.js の ADOPT_S/ADOPT_D）、総評。
+- 判定ラベル：§2.1 対面表と §3.1 関係表の「有利・五分・不利」など。件数（表2-1の内訳）は自動。
+- §1.6 習得技の★評価、§1.5 のロンド対タイプ表、§1.3 の補足文、§1.4 の特性説明。
+- 型カードの持ち物・テラス・技構成と、定性的な説明（「物理はいかく込みで受ける配分」など）。
+- §3.3 のガオガエン側の列、§3.2・§3.8・§5・§7.3 の文章、§7 の総評文。
+- 環境の順位（使用率○位）と仮想敵の配分（`src/core.js` の `TARGETS`・`ATTACKS`）。
+- ロンドの命中・PP・優先度など仕様そのものの値（`spec/draffia.md` が正）。
+- `notes/findings.md`・`notes/forecast.md` は v1 時点の作業メモで、自動更新されない。
+
+## 数値トークン
+
+`templates/body.html`（と `build.js` 内の説明文、`report.config.js` のレーダー根拠）に `{{種類 引数…}}` で書く。
+未知の種類・型・技・相手を書くとビルドが止まる。型は `src/sets.js` のキー（AS / S1 / S1A / S2 / S3 / S4 / D1 / D3 / D4）。
+
+| トークン | 出力例 | 内容 |
+|---|---|---|
+| `{{dmg S1 rondo koraidon_as full}}` | 96〜116%（乱数1発 87.5%） | ドラフィア→相手。技は `DM`、相手は `TARGETS` のキー |
+| `{{hit D1 ci_lance_d surv}}` | 93.8%で耐える | 相手→ドラフィア。攻撃は `ATTACKS` のキー。いかくは型の `intim` に従う |
+| `{{kolist S1 rondo flutter_cs chienpao_as koraidon_as}}` | ハバタクカミとパオジアンは確定1発、コライドンは乱数1発（87.5%） | 確定数でまとめた一文 |
+| `{{stat S4}}` / `{{stat S4 hp2}}` | 202-150-128-×-86-130 / 101 | 実数値（`hp`〜`spe`、`hp2`・`hp4` は1/2・1/4） |
+| `{{ev D1}}` / `{{ev D1 def}}` / `{{nat D1}}` | H252 B60 D196 / 60 / しんちょう | 努力値・性格 |
+| `{{spe koraidon jolly 252 +1}}` | 307 | 任意のポケモンの素早さ（補正 `x1.5`・`+1` など） |
+| `{{setspe S2}}` / `{{setspe S3 +1}}` | 267 | 型の素早さ（スカーフ込み、ランク補正可） |
+| `{{spcmp S1 chienpao jolly 252}}` | 相手が先手（205対178） | 1体との素早さ比較（5番目に相手の補正） |
+| `{{spvs S1 urshifur/jolly ogerpon/jolly tornadus/timid}}` | 連撃ウーラオス（163）より速く、オーガポン（178）と同速で、トルネロス（179）より遅い | 複数との比較。`種族/性格[/努力値[/補正]]`、努力値の省略は252 |
+| `{{fasterlist S1 calyrexs/timid …}}` | 黒バドレックス、… | ドラフィアより速い相手の名前 |
+| `{{base}}` / `{{base hp}}` / `{{base top2}}` / `{{base incineroar def}}` | H95 A130 … ／ 525 / 95 / 攻撃130・素早さ110 | 種族値（種族省略でドラフィア） |
+| `{{bp doubleedge skin}}` / `{{bp doubleedge skin x2}}` | 144 / 288 | 威力（`skin` でスキン補正後） |
+| `{{rondoflip AS}}` / `{{rondoflip AS spa}}` | -3 / 72 | ロンドが特殊扱いになる攻撃ランク |
+| `{{eff weak}}` / `resist` / `immune` | 氷・竜・妖 | ドラフィアの弱点・半減・無効 |
+| `{{grade S}}` / `{{rank D settled}}` | B+ / 10〜20位 | `report.config.js` の値 |
+| `{{tally tbl-s-match}}` | 有利9・五分5・不利6 | 指定 id の表の判定ラベルを数える |
+
+- `dmg` のオプション：`tt=タイプ`（相手のテラス）、`stage=N`（攻撃ランク）、`item=band|lo`、`tera=タイプ`、`unaware`、`hh`、`burn`、`st`、`crit`、`dbl`、`ruin`。
+- `hit` のオプション：`intim` / `nointim`、`haban`、`av`、`tera=タイプ`。
+- 書式：`pct`（96〜116%、既定）、`ko`（乱数1発（87.5%））、`full`（両方）、`p1`（1発の確率）、`surv`（耐える確率）、`range`（ダメージ値）。割合は下限切り捨て・上限切り上げ。
+- `{{!…}}` は値だけ入れて claims に載せない（計算機の初期値など）。タグの属性内のトークンも載せない。
+- 判定そのものを出すトークン（`ko`・`surv`・`spcmp`・`spvs`・`kolist`）を優先すると、性能が変わっても文が食い違いにくい。
 
 ## 計算の約束事
 

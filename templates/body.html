@@ -5,10 +5,10 @@
     <h1 class="title"><span class="name">ドラフィア<span class="ruby">DRAFFIA</span></span><span class="doc">徹底考察レポート</span></h1>
     <p class="abstract-line">SV最終環境（ランクバトル シーズン41・レギュレーションI）を想定し、シングルとダブルでの性能、型、育成論、パーティ、採用率を検証した。数値はすべてLv50の実数値とSVのダメージ計算式による。</p>
     <div class="chips">
-      <span class="chip t-Dragon">ドラゴン</span>
+      <!--@TYPECHIPS-->
       <span class="chip ghosty">特性 いかく</span>
       <span class="chip ghosty">夢特性 ドラゴンスキン</span>
-      <span class="chip ghosty mono">H95 A130 B65 C60 D65 S110 ／ 525</span>
+      <span class="chip ghosty mono">{{base line}}</span>
     </div>
   </div>
   <div class="emblem-box">
@@ -24,7 +24,7 @@
     <div><dt>対象環境</dt><dd>SV S41・レギュI</dd></div>
     <div><dt>形式</dt><dd>シングル／ダブル</dd></div>
     <div><dt>作成日</dt><dd class="mono">2026.11.03</dd></div>
-    <div><dt>判定</dt><dd>シングル B+／ダブル A</dd></div>
+    <div><dt>判定</dt><dd>シングル {{grade S}}／ダブル {{grade D}}</dd></div>
   </dl>
 </header>
 
@@ -51,18 +51,18 @@
 
   <div class="verdicts">
     <div class="panel verdict">
-      <div class="grade" aria-label="シングル総合評価 B+">B+</div>
+      <div class="grade" aria-label="シングル総合評価 {{grade S}}">{{grade S}}</div>
       <div class="stack" style="gap:6px">
         <h3>シングル総合</h3>
-        <span class="rank">予想使用率　定着後 30〜45位</span>
+        <span class="rank">予想使用率　定着後 {{rank S settled}}</span>
         <p class="small">先制ロンドとハチマキすてみタックルで、コライドン・ミライドン・ハバタクカミを処理する対面アタッカー。鋼と「てんねん」に止まり、受け回しには向かない。</p>
       </div>
     </div>
     <div class="panel verdict">
-      <div class="grade" aria-label="ダブル総合評価 A">A</div>
+      <div class="grade" aria-label="ダブル総合評価 {{grade D}}">{{grade D}}</div>
       <div class="stack" style="gap:6px">
         <h3>ダブル総合</h3>
-        <span class="rank">予想使用率　定着後 10〜20位</span>
+        <span class="rank">予想使用率　定着後 {{rank D settled}}</span>
         <p class="small">いかく、優先度+1の交代、ドラゴンエール。環境上位の水・炎・電気・草技を半減で受けながら、竜タイプの味方を確定急所にする支援役。</p>
       </div>
     </div>
@@ -70,11 +70,11 @@
 
   <h3 class="sub"><span class="n">0.1</span>主要所見</h3>
   <ol class="findings">
-    <li><div><b>ドラゴンスキン時のロンドは「優先度+1・威力75・フェアリーとこおりに抜群」。</b> 使用率上位のコライドン・ミライドン（竜）、ハバタクカミ（妖）、パオジアン・白バドレックス（氷）を先制で削れる。陽気ハチマキならハバタクカミとパオジアンは確定1発（タスキを除く）、コライドンは87.5%で1発。テラスタルフェアリーでも抜群のまま逃げられない。</div></li>
-    <li><div><b>スキン化したすてみタックルは実質威力144のタイプ一致技。</b> ハチマキならコライドン、ミライドン、連撃ウーラオス、カイオーガ、黒バドレックス（いずれもH4）を確定1発。ただしフェアリーには無効、鋼には半減なので、ザシアン(王)・ザマゼンタ(王)・ドドゲザンには打点がない。</div></li>
-    <li><div><b>いかく時のロンドは優先度+1の交代技。</b> 相手より遅いと後続のすばやさを1段階（イーブイ系なら2段階）上げる。最速178でも黒バドレックス、ザシアン、コライドン、ミライドン、ハバタクカミ、パオジアンより遅く、レギュIでは条件を満たす場面が多い。</div></li>
+    <li><div><b>ドラゴンスキン時のロンドは「優先度+1・威力{{bp rondo}}・フェアリーとこおりに抜群」。</b> 使用率上位のコライドン・ミライドン（竜）、ハバタクカミ（妖）、パオジアン・白バドレックス（氷）を先制で削れる。陽気ハチマキなら（パオジアンのタスキを除き）{{kolist S1 rondo flutter_cs chienpao_as koraidon_as}}。テラスタルフェアリーでも抜群のまま逃げられない。</div></li>
+    <li><div><b>スキン化したすてみタックルは実質威力{{bp doubleedge skin}}のタイプ一致技。</b> ハチマキならH4の{{kolist S1 doubleedge koraidon_as miraidon_cs urshifur_as kyogre_cs calyrexs_cs}}。ただしフェアリーには無効、鋼には半減なので、ザシアン(王)・ザマゼンタ(王)・ドドゲザンには打点がない。</div></li>
+    <li><div><b>いかく時のロンドは優先度+1の交代技。</b> 相手より遅いと後続のすばやさを1段階（イーブイ系なら2段階）上げる。最速{{stat S1 spe}}でも{{fasterlist S1 calyrexs/timid zacianc/jolly koraidon/jolly miraidon/timid fluttermane/timid chienpao/jolly}}より遅く、レギュIでは条件を満たす場面が多い。</div></li>
     <li><div><b>ダブルでは「ドラゴンエール＋ピントレンズ」で竜の味方が確定急所になる。</b> メガネのミライドンと1発目の火力はほぼ同じで、技を自由に選べ、りゅうせいぐんの特攻低下も急所で無視される。2発目以降はメガネ型の約2倍の打点になる。</div></li>
-    <li><div><b>最大の弱点はH95・B65・D65の薄さ。</b> パオジアンのこおり技、ミライドンのりゅうせいぐん、ハバタクカミのフェアリー技は無振りでは耐えない。パオジアンのこおりのつぶてはロンドと同じ優先度で、素早さの差で先に飛ぶ。</div></li>
+    <li><div><b>最大の弱点はH{{base hp}}・B{{base def}}・D{{base spd}}の薄さ。</b> 無振り（S-1）だと、パオジアンの珠つららおとしは{{hit S1 pao_icicle_lo ko}}、ミライドンのりゅうせいぐんは{{hit S1 mir_draco ko}}、ハバタクカミのムーンフォースは{{hit S1 fm_moon_timid ko}}。パオジアンのこおりのつぶてはロンドと同じ優先度+1で、素早さ勝負は{{spcmp S1 chienpao jolly 252}}。</div></li>
   </ol>
 
   <h3 class="sub"><span class="n">0.2</span>性能プロファイル</h3>
@@ -84,19 +84,7 @@
       <div class="legend"><span><i class="ls"></i>シングル</span><span><i class="ld"></i>ダブル</span></div>
       <figcaption class="cap"><b>図0-1</b>　6項目の5段階評価。環境適性はレギュIの上位30体に対する打点と耐性から算出。</figcaption>
     </figure>
-    <div class="scroll">
-      <table class="tbl compact">
-        <thead><tr><th>項目</th><th class="num">シングル</th><th class="num">ダブル</th><th>根拠</th></tr></thead>
-        <tbody>
-          <tr><th class="rowh">火力</th><td class="num">4.5</td><td class="num">3.5</td><td>スキンすてみ144・先制ロンド。ダブル本命のいかく型は火力を捨てる</td></tr>
-          <tr><th class="rowh">耐久</th><td class="num">2.0</td><td class="num">3.0</td><td>H95/B65/D65。ダブルはいかくと特殊寄り配分で主要な全体技を耐える</td></tr>
-          <tr><th class="rowh">素早さ</th><td class="num">3.5</td><td class="num">3.5</td><td>最速178。135族以上の禁止級には抜かれる</td></tr>
-          <tr><th class="rowh">技範囲</th><td class="num">3.0</td><td class="num">3.0</td><td>悪・鋼・草で補完するが、鋼への有効打がない</td></tr>
-          <tr><th class="rowh">補助</th><td class="num">3.0</td><td class="num">5.0</td><td>いかく・先制交代・エール・てだすけ・あくび・つぶらなひとみ</td></tr>
-          <tr><th class="rowh">環境適性</th><td class="num">4.0</td><td class="num">4.5</td><td>水・炎・電気・草を半減。竜・妖・氷の上位勢に先制で抜群</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!--@RADARTABLE-->
   </div>
 
   <div class="memo-row" style="margin-top:24px">
@@ -118,12 +106,12 @@
     <div class="panel">
       <dl class="idcard">
         <div class="idrow"><dt>名称</dt><dd><b>ドラフィア</b></dd></div>
-        <div class="idrow"><dt>タイプ</dt><dd><span class="chip t-Dragon">ドラゴン</span></dd></div>
+        <div class="idrow"><dt>タイプ</dt><dd><!--@TYPECHIPS--></dd></div>
         <div class="idrow"><dt>特性</dt><dd>いかく</dd></div>
         <div class="idrow"><dt>夢特性</dt><dd>ドラゴンスキン</dd></div>
         <div class="idrow"><dt>進化</dt><dd>イーブイから、なつき度が高い状態でレベルアップ。手持ちにニンフィアがいることが条件。</dd></div>
         <div class="idrow"><dt>外観</dt><dd class="muted small">白い体毛と金色の差し色。外観記録は依頼者提供のドット絵を参照。</dd></div>
-        <div class="idrow"><dt>比較</dt><dd class="small">合計525はイーブイ進化系と同じ。攻撃130・素早さ110に配分が偏り、耐久はニンフィアより大きく低い。</dd></div>
+        <div class="idrow"><dt>比較</dt><dd class="small">合計{{base total}}（イーブイ進化系は一律525）。{{base top2}}に配分が偏り、特防{{base spd}}はニンフィア（{{base sylveon spd}}）を大きく下回る。</dd></div>
       </dl>
     </div>
     <figure class="panel fig">
@@ -149,8 +137,7 @@
 
   <h3 class="sub"><span class="n">1.3</span>タイプ相性（防御側）</h3>
   <div class="panel stack" style="gap:10px">
-    <div class="chips"><span class="v v-bad">×2</span><span class="chip t-Ice">こおり</span><span class="chip t-Dragon">ドラゴン</span><span class="chip t-Fairy">フェアリー</span></div>
-    <div class="chips"><span class="v v-good">×½</span><span class="chip t-Fire">ほのお</span><span class="chip t-Water">みず</span><span class="chip t-Electric">でんき</span><span class="chip t-Grass">くさ</span></div>
+    <!--@DEFCHART-->
     <p class="small muted">レギュIの上位禁止級の主力技は、カイオーガ（水）、コライドン（炎・闘）、ミライドン（電）、ホウオウ（炎）、グラードン（地・炎）。このうち水・炎・電気を半減できる点が、ダブルでの評価を押し上げている。</p>
   </div>
 
@@ -167,25 +154,13 @@
     <div class="panel stack" style="gap:10px">
       <h4 style="margin:0">ドラゴンスキン（夢）</h4>
       <ul class="points">
-        <li>ノーマル技をドラゴンタイプに変え、威力を1.2倍にする。すてみタックルは実質「威力144の一致技」になる。</li>
+        <li>ノーマル技をドラゴンタイプに変え、威力を1.2倍にする。すてみタックルは実質「威力{{bp doubleedge skin}}の一致技」になる。</li>
         <li>ゴーストに当たるようになる一方で、フェアリーには無効、鋼には半減になる。フェアリーへの打点はロンドだけになる。</li>
         <li>ロンドが攻撃技になる。妖・氷への抜群補正はこの特性のときだけ働く。</li>
       </ul>
     </div>
   </div>
-  <div class="scroll" style="margin-top:16px">
-    <table class="tbl">
-      <thead><tr><th>技</th><th class="num">元の威力</th><th class="num">スキン後</th><th class="num">一致込み</th><th class="num">テラス竜</th><th>備考</th></tr></thead>
-      <tbody>
-        <tr><th class="rowh">すてみタックル</th><td class="num">120</td><td class="num">144</td><td class="num">216</td><td class="num">288</td><td>与ダメージの1/3反動</td></tr>
-        <tr><th class="rowh">のしかかり</th><td class="num">85</td><td class="num">102</td><td class="num">153</td><td class="num">204</td><td>まひ30%。反動なし</td></tr>
-        <tr><th class="rowh">からげんき</th><td class="num">70 / 140</td><td class="num">84 / 168</td><td class="num">126 / 252</td><td class="num">168 / 336</td><td>右は状態異常時。やけどの攻撃半減を受けない</td></tr>
-        <tr><th class="rowh">とっておき</th><td class="num">140</td><td class="num">168</td><td class="num">252</td><td class="num">336</td><td>他の技をすべて使った後のみ</td></tr>
-        <tr><th class="rowh">でんこうせっか</th><td class="num">40</td><td class="num">48</td><td class="num">72</td><td class="num">96</td><td>優先度+1。先制技なのでテラスの威力60補正は受けない</td></tr>
-        <tr><th class="rowh">ドラゴニックロンド</th><td class="num">—</td><td class="num">75</td><td class="num">112.5</td><td class="num">150</td><td>優先度+1。妖・氷に抜群（比較用）</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <!--@SKINTABLE-->
 
   <h3 class="sub"><span class="n">1.5</span>専用技 ドラゴニックロンド</h3>
   <div class="panel movecard">
@@ -199,7 +174,7 @@
     <div class="rondo-mode" data-rondo="skin">
       <dl class="mvstats">
         <div><dt>TYPE</dt><dd>ドラゴン</dd></div>
-        <div><dt>POWER</dt><dd>75</dd></div>
+        <div><dt>POWER</dt><dd>{{bp rondo}}</dd></div>
         <div><dt>ACC / PP</dt><dd>100 / 5</dd></div>
         <div><dt>PRIORITY</dt><dd>+1</dd></div>
       </dl>
@@ -208,7 +183,7 @@
         <li>音技なので「みがわり」を貫通する。「じごくづき」を受けると2ターン使えず、「ぼうおん」には無効、「パンクロック」には半減される。</li>
         <li>優先度+1の攻撃なので、サイコフィールド（接地した相手）、しっぽアーマー、ビビッドボディ、じょおうのいげんで防がれる。</li>
         <li>PPは5（ポイントマックスで8）。シングルの3体選出なら足りるが、連打前提の型では管理が要る。</li>
-        <li>陽気A252は攻撃-3段階で特攻（C72）と並び、特殊技として計算される（§6 実験記録①）。</li>
+        <li>陽気A252は攻撃{{rondoflip AS}}段階で特攻（C{{rondoflip AS spa}}）以下になり、特殊技として計算される（§6 実験記録①）。</li>
       </ul>
     </div>
     <div class="rondo-mode" data-rondo="intim" hidden>
@@ -254,25 +229,25 @@
         <tr><th class="rowh">ドラゴニックロンド</th><td><span class="chip t-Dragon">竜</span> 専用</td><td class="num">★5</td><td class="num">★5</td><td>全型で必須。スキンでは先制攻撃、いかくでは先制交代。</td></tr>
         <tr><th class="rowh">すてみタックル</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★5</td><td class="num">★3</td><td>スキン型の主砲。反動1/3は珠と重なると重い。</td></tr>
         <tr><th class="rowh">かみくだく</th><td><span class="chip t-Dark">悪</span></td><td class="num">★4</td><td class="num">★3</td><td>黒バドレックス・ルナアーラに4倍、サーフゴー・イエッサンに2倍。</td></tr>
-        <tr><th class="rowh">のしかかり</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★3</td><td class="num">★2</td><td>反動なしの102。まひ30%。いのちのたま型のサブ主砲。</td></tr>
+        <tr><th class="rowh">のしかかり</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★3</td><td class="num">★2</td><td>反動なしの{{bp bodyslam skin}}。まひ30%。いのちのたま型のサブ主砲。</td></tr>
         <tr><th class="rowh">アイアンテール</th><td><span class="chip t-Steel">鋼</span></td><td class="num">★2</td><td class="num">★1</td><td>命中75。ロンドのPP切れ対策と、いかく型の妖打点。</td></tr>
-        <tr><th class="rowh">くさわけ</th><td><span class="chip t-Grass">草</span></td><td class="num">★2</td><td class="num">★1</td><td>ディンルー・ヘイラッシャ・キョジオーンに抜群、S+1。威力50で削り止まり。</td></tr>
+        <tr><th class="rowh">くさわけ</th><td><span class="chip t-Grass">草</span></td><td class="num">★2</td><td class="num">★1</td><td>ディンルー・ヘイラッシャ・キョジオーンに抜群、S+1。威力{{bp trailblaze}}で削り止まり。</td></tr>
         <tr><th class="rowh">ワイドブレイカー</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★1</td><td class="num">★3</td><td>相手全体の攻撃-1。いかくと重ねて物理を抑える。</td></tr>
-        <tr><th class="rowh">からげんき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★2</td><td class="num">★2</td><td>どくどくだま・かえんだまで168。実験記録③参照。</td></tr>
+        <tr><th class="rowh">からげんき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★2</td><td class="num">★2</td><td>どくどくだま・かえんだまで{{bp facadest skin}}。実験記録③参照。</td></tr>
         <tr><th class="rowh">ドラゴンテール</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★2</td><td class="num">★1</td><td>積み対策の強制交代。優先度-6、命中90。</td></tr>
         <tr><th class="rowh">ドラゴンクロー</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★1</td><td class="num">★1</td><td>スキン型ではすてみの下位。いかく型に打点は要らない。</td></tr>
-        <tr><th class="rowh">でんこうせっか</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>48の先制技。ロンドの方が全面的に強い。</td></tr>
-        <tr><th class="rowh">とっておき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>168だが発動条件が重い。実験記録②参照。</td></tr>
+        <tr><th class="rowh">でんこうせっか</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>{{bp quickattack skin}}の先制技。ロンドの方が全面的に強い。</td></tr>
+        <tr><th class="rowh">とっておき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>{{bp lastresort skin}}だが発動条件が重い。実験記録②参照。</td></tr>
         <tr class="grp"><td colspan="5">変化技</td></tr>
         <tr><th class="rowh">まもる</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★1</td><td class="num">★4</td><td>ダブルの基本。</td></tr>
         <tr><th class="rowh">ドラゴンエール</th><td><span class="chip t-Dragon">竜</span></td><td class="num">—</td><td class="num">★4</td><td>味方の急所ランク+1、竜タイプなら+2。ピントレンズと合わせて確定急所。</td></tr>
         <tr><th class="rowh">てだすけ</th><td><span class="chip t-Normal">ノ</span></td><td class="num">—</td><td class="num">★3</td><td>優先度+5で味方の技を1.5倍。</td></tr>
         <tr><th class="rowh">あくび</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★3</td><td class="num">★2</td><td>いかく型の起点作り。次のターンにロンドで退ける。</td></tr>
-        <tr><th class="rowh">りゅうのまい</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★3</td><td class="num">★1</td><td>竜舞型。+1で最速178が267になる。</td></tr>
+        <tr><th class="rowh">りゅうのまい</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★3</td><td class="num">★1</td><td>竜舞型。+1で最速{{stat S3 spe}}が{{setspe S3 +1}}になる。</td></tr>
         <tr><th class="rowh">つぶらなひとみ</th><td><span class="chip t-Fairy">妖</span></td><td class="num">★1</td><td class="num">★3</td><td>優先度+1で攻撃-1。いかくと合わせると上から-2まで下がる。</td></tr>
-        <tr><th class="rowh">ねがいごと</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★2</td><td class="num">★1</td><td>H252で101回復。ロンドで後続に渡す。</td></tr>
+        <tr><th class="rowh">ねがいごと</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★2</td><td class="num">★1</td><td>H252で{{stat S4 hp2}}回復。ロンドで後続に渡す。</td></tr>
         <tr><th class="rowh">あまえる</th><td><span class="chip t-Fairy">妖</span></td><td class="num">★1</td><td class="num">★2</td><td>攻撃-2。いかくより遅いが確実に下げる。</td></tr>
-        <tr><th class="rowh">みがわり</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★1</td><td class="num">★1</td><td>H252で50消費。耐久が低く使いにくい。</td></tr>
+        <tr><th class="rowh">みがわり</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★1</td><td class="num">★1</td><td>H252で{{stat S4 hp4}}消費。耐久が低く使いにくい。</td></tr>
         <tr><th class="rowh">うそなき</th><td><span class="chip t-Dark">悪</span></td><td class="num">—</td><td class="num">★1</td><td>特殊の味方を補助。いたずらごころがないため遅い。</td></tr>
         <tr><th class="rowh">バトンタッチ</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★1</td><td class="num">—</td><td>竜舞の引き継ぎ専用。ロンドと役割が重なる。</td></tr>
       </tbody>
@@ -306,42 +281,42 @@
   </div>
 
   <h3 class="sub"><span class="n">2.1</span>環境概況と対面相性</h3>
-  <p class="prose small muted" style="margin-bottom:12px">シーズン41シングルの使用率上位20体（ポケモンHOMEの順位。アルテマ掲載分を2026年11月3日に参照）。判定は本命の「竜皮ハチマキ」型（陽気H4 A252 S252）が1対1で向き合ったときの見立て。</p>
+  <p class="prose small muted" style="margin-bottom:12px">シーズン41シングルの使用率上位20体（ポケモンHOMEの順位。アルテマ掲載分を2026年11月3日に参照）。判定は本命の「竜皮ハチマキ」型（{{nat S1}} {{ev S1}}）が1対1で向き合ったときの見立て。</p>
   <div class="scroll">
-    <table class="tbl stackable">
+    <table class="tbl stackable" id="tbl-s-match">
       <thead><tr><th class="num">順位</th><th>ポケモン</th><th>判定</th><th>根拠（ダメージは陽気ハチマキ）</th></tr></thead>
       <tbody>
-        <tr><td class="num">1</td><th class="rowh">コライドン</th><td><span class="v v-good">有利</span></td><td>先制ロンドで97〜116%（87.5%で1発）。意地なら確定1発。テラス炎だと48〜58%に落ちる。</td></tr>
-        <tr><td class="num">2</td><th class="rowh">パオジアン</th><td><span class="v v-bad">不利</span></td><td>ロンドなら確定1発だが、同じ優先度+1のこおりのつぶてが素早さ差（205対178）で先に来る。珠つぶてでH4は落ちる。</td></tr>
-        <tr><td class="num">3</td><th class="rowh">ディンルー</th><td><span class="v v-bad">不利</span></td><td>HB特化にすてみ44〜52%。カタストロフィとふきとばしで流される。</td></tr>
-        <tr><td class="num">4</td><th class="rowh">黒バドレックス</th><td><span class="v v-mid">五分</span></td><td>かみくだくは確定1発だが、先にアストラルビット（H4に101〜119%）を受ける。テラスノーマルで無効化すれば勝てる。</td></tr>
-        <tr><td class="num">5</td><th class="rowh">ミライドン</th><td><span class="v v-good">有利</span></td><td>先制ロンドでH4を確定1発。テラスフェアリーでも抜群のまま。</td></tr>
-        <tr><td class="num">6</td><th class="rowh">ハバタクカミ</th><td><span class="v v-good">有利</span></td><td>先制ロンドで確定1発。テラスノーマル・じめんでも118〜140%で落ちる。タスキだけ注意。</td></tr>
-        <tr><td class="num">7</td><th class="rowh">連撃ウーラオス</th><td><span class="v v-good">有利</span></td><td>最速178で上を取り、すてみで確定1発（H4）。スカーフ型には負ける。</td></tr>
-        <tr><td class="num">8</td><th class="rowh">霊獣ランドロス</th><td><span class="v v-mid">五分</span></td><td>いかくで攻撃が下がり、HB特化へのすてみは5割前後。じしんは2発耐え。</td></tr>
-        <tr><td class="num">9</td><th class="rowh">ホウオウ</th><td><span class="v v-bad">不利</span></td><td>HB特化にすてみ67〜79%。さいせいりょくとせいなるほのおのやけどで受けられる。</td></tr>
-        <tr><td class="num">10</td><th class="rowh">ヘイラッシャ</th><td><span class="v v-bad">不利</span></td><td>てんねんで竜舞が無効。すてみ47〜56%。あくびとじわれ。</td></tr>
-        <tr><td class="num">11</td><th class="rowh">ザシアン(王)</th><td><span class="v v-bad">不利</span></td><td>すてみは無効、ロンドは51〜61%。+1じゃれつくで落ちる。</td></tr>
-        <tr><td class="num">12</td><th class="rowh">カイリュー</th><td><span class="v v-good">有利</span></td><td>上から殴れ、マルチスケイル込みでもすてみ97〜114%（81%で1発）。</td></tr>
-        <tr><td class="num">13</td><th class="rowh">キラフロル</th><td><span class="v v-good">有利</span></td><td>すてみで確定1発（タスキ以外）。返しのパワージェムは62〜74%。</td></tr>
-        <tr><td class="num">14</td><th class="rowh">アカツキガチグマ</th><td><span class="v v-mid">五分</span></td><td>先手は取れるがH252にすてみ72〜85%。ブラッドムーンでH4は落ちる。</td></tr>
-        <tr><td class="num">15</td><th class="rowh">カイオーガ</th><td><span class="v v-good">有利</span></td><td>上からすてみ確定1発（H4）。メガネ雨しおふきは半減でも落ちるため、スカーフ型には注意。</td></tr>
-        <tr><td class="num">16</td><th class="rowh">オーロンゲ</th><td><span class="v v-good">有利</span></td><td>HB特化にロンド90〜107%。壁を張られる前に削れる。</td></tr>
-        <tr><td class="num">17</td><th class="rowh">ミミッキュ</th><td><span class="v v-mid">五分</span></td><td>ばけのかわで1回止まる。2発目のロンドで確定1発。</td></tr>
-        <tr><td class="num">18</td><th class="rowh">オーガポン</th><td><span class="v v-good">有利</span></td><td>草・水・炎のツタこんぼうを半減。すてみで確定1発（H4）。最速同士は同速。</td></tr>
-        <tr><td class="num">19</td><th class="rowh">グライオン</th><td><span class="v v-mid">五分</span></td><td>すてみ64〜75%。ポイズンヒールと毒で長引くと不利。</td></tr>
-        <tr><td class="num">20</td><th class="rowh">キョジオーン</th><td><span class="v v-bad">不利</span></td><td>すてみ54〜64%。しおづけで削られ続ける。</td></tr>
+        <tr><td class="num">1</td><th class="rowh">コライドン</th><td><span class="v v-good">有利</span></td><td>先制ロンドで{{dmg S1 rondo koraidon_as full}}。意地なら{{dmg S1A rondo koraidon_as ko}}。テラス炎だと{{dmg S1 rondo koraidon_as tt=Fire pct}}に落ちる。</td></tr>
+        <tr><td class="num">2</td><th class="rowh">パオジアン</th><td><span class="v v-bad">不利</span></td><td>ロンドなら{{dmg S1 rondo chienpao_as ko}}だが、同じ優先度+1のこおりのつぶてとの素早さ勝負は{{spcmp S1 chienpao jolly 252}}。珠つぶてはH4に{{hit S1 pao_shard_lo full}}。</td></tr>
+        <tr><td class="num">3</td><th class="rowh">ディンルー</th><td><span class="v v-bad">不利</span></td><td>HB特化にすてみ{{dmg S1 doubleedge tinglu_hb pct}}。カタストロフィとふきとばしで流される。</td></tr>
+        <tr><td class="num">4</td><th class="rowh">黒バドレックス</th><td><span class="v v-mid">五分</span></td><td>かみくだくは{{dmg S1 crunch calyrexs_cs ko}}だが、素早さは{{spcmp S1 calyrexs timid 252}}で、アストラルビット（H4に{{hit S1 cs_barrage pct}}・{{hit S1 cs_barrage ko}}）を先に受ける。テラスノーマルで無効化すれば勝てる。</td></tr>
+        <tr><td class="num">5</td><th class="rowh">ミライドン</th><td><span class="v v-good">有利</span></td><td>先制ロンドでH4に{{dmg S1 rondo miraidon_cs full}}。テラスフェアリーでも抜群のまま{{dmg S1 rondo miraidon_cs tt=Fairy ko}}。</td></tr>
+        <tr><td class="num">6</td><th class="rowh">ハバタクカミ</th><td><span class="v v-good">有利</span></td><td>先制ロンドで{{dmg S1 rondo flutter_cs ko}}。テラスノーマル・じめんでも{{dmg S1 rondo flutter_cs tt=Normal full}}。タスキだけ注意。</td></tr>
+        <tr><td class="num">7</td><th class="rowh">連撃ウーラオス</th><td><span class="v v-good">有利</span></td><td>最速同士の素早さ勝負は{{spcmp S1 urshifur jolly 252}}。すてみはH4に{{dmg S1 doubleedge urshifur_as full}}。スカーフ型には負ける。</td></tr>
+        <tr><td class="num">8</td><th class="rowh">霊獣ランドロス</th><td><span class="v v-mid">五分</span></td><td>いかくで攻撃が下がり、HB特化へのすてみは{{dmg S1 doubleedge landot_hb stage=-1 pct}}。じしんは{{hit S1 lando_eq full}}。</td></tr>
+        <tr><td class="num">9</td><th class="rowh">ホウオウ</th><td><span class="v v-bad">不利</span></td><td>HB特化にすてみ{{dmg S1 doubleedge hooh_hb pct}}。さいせいりょくとせいなるほのおのやけどで受けられる。</td></tr>
+        <tr><td class="num">10</td><th class="rowh">ヘイラッシャ</th><td><span class="v v-bad">不利</span></td><td>てんねんで竜舞が無効。すてみ{{dmg S1 doubleedge dondozo_hb pct}}。あくびとじわれ。</td></tr>
+        <tr><td class="num">11</td><th class="rowh">ザシアン(王)</th><td><span class="v v-bad">不利</span></td><td>すてみは無効、ロンドは{{dmg S1 rondo zacianc_as pct}}。+1じゃれつくは{{hit S1 zac_pr full}}。</td></tr>
+        <tr><td class="num">12</td><th class="rowh">カイリュー</th><td><span class="v v-good">有利</span></td><td>素早さは{{spcmp S1 dragonite jolly 252}}。マルチスケイル込みでもすてみ{{dmg S1 doubleedge dragonite_h full}}。</td></tr>
+        <tr><td class="num">13</td><th class="rowh">キラフロル</th><td><span class="v v-good">有利</span></td><td>すてみで{{dmg S1 doubleedge glimmora_cs ko}}（タスキ以外）。返しのパワージェムは{{hit S1 glim_gem pct}}。</td></tr>
+        <tr><td class="num">14</td><th class="rowh">アカツキガチグマ</th><td><span class="v v-mid">五分</span></td><td>素早さは{{spcmp S1 ursalunab modest 0}}だが、H252にすてみ{{dmg S1 doubleedge ursalunab_h pct}}。ブラッドムーンはH4に{{hit S1 ursb_bm full}}。</td></tr>
+        <tr><td class="num">15</td><th class="rowh">カイオーガ</th><td><span class="v v-good">有利</span></td><td>最速カイオーガとの素早さ勝負は{{spcmp S1 kyogre timid 252}}。すてみはH4に{{dmg S1 doubleedge kyogre_cs ko}}。メガネ雨しおふきは半減でも{{hit S1 kyo_spout full}}のため、スカーフ型には注意。</td></tr>
+        <tr><td class="num">16</td><th class="rowh">オーロンゲ</th><td><span class="v v-good">有利</span></td><td>HB特化にロンド{{dmg S1 rondo grimmsnarl_hb full}}。壁を張られる前に削れる。</td></tr>
+        <tr><td class="num">17</td><th class="rowh">ミミッキュ</th><td><span class="v v-mid">五分</span></td><td>ばけのかわで1回止まる。2発目のロンドで{{dmg S1 rondo mimikyu_as ko}}。</td></tr>
+        <tr><td class="num">18</td><th class="rowh">オーガポン</th><td><span class="v v-good">有利</span></td><td>草・水・炎のツタこんぼうを半減。すてみはH4に{{dmg S1 doubleedge ogerpon_as ko}}。最速同士は{{spcmp S1 ogerpon jolly 252}}。</td></tr>
+        <tr><td class="num">19</td><th class="rowh">グライオン</th><td><span class="v v-mid">五分</span></td><td>すてみ{{dmg S1 doubleedge gliscor_hb pct}}。ポイズンヒールと毒で長引くと不利。</td></tr>
+        <tr><td class="num">20</td><th class="rowh">キョジオーン</th><td><span class="v v-bad">不利</span></td><td>すてみ{{dmg S1 doubleedge garganacl_hb pct}}。しおづけで削られ続ける。</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="cap" style="margin-top:8px"><b>表2-1</b>　有利9・五分5・不利6。上位の禁止級アタッカーに強く、受けポケモンと鋼に弱い。</p>
+  <p class="cap" style="margin-top:8px"><b>表2-1</b>　{{tally tbl-s-match}}。上位の禁止級アタッカーに強く、受けポケモンと鋼に弱い。</p>
 
   <h3 class="sub"><span class="n">2.2</span>役割</h3>
   <div class="cols">
     <div class="panel stack" style="gap:8px">
       <h4 style="margin:0">強み</h4>
       <ul class="points">
-        <li>先制でハバタクカミ、ミライドン、コライドンを落とせる。いずれも上位10位以内。</li>
+        <li>先制ロンドで{{kolist S1 rondo flutter_cs miraidon_cs koraidon_as}}。いずれも上位10位以内。</li>
         <li>テラスタルフェアリーでの「竜技透かし」が通じない。ミライドンとハバタクカミのテラスで最も多いのはフェアリー。</li>
         <li>水・炎・電気・草を半減し、カイオーガ以外の主力技を受けやすい。</li>
         <li>スキン型といかく型が見せ合いで区別できず、相手の選出を迷わせる。</li>
@@ -365,15 +340,15 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>ドラゴンスキン</dd>
-          <dt>性格</dt><dd>ようき</dd>
-          <dt>努力値</dt><dd class="mono">H4 A252 S252</dd>
-          <dt>実数値</dt><dd class="mono">171-182-85-×-85-178</dd>
+          <dt>性格</dt><dd>{{nat S1}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev S1}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat S1}}</dd>
           <dt>持ち物</dt><dd>こだわりハチマキ</dd>
           <dt>テラス</dt><dd>ドラゴン ／ ノーマル</dd>
         </dl>
         <div class="moves">
           <div class="mv sig"><span>ドラゴニックロンド</span><small>先制</small></div>
-          <div class="mv"><span>すてみタックル</span><small>144</small></div>
+          <div class="mv"><span>すてみタックル</span><small>{{bp doubleedge skin}}</small></div>
           <div class="mv"><span>かみくだく</span><small>悪</small></div>
           <div class="mv"><span>アイアンテール ／ のしかかり</span><small>選択</small></div>
         </div>
@@ -388,21 +363,21 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>ドラゴンスキン</dd>
-          <dt>性格</dt><dd>ようき</dd>
-          <dt>努力値</dt><dd class="mono">H4 A252 S252</dd>
-          <dt>実数値</dt><dd class="mono">171-182-85-×-85-178（×1.5＝267）</dd>
+          <dt>性格</dt><dd>{{nat S2}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev S2}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat S2}}（×1.5＝{{setspe S2}}）</dd>
           <dt>持ち物</dt><dd>こだわりスカーフ</dd>
           <dt>テラス</dt><dd>ドラゴン</dd>
         </dl>
         <div class="moves">
-          <div class="mv"><span>すてみタックル</span><small>144</small></div>
+          <div class="mv"><span>すてみタックル</span><small>{{bp doubleedge skin}}</small></div>
           <div class="mv sig"><span>ドラゴニックロンド</span><small>先制</small></div>
           <div class="mv"><span>かみくだく</span><small>悪</small></div>
           <div class="mv"><span>くさわけ</span><small>草</small></div>
         </div>
         <ul class="points">
-          <li>S267で黒バドレックス（222）とザシアン（220）を上から叩く。黒バドはかみくだくで確定1発。</li>
-          <li>終盤の掃除役。スカーフ持ちのコライドン・ミライドン（307）には抜かれる。</li>
+          <li>S{{setspe S2}}は、最速の{{spvs S2 calyrexs/timid zacianc/jolly}}。黒バドレックスへのかみくだくは{{dmg S2 crunch calyrexs_cs ko}}。</li>
+          <li>終盤の掃除役。スカーフ持ちの最速コライドン・ミライドンとの素早さ勝負は{{spcmp S2 koraidon jolly 252 x1.5}}。</li>
         </ul>
       </div>
     </article>
@@ -411,20 +386,20 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>ドラゴンスキン</dd>
-          <dt>性格</dt><dd>ようき</dd>
-          <dt>努力値</dt><dd class="mono">H4 A252 S252</dd>
-          <dt>実数値</dt><dd class="mono">171-182-85-×-85-178</dd>
+          <dt>性格</dt><dd>{{nat S3}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev S3}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat S3}}</dd>
           <dt>持ち物</dt><dd>いのちのたま ／ ラムのみ</dd>
           <dt>テラス</dt><dd>ドラゴン</dd>
         </dl>
         <div class="moves">
           <div class="mv"><span>りゅうのまい</span><small>積み</small></div>
-          <div class="mv"><span>すてみタックル</span><small>144</small></div>
+          <div class="mv"><span>すてみタックル</span><small>{{bp doubleedge skin}}</small></div>
           <div class="mv sig"><span>ドラゴニックロンド</span><small>先制</small></div>
           <div class="mv"><span>かみくだく</span><small>悪</small></div>
         </div>
         <ul class="points">
-          <li>+1・珠・テラス竜のすてみでホウオウ（HB特化）、霊獣ランドロス（HB特化）、グライオンを確定1発。</li>
+          <li>+1・珠・テラス竜のすてみなら、{{kolist S3 doubleedge hooh_hb landot_hb gliscor_hb}}（いずれもHB振り）。</li>
           <li>積む隙は、あくびの誘いや受けポケモンの交代で作る。てんねん持ちとディンルーのふきとばしが天敵。</li>
         </ul>
       </div>
@@ -434,9 +409,9 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>いかく</dd>
-          <dt>性格</dt><dd>わんぱく</dd>
-          <dt>努力値</dt><dd class="mono">H252 B252 D4</dd>
-          <dt>実数値</dt><dd class="mono">202-150-128-×-86-130</dd>
+          <dt>性格</dt><dd>{{nat S4}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev S4}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat S4}}</dd>
           <dt>持ち物</dt><dd>たべのこし ／ ゴツゴツメット</dd>
           <dt>テラス</dt><dd>はがね ／ フェアリー</dd>
         </dl>
@@ -448,7 +423,7 @@
         </div>
         <ul class="points">
           <li>いかくで物理禁止級を受け、あくび→ロンドで積みエースに繋ぐ。相手が速ければ後続の素早さも上がる。</li>
-          <li>ザシアン(王)の+1じゃれつくはいかく込みで80〜95%、パオジアンの珠つららおとしは82〜98%で耐える。</li>
+          <li>ザシアン(王)の+1じゃれつくはいかく込みで{{hit S4 zac_pr pct}}（{{hit S4 zac_pr surv}}）、パオジアンの珠つららおとしは{{hit S4 pao_icicle_lo pct}}（{{hit S4 pao_icicle_lo surv}}）。</li>
         </ul>
       </div>
     </article>
@@ -475,11 +450,11 @@
   <h3 class="sub"><span class="n">2.7</span>ドラフィア対策</h3>
   <div class="panel">
     <ul class="points" style="font-size:14px">
-      <li><b>素早さで先制技を上回る。</b> パオジアン（S205）のこおりのつぶてはロンドより先に動く。意地珠ならH4を確定1発。</li>
+      <li><b>素早さで先制技を上回る。</b> パオジアン（S{{spe chienpao jolly 252}}）のこおりのつぶてとロンドの素早さ勝負は{{spcmp S1 chienpao jolly 252}}。意地珠のつぶてはH4に{{hit S1 pao_shard_lo ko}}。</li>
       <li><b>鋼で受ける。</b> ザシアン(王)にはすてみが無効、ザマゼンタ(王)・ドドゲザン・テツノワダチにはすべての技が半減以下。</li>
       <li><b>てんねんで竜舞を消す。</b> ヘイラッシャ・ドオーはあくびで流しつつ受けきれる。</li>
       <li><b>音技を封じる。</b> じごくづきを受けると2ターンロンドが撃てない。</li>
-      <li><b>テラスタルで抜群を消す。</b> ただしハチマキのロンドはハバタクカミのテラスノーマルも落とすため、フェアリー側は耐久調整が要る。</li>
+      <li><b>テラスタルで抜群を消す。</b> ただしハチマキのロンドはテラスノーマルのハバタクカミにも{{dmg S1 rondo flutter_cs tt=Normal ko}}のため、フェアリー側は耐久調整が要る。</li>
     </ul>
   </div>
   <div class="memo-row" style="margin-top:20px">
@@ -501,21 +476,21 @@
     <table class="tbl stackable">
       <thead><tr><th class="num">順位</th><th>ポケモン</th><th>関係</th><th>要点</th></tr></thead>
       <tbody>
-        <tr><td class="num">1</td><th class="rowh">ミライドン</th><td><span class="v v-mid">相方／警戒</span></td><td>イナズマドライブ半減、メガネのマジカルシャイン（全体）は76〜90%で耐える。りゅうせいぐんは耐えない（ハバンのみで非メガネは耐える）。味方ならエールの最良の相手。</td></tr>
+        <tr><td class="num">1</td><th class="rowh">ミライドン</th><td><span class="v v-mid">相方／警戒</span></td><td>イナズマドライブ半減、メガネのマジカルシャイン（全体）は{{hit D1 mir_gleam_specs_d pct}}（{{hit D1 mir_gleam_specs_d surv}}）。非メガネのりゅうせいぐんは{{hit D1 mir_draco full}}、ハバンのみなら{{hit D1 mir_draco haban full}}。味方ならエールの最良の相手。</td></tr>
         <tr><td class="num">2</td><th class="rowh">ガオガエン</th><td><span class="v v-mid">競合／併用</span></td><td>いかく役同士。ねこだましはおんみつマントで無効にできる。併用すると二重いかくサイクルになる（3.3）。</td></tr>
-        <tr><td class="num">3</td><th class="rowh">黒バドレックス</th><td><span class="v v-good">有利</span></td><td>メガネのアストラルビット（全体）を67〜79%で耐える。スキン型のかみくだくは確定1発。</td></tr>
-        <tr><td class="num">4</td><th class="rowh">連撃ウーラオス</th><td><span class="v v-good">有利</span></td><td>すいりゅうれんだ半減。ハチマキインファイトはいかく込みで71〜85%耐え。急所技にいかくが効かない点は注意。</td></tr>
-        <tr><td class="num">5</td><th class="rowh">白バドレックス</th><td><span class="v v-bad">不利</span></td><td>ブリザードランス（全体）が最大の脅威。いかく込みでも乱数1発（6.3%）。トリル下ではロンドの素早さ上昇が逆効果。</td></tr>
-        <tr><td class="num">6</td><th class="rowh">ザマゼンタ(王)</th><td><span class="v v-bad">不利</span></td><td>ボディプレスにいかくが効かない（76〜90%）。こちらの技はすべて半減以下。</td></tr>
-        <tr><td class="num">7</td><th class="rowh">エルフーン</th><td><span class="v v-mid">五分</span></td><td>いたずらごころのちょうはつ・アンコールでいかく版ロンドが止まる。スキン型ならロンドで落とせる（てだすけで確定1発）。</td></tr>
+        <tr><td class="num">3</td><th class="rowh">黒バドレックス</th><td><span class="v v-good">有利</span></td><td>メガネのアストラルビット（全体）は{{hit D1 cs_barrage_specs_d pct}}（{{hit D1 cs_barrage_specs_d surv}}）。スキン型（D-3）のかみくだくは{{dmg D3 crunch calyrexs_cs ko}}。</td></tr>
+        <tr><td class="num">4</td><th class="rowh">連撃ウーラオス</th><td><span class="v v-good">有利</span></td><td>すいりゅうれんだ半減。ハチマキインファイトはいかく込みで{{hit D1 ursr_cc_band pct}}（{{hit D1 ursr_cc_band surv}}）。急所技にいかくが効かない点は注意。</td></tr>
+        <tr><td class="num">5</td><th class="rowh">白バドレックス</th><td><span class="v v-bad">不利</span></td><td>ブリザードランス（全体）が最大の脅威。いかく込みで{{hit D1 ci_lance_d full}}。トリル下ではロンドの素早さ上昇が逆効果。</td></tr>
+        <tr><td class="num">6</td><th class="rowh">ザマゼンタ(王)</th><td><span class="v v-bad">不利</span></td><td>ボディプレスにいかくが効かない（{{hit D1 zama_bp_d pct}}）。こちらの技はすべて半減以下。</td></tr>
+        <tr><td class="num">7</td><th class="rowh">エルフーン</th><td><span class="v v-mid">五分</span></td><td>いたずらごころのちょうはつ・アンコールでいかく版ロンドが止まる。スキン型（D-3）のロンドは{{dmg D3 rondo whims_h ko}}、てだすけ込みで{{dmg D3 rondo whims_h hh ko}}。</td></tr>
         <tr><td class="num">8</td><th class="rowh">ゴリランダー</th><td><span class="v v-good">有利</span></td><td>草技を半減し、いかくで物理を削ぐ。ねこだましはマントで無効。</td></tr>
-        <tr><td class="num">9</td><th class="rowh">パオジアン</th><td><span class="v v-bad">不利</span></td><td>わざわいのつるぎで防御も下がり、つららおとしは珠ならいかく込みでも落ちる。最優先の警戒対象。</td></tr>
-        <tr><td class="num">10</td><th class="rowh">ルナアーラ</th><td><span class="v v-mid">五分</span></td><td>シャドーレイは48〜57%（乱数2発）。トリックルーム展開ではロンドの素早さ上昇が裏目に出る。</td></tr>
-        <tr><td class="num">11</td><th class="rowh">ハバタクカミ</th><td><span class="v v-mid">五分</span></td><td>D-1はムーンフォースを83〜98%で耐える。こごえるかぜは抜群。スキン型のロンドなら確定1発。</td></tr>
-        <tr><td class="num">12</td><th class="rowh">コライドン</th><td><span class="v v-mid">相方／警戒</span></td><td>敵ならアクセルブレイクはいかく込み54〜64%。味方なら、エール＋ピントレンズの確定急所でいかくを無視できる。</td></tr>
-        <tr><td class="num">13</td><th class="rowh">カイオーガ</th><td><span class="v v-good">有利</span></td><td>メガネ雨しおふき（全体）を64〜76%で耐える。れいとうビームは61〜73%。</td></tr>
+        <tr><td class="num">9</td><th class="rowh">パオジアン</th><td><span class="v v-bad">不利</span></td><td>わざわいのつるぎで防御も下がり、珠つららおとしはいかく込みでも{{hit D1 pao_icicle_lo full}}。最優先の警戒対象。</td></tr>
+        <tr><td class="num">10</td><th class="rowh">ルナアーラ</th><td><span class="v v-mid">五分</span></td><td>シャドーレイは{{hit D1 lunala_mg_d full}}。トリックルーム展開ではロンドの素早さ上昇が裏目に出る。</td></tr>
+        <tr><td class="num">11</td><th class="rowh">ハバタクカミ</th><td><span class="v v-mid">五分</span></td><td>ムーンフォースはD-1に{{hit D1 fm_moon_timid pct}}（{{hit D1 fm_moon_timid surv}}）。こごえるかぜは抜群。スキン型（D-3）のロンドは{{dmg D3 rondo flutter_cs ko}}。</td></tr>
+        <tr><td class="num">12</td><th class="rowh">コライドン</th><td><span class="v v-mid">相方／警戒</span></td><td>敵ならアクセルブレイクはいかく込み{{hit D1 kor_cc pct}}。味方なら、エール＋ピントレンズの確定急所でいかくを無視できる。</td></tr>
+        <tr><td class="num">13</td><th class="rowh">カイオーガ</th><td><span class="v v-good">有利</span></td><td>メガネ雨しおふき（全体）は{{hit D1 kyo_spout_d pct}}（{{hit D1 kyo_spout_d surv}}）。れいとうビームは{{hit D1 kyo_icebeam pct}}。</td></tr>
         <tr><td class="num">14</td><th class="rowh">トルネロス</th><td><span class="v v-mid">五分</span></td><td>ちょうはつでロンドとエールを止められる。メンタルハーブで1回防げる。</td></tr>
-        <tr><td class="num">15</td><th class="rowh">タケルライコ</th><td><span class="v v-mid">相方／警戒</span></td><td>電気技は半減だが、りゅうせいぐんは耐えない（ハバンで62〜73%）。味方ならエールの対象になる。</td></tr>
+        <tr><td class="num">15</td><th class="rowh">タケルライコ</th><td><span class="v v-mid">相方／警戒</span></td><td>電気技は半減。りゅうせいぐんは{{hit D1 bolt_draco_d full}}、ハバンなら{{hit D1 bolt_draco_d haban pct}}。味方ならエールの対象になる。</td></tr>
       </tbody>
     </table>
   </div>
@@ -532,11 +507,11 @@
     <table class="tbl">
       <thead><tr><th>項目</th><th>ガオガエン</th><th>ドラフィア（いかく型）</th></tr></thead>
       <tbody>
-        <tr><th class="rowh">タイプ</th><td><span class="chip t-Fire">ほのお</span> <span class="chip t-Dark">あく</span></td><td><span class="chip t-Dragon">ドラゴン</span></td></tr>
-        <tr><th class="rowh">環境上の弱点</th><td>水・闘・地・岩（カイオーガ、ウーラオス、ザマゼンタ、グラードン）</td><td>氷・竜・妖（白バド、パオジアン、ミライドン、ハバタクカミ）</td></tr>
-        <tr><th class="rowh">半減</th><td>炎・草・氷・鋼・霊・悪、超無効</td><td>炎・水・電気・草</td></tr>
-        <tr><th class="rowh">耐久（H/B/D）</th><td class="mono">95 / 90 / 90</td><td class="mono">95 / 65 / 65</td></tr>
-        <tr><th class="rowh">素早さ（最大）</th><td class="mono">112</td><td class="mono">178</td></tr>
+        <tr><th class="rowh">タイプ</th><td><span class="chip t-Fire">ほのお</span> <span class="chip t-Dark">あく</span></td><td><!--@TYPECHIPS--></td></tr>
+        <tr><th class="rowh">環境上の弱点</th><td>水・闘・地・岩（カイオーガ、ウーラオス、ザマゼンタ、グラードン）</td><td>{{eff weak}}（白バド、パオジアン、ミライドン、ハバタクカミ）</td></tr>
+        <tr><th class="rowh">半減</th><td>炎・草・氷・鋼・霊・悪、超無効</td><td>{{eff resist}}</td></tr>
+        <tr><th class="rowh">耐久（H/B/D）</th><td class="mono">{{base incineroar hp}} / {{base incineroar def}} / {{base incineroar spd}}</td><td class="mono">{{base hp}} / {{base def}} / {{base spd}}</td></tr>
+        <tr><th class="rowh">素早さ（最速）</th><td class="mono">{{spe incineroar jolly 252}}</td><td class="mono">{{spe draffia jolly 252}}</td></tr>
         <tr><th class="rowh">ねこだまし</th><td>あり</td><td>なし</td></tr>
         <tr><th class="rowh">交代技</th><td>すてゼリフ（優先度0、相手のA・C-1）</td><td>ロンド（優先度+1、条件付きで後続のS上昇）</td></tr>
         <tr><th class="rowh">固有の補助</th><td>はたきおとす、バークアウト</td><td>ドラゴンエール、てだすけ、あくび、つぶらなひとみ</td></tr>
@@ -552,9 +527,9 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>いかく</dd>
-          <dt>性格</dt><dd>しんちょう</dd>
-          <dt>努力値</dt><dd class="mono">H252 B60 D196</dd>
-          <dt>実数値</dt><dd class="mono">202-150-93-×-121-130</dd>
+          <dt>性格</dt><dd>{{nat D1}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev D1}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat D1}}</dd>
           <dt>持ち物</dt><dd>オボンのみ ／ おんみつマント ／ ハバンのみ</dd>
           <dt>テラス</dt><dd>はがね ／ みず</dd>
         </dl>
@@ -575,9 +550,9 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>いかく</dd>
-          <dt>性格</dt><dd>しんちょう</dd>
-          <dt>努力値</dt><dd class="mono">H252 B60 D196</dd>
-          <dt>実数値</dt><dd class="mono">202-150-93-×-121-130</dd>
+          <dt>性格</dt><dd>{{nat D1}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev D1}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat D1}}</dd>
           <dt>持ち物</dt><dd>メンタルハーブ</dd>
           <dt>テラス</dt><dd>はがね</dd>
         </dl>
@@ -598,20 +573,20 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>ドラゴンスキン</dd>
-          <dt>性格</dt><dd>ようき</dd>
-          <dt>努力値</dt><dd class="mono">H4 A252 S252</dd>
-          <dt>実数値</dt><dd class="mono">171-182-85-×-85-178</dd>
+          <dt>性格</dt><dd>{{nat D3}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev D3}}</dd>
+          <dt>実数値</dt><dd class="mono">{{stat D3}}</dd>
           <dt>持ち物</dt><dd>クリアチャーム ／ いのちのたま</dd>
           <dt>テラス</dt><dd>ドラゴン ／ ゴースト</dd>
         </dl>
         <div class="moves">
           <div class="mv sig"><span>ドラゴニックロンド</span><small>先制</small></div>
-          <div class="mv"><span>すてみタックル</span><small>144</small></div>
+          <div class="mv"><span>すてみタックル</span><small>{{bp doubleedge skin}}</small></div>
           <div class="mv"><span>かみくだく</span><small>悪</small></div>
           <div class="mv"><span>まもる</span><small>守</small></div>
         </div>
         <ul class="points">
-          <li>クリアチャームでガオガエンとランドロスのいかくを無効化。いかくを受けたすてみはガオガエン（HB）に32〜38%まで落ちる。</li>
+          <li>クリアチャームでガオガエンとランドロスのいかくを無効化。いかくを受けたすてみはガオガエン（HB）に{{dmg D3 doubleedge incin_hb stage=-1 pct}}まで落ちる。</li>
           <li>テラスゴーストでねこだましとインファイトを無効にできる。</li>
         </ul>
       </div>
@@ -621,20 +596,20 @@
       <div class="setbody">
         <dl class="kv">
           <dt>特性</dt><dd>ドラゴンスキン</dd>
-          <dt>性格</dt><dd>ようき</dd>
-          <dt>努力値</dt><dd class="mono">H4 A252 S252</dd>
-          <dt>相方</dt><dd>ニンフィア（控えめ C252 S252、S112）</dd>
+          <dt>性格</dt><dd>{{nat D4}}</dd>
+          <dt>努力値</dt><dd class="mono">{{ev D4}}</dd>
+          <dt>相方</dt><dd>ニンフィア（控えめ C252 S252、S{{spe sylveon modest 252}}）</dd>
           <dt>持ち物</dt><dd>いのちのたま</dd>
           <dt>テラス</dt><dd>ドラゴン</dd>
         </dl>
         <div class="moves">
           <div class="mv sig"><span>ドラゴニックロンド</span><small>先制</small></div>
-          <div class="mv"><span>すてみタックル</span><small>144</small></div>
+          <div class="mv"><span>すてみタックル</span><small>{{bp doubleedge skin}}</small></div>
           <div class="mv"><span>てだすけ</span><small>+5</small></div>
           <div class="mv"><span>まもる</span><small>守</small></div>
         </div>
         <ul class="points">
-          <li>ロンドを撃つたびにニンフィアのS+2。S112は224になり、黒バドレックス（222）を抜く。</li>
+          <li>ロンドを撃つたびにニンフィアのS+2。S{{spe sylveon modest 252}}は{{spe sylveon modest 252 +2}}になり、最速の黒バドレックス（{{spe calyrexs timid 252}}）を抜く。</li>
           <li>フェアリースキンのハイパーボイス（全体）でコライドン（H4）と連撃ウーラオスは確定1発。§6 実験記録④。</li>
         </ul>
       </div>
@@ -655,7 +630,7 @@
     </div>
     <!--@SPEED-->
     <div class="sp-sum">
-      <span>ドラフィアのすばやさ <b class="mono" id="spd-me">130</b></span>
+      <span>ドラフィアのすばやさ <b class="mono" id="spd-me">{{!spe draffia hardy 0}}</b></span>
       <span>条件を満たす相手 <span class="big" id="spd-count">0</span><span class="mono"> / <span id="spd-total">0</span></span></span>
     </div>
     <p class="cap" style="margin-top:8px"><b>図3-1</b>　金色のバーは「ドラフィアより速い＝いかく版ロンドで後続の素早さが上がる」相手。最大値は一般的な最速・準速の実数値（スカーフ等は含まない）。</p>
@@ -693,14 +668,14 @@
     <table class="tbl">
       <thead><tr><th>持ち物</th><th>向く型</th><th>評価</th></tr></thead>
       <tbody>
-        <tr><th class="rowh">こだわりハチマキ</th><td>S-1</td><td>ロンドの確定数を大きく改善。ハバタクカミのテラスノーマルも落とせる。</td></tr>
-        <tr><th class="rowh">こだわりスカーフ</th><td>S-2</td><td>S267。禁止級のうち黒バドとザシアンを抜く。</td></tr>
+        <tr><th class="rowh">こだわりハチマキ</th><td>S-1</td><td>ロンドの確定数を大きく改善。テラスノーマルのハバタクカミにも{{dmg S1 rondo flutter_cs tt=Normal ko}}。</td></tr>
+        <tr><th class="rowh">こだわりスカーフ</th><td>S-2</td><td>S{{setspe S2}}。最速の{{spvs S2 calyrexs/timid zacianc/jolly}}。</td></tr>
         <tr><th class="rowh">いのちのたま</th><td>S-3・D-3・D-4</td><td>技を選べる火力。すてみの反動と重なり消耗が速い。</td></tr>
         <tr><th class="rowh">クリアチャーム</th><td>D-3</td><td>ダブルのいかく被り対策。シングルでもランドロス相手に有効。</td></tr>
         <tr><th class="rowh">ラムのみ</th><td>S-3</td><td>あくび・でんじは・せいなるほのおのやけどを1回解除。</td></tr>
         <tr><th class="rowh">オボンのみ</th><td>D-1</td><td>汎用。2回目のいかく交代まで場持ちを伸ばす。</td></tr>
         <tr><th class="rowh">おんみつマント</th><td>D-1</td><td>ねこだまし、こごえるかぜ、ぼうふざんの追加効果を防ぐ。</td></tr>
-        <tr><th class="rowh">ハバンのみ</th><td>D-1</td><td>抜群の竜技を半減。非メガネのミライドンのりゅうせいぐんとタケルライコのりゅうせいぐんを耐える。</td></tr>
+        <tr><th class="rowh">ハバンのみ</th><td>D-1</td><td>抜群の竜技を半減。D-1なら、非メガネのミライドンのりゅうせいぐんは{{hit D1 mir_draco haban pct}}（{{hit D1 mir_draco haban surv}}）、タケルライコのりゅうせいぐんは{{hit D1 bolt_draco_d haban pct}}（{{hit D1 bolt_draco_d haban surv}}）。</td></tr>
         <tr><th class="rowh">メンタルハーブ</th><td>D-2</td><td>ちょうはつ・アンコールを1回解除。エール型の保険。</td></tr>
         <tr><th class="rowh">たべのこし</th><td>S-4</td><td>あくび展開とねがいごとの長期戦向け。</td></tr>
       </tbody>
@@ -708,17 +683,7 @@
   </div>
 
   <h3 class="sub"><span class="n">4.8</span>すばやさの目安</h3>
-  <div class="scroll">
-    <table class="tbl compact">
-      <thead><tr><th class="num">実数値</th><th>調整</th><th>抜ける相手（最速・準速の最大値）</th></tr></thead>
-      <tbody>
-        <tr><td class="num">267</td><td>最速スカーフ ／ 最速竜舞+1</td><td>黒バドレックス（222）、ザシアン(王)（220）、スカーフなしの135族（205）</td></tr>
-        <tr><td class="num">178</td><td>最速</td><td>連撃ウーラオス・ルナアーラ（163）、イーユイ（167）、化身ランドロス（168）。オーガポンと同速。トルネロス（179）には抜かれる</td></tr>
-        <tr><td class="num">162</td><td>準速</td><td>グライオン（161）、霊獣ランドロス（157）、カイオーガ・ホウオウ（156）</td></tr>
-        <tr><td class="num">130</td><td>無振り</td><td>ガオガエン（112）、ニンフィア（112）。ロンドの素早さ上昇条件を最も満たしやすい</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <!--@SPEEDTBL-->
 </section>
 
 <!-- ============================ §5 ============================ -->
@@ -742,7 +707,7 @@
     <div class="panel stack" style="gap:8px">
       <h4 style="margin:0">ロンドで活きる味方</h4>
       <ul class="points">
-        <li><b>素早さ上昇を受けて殴る禁止級</b>：コライドン、ホウオウ、ザシアン。+1で最速205は307。</li>
+        <li><b>素早さ上昇を受けて殴る禁止級</b>：コライドン、ホウオウ、ザシアン。+1で最速{{spe koraidon jolly 252}}は{{spe koraidon jolly 252 +1}}。</li>
         <li><b>エールの対象</b>：ミライドン、コライドン、タケルライコ（ピントレンズ）。</li>
         <li><b>イーブイ系</b>：ロンドのたびにS+2。現実的な候補はニンフィア。</li>
       </ul>
@@ -769,7 +734,7 @@
       <div class="setbody team">
         <p class="small">コライドンの晴れでホウオウとハバタクカミを強化し、ドラフィアのあくびとロンドで着地を支える。</p>
         <div class="mon me"><span class="who">ドラフィア<small>S-4 いかく起点作り</small></span><span class="role">物理禁止級を受け、あくび→ロンドで後続を加速させる。</span></div>
-        <div class="mon"><span class="who">コライドン<small>禁止級・ハチマキ</small></span><span class="role">晴れ始動。ロンド後は+1で307。</span></div>
+        <div class="mon"><span class="who">コライドン<small>禁止級・ハチマキ</small></span><span class="role">晴れ始動。ロンド後は+1で{{spe koraidon jolly 252 +1}}。</span></div>
         <div class="mon"><span class="who">ホウオウ<small>禁止級・ブーツ</small></span><span class="role">晴れのせいなるほのお。特殊受け。</span></div>
         <div class="mon"><span class="who">ハバタクカミ<small>ブーストエナジー</small></span><span class="role">晴れでこだいかっせい。竜技を無効にでき、ドラフィアの竜弱点を受けられる。</span></div>
         <div class="mon"><span class="who">ディンルー<small>オボン</small></span><span class="role">ミライドンへの後出し。</span></div>
@@ -863,9 +828,9 @@
             <div class="field span2"><label for="cd-atk">相手の攻撃</label><select id="cd-atk"></select></div>
             <div class="field"><label for="cd-nat">ドラフィアの性格</label><select id="cd-nat"><option value="careful" selected>しんちょう（D↑）</option><option value="impish">わんぱく（B↑）</option><option value="jolly">ようき（無補正）</option><option value="adamant">いじっぱり（無補正）</option></select></div>
             <div class="field"><label for="cd-tera">ドラフィアのテラス</label><select id="cd-tera"><option value="">なし</option><option value="Steel">はがね</option><option value="Water">みず</option><option value="Fairy">フェアリー</option><option value="Fire">ほのお</option><option value="Ghost">ゴースト</option><option value="Normal">ノーマル</option><option value="Dragon">ドラゴン</option></select></div>
-            <div class="field"><label for="cd-hp">H 努力値 <span class="mono" id="cd-hpv">252</span></label><input id="cd-hp" type="range" min="0" max="252" step="4" value="252"></div>
-            <div class="field"><label for="cd-def">B 努力値 <span class="mono" id="cd-defv">60</span></label><input id="cd-def" type="range" min="0" max="252" step="4" value="60"></div>
-            <div class="field"><label for="cd-spd">D 努力値 <span class="mono" id="cd-spdv">196</span></label><input id="cd-spd" type="range" min="0" max="252" step="4" value="196"></div>
+            <div class="field"><label for="cd-hp">H 努力値 <span class="mono" id="cd-hpv">{{!ev D1 hp}}</span></label><input id="cd-hp" type="range" min="0" max="252" step="4" value="{{ev D1 hp}}"></div>
+            <div class="field"><label for="cd-def">B 努力値 <span class="mono" id="cd-defv">{{!ev D1 def}}</span></label><input id="cd-def" type="range" min="0" max="252" step="4" value="{{ev D1 def}}"></div>
+            <div class="field"><label for="cd-spd">D 努力値 <span class="mono" id="cd-spdv">{{!ev D1 spd}}</span></label><input id="cd-spd" type="range" min="0" max="252" step="4" value="{{ev D1 spd}}"></div>
           </div>
           <div class="toggles" style="margin-top:12px">
             <label class="check" for="cd-intim"><input id="cd-intim" type="checkbox" checked>いかく済み（物理-1）</label>
@@ -914,15 +879,7 @@
 
   <h3 class="sub"><span class="n">7.1</span>予想使用率順位 <span class="est">ラボ推計</span></h3>
   <div class="panel rankaxis">
-    <div class="rkscale"><span></span><div class="t"><span style="left:0%">1位</span><span style="left:16.95%">10位</span><span style="left:33.9%">20位</span><span style="left:50.85%">30位</span><span style="left:67.8%">40位</span><span style="left:84.75%">50位</span><span style="left:100%">60位</span></div></div>
-    <div class="rk"><span class="lab">シングル</span><div class="ax">
-      <div class="band early" style="left:23.73%;width:16.95%">初月 15〜25</div>
-      <div class="band settled" style="left:49.15%;width:25.42%">定着後 30〜45</div>
-    </div></div>
-    <div class="rk"><span class="lab">ダブル</span><div class="ax">
-      <div class="band early" style="left:11.86%;width:11.86%">初月 8〜15</div>
-      <div class="band settled" style="left:15.25%;width:16.95%">定着後 10〜20</div>
-    </div></div>
+    <!--@RANKAXIS-->
     <p class="small muted">初月は新規性で試されやすく、シングルは対策（パオジアン、鋼、てんねん）が進むにつれて順位を落とすと見る。ダブルはエールの価値がミライドンの使用率（1位）に支えられ、順位が下がりにくい。</p>
   </div>
 
@@ -952,11 +909,11 @@
   <h3 class="sub"><span class="n">7.4</span>総評</h3>
   <div class="cols">
     <div class="panel verdict">
-      <div class="grade">B+</div>
+      <div class="grade">{{grade S}}</div>
       <div class="stack" style="gap:6px"><h3>シングル</h3><p class="small">先制ロンドの性能は禁止級環境でも一級品。耐久の低さと鋼への打点不足から、受け回しの相手には選出しにくい。構築の軸ではなく、禁止級ドラゴンとフェアリーに対する「解答」として1枠を取る。</p></div>
     </div>
     <div class="panel verdict">
-      <div class="grade">A</div>
+      <div class="grade">{{grade D}}</div>
       <div class="stack" style="gap:6px"><h3>ダブル</h3><p class="small">いかく・先制交代・エールの3つが同じ枠に収まり、相方次第で役割が変わる。白バドレックスとパオジアンの氷技、ザマゼンタのボディプレスが課題で、それ以外の上位とは対等以上に戦える。</p></div>
     </div>
   </div>

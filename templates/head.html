@@ -291,9 +291,12 @@ input[type=range]{width:100%;accent-color:var(--goldInk)}
 .rk .band{position:absolute;top:6px;height:22px;border-radius:2px;display:grid;place-items:center;font-family:var(--f-mono);font-size:11px;font-weight:600;white-space:nowrap}
 .rk .band.early{background:var(--goldWash);color:var(--goldInk);border:1px solid var(--gold);top:2px;height:14px;font-size:10px}
 .rk .band.settled{background:var(--indigo);color:var(--sheet);top:18px;height:14px;font-size:10px}
-.rkscale{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink3)}
-.rkscale .t{position:relative;height:14px}
-.rkscale .t span{position:absolute;transform:translateX(-50%)}
+.rkscale{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;font-family:var(--f-mono);color:var(--ink3)}
+.rkscale .t{position:relative;height:14px;font-size:10.5px}
+.rkscale .t span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.rk .bl{position:absolute;font-family:var(--f-mono);font-size:10px;font-weight:600;line-height:14px;white-space:nowrap;color:var(--ink2)}
+.rk .bl.early{top:2px}
+.rk .bl.settled{top:18px}
 .adopt{display:grid;gap:6px}
 .ad{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 3.4em;gap:10px;align-items:center;font-size:13.5px}
 .ad .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -337,6 +340,12 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
   .tbl.stackable tr.grp td{background:var(--goldWash);padding:4px 10px}
   .tbl.stackable tbody tr > :last-child{grid-column:1 / -1;font-size:13px;color:var(--ink2)}
   .tbl.stackable tr.grp > :last-child{color:var(--goldInk)}
+  .tbl.spd thead{display:none}
+  .tbl.spd tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;padding:9px 10px;border-bottom:1px solid var(--rule2)}
+  .tbl.spd td{border:none;padding:0;background:none;text-align:left}
+  .tbl.spd td:nth-child(n+3){grid-column:1 / -1;font-size:13px;color:var(--ink2)}
+  .tbl.spd td:nth-child(3)::before{content:"抜ける：";color:var(--ink3)}
+  .tbl.spd td:nth-child(4)::before{content:"同速・抜かれる：";color:var(--ink3)}
   .emblem{width:96px;height:96px}
   .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   .meta div:nth-child(3n+1){padding-left:12px;border-left:1px solid var(--rule)}
