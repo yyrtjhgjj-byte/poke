@@ -17,6 +17,13 @@
 - 更新するときは Artifact ツールで先に `action: "read"` してから、`url` を指定して `dist/draffia.html` を publish する。`url` なしで publish すると別のアーティファクトになる。
 - タイトル「ドラフィア徹底考察レポート」、アイコン `report` は変えない。
 
+## Git とアーティファクトの運用（依頼者の指示：確認不要）
+
+- コミット、push、`main` へのマージ、アーティファクトの更新は、依頼者に確認せずに最後まで行う。「コミットしてよいか」「マージするか」は聞かない。
+- 流れ：作業ブランチで作業 → `npm run all` と `look.py` が通ったらコミット → 作業ブランチを push → `main` にマージして `main` を push → アーティファクトを更新。
+- 照合（`npm run validate`）が通らない、`look.py` でエラーやはみ出しが出る、マージで競合する、といった場合は止めて報告する。
+- 完了報告には、ブランチ名、`main` へのマージ結果、アーティファクトの版を書く。
+
 ## 性能変更の手順
 
 1. `spec/draffia.md` に新仕様を追記（原文は残す）。
@@ -26,7 +33,8 @@
 4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md`。
 5. `git diff notes/claims.md` で、本文中のどの数値が変わったかを見る。値の前後の判定（有利・不利、「耐える」「抜ける」などの言い回し）が数値と食い違っていないかを確認し、`templates/body.html` を直す。
 6. 主観の値（総合評価、予想順位、レーダー、採用率）は `src/report.config.js` で見直す。
-7. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。
+7. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。Python の playwright が無い環境では `pip install playwright` のうえ `--chrome /opt/pw-browsers/chromium` を付ける。
+8. コミット・push・`main` へのマージまで確認なしで行う（上の「Git とアーティファクトの運用」）。
 
 ## 自動で追従するもの
 
