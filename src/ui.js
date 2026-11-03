@@ -37,70 +37,14 @@
   show(initial);
   if (VIEWS.indexOf(initial) > 0 && chapters[initial]) { setTimeout(function () { try { chapters[initial].scrollIntoView({block: 'start'}); } catch (e) {} }, 0); }
 
-  /* ---------- emblem + ability mode ---------- */
-  var cv = $('emblem'), ctx = cv && cv.getContext ? cv.getContext('2d') : null;
-  var mode = 'skin';
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function tok(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim() || '#888'; }
-  function draw(t) {
-    if (!ctx) return;
-    var W = cv.width, cx = W / 2, cy = W / 2, R = W * 0.34;
-    var ink = tok('--ink'), rule = tok('--rule'), gold = tok('--gold'), goldInk = tok('--goldInk'), indigo = tok('--indigo'), sheet = tok('--sheet');
-    ctx.clearRect(0, 0, W, W);
-    ctx.fillStyle = sheet; ctx.beginPath(); ctx.arc(cx, cy, W * 0.48, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = rule; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, W * 0.48 - 1, 0, Math.PI * 2); ctx.stroke();
-    for (var i = 0; i < 24; i++) {
-      var a = i / 24 * Math.PI * 2, major = i % 6 === 0, r1 = W * 0.445, r2 = W * (major ? 0.40 : 0.425);
-      ctx.strokeStyle = major ? ink : rule; ctx.lineWidth = major ? 3 : 1.5;
-      ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1); ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2); ctx.stroke();
-    }
-    var accent = mode === 'skin' ? indigo : goldInk, ph = t * 0.0006;
-    ctx.strokeStyle = accent; ctx.globalAlpha = 0.4; ctx.lineWidth = 2; ctx.beginPath();
-    for (var k = 0; k <= 360; k++) {
-      var b = k / 360 * Math.PI * 2, rr = R * (0.8 + 0.17 * Math.sin(3 * b + ph));
-      var x = cx + Math.cos(b) * rr, y = cy + Math.sin(b) * rr;
-      if (k) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-    }
-    ctx.closePath(); ctx.stroke(); ctx.globalAlpha = 1;
-    if (mode === 'intim') {
-      var p = (t * 0.0005) % 1;
-      ctx.strokeStyle = goldInk; ctx.globalAlpha = Math.max(0, 1 - p); ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.arc(cx, cy, W * 0.12 + p * W * 0.3, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1;
-    }
-    for (var j = 0; j < 8; j++) {
-      var c = j / 8 * Math.PI * 2 + t * 0.0008 * (mode === 'skin' ? 1 : -1);
-      var r3 = R * (0.8 + 0.17 * Math.sin(3 * c + ph));
-      var s = W * (0.026 + 0.009 * Math.sin(t * 0.004 + j));
-      ctx.fillStyle = j % 2 ? gold : accent;
-      ctx.beginPath(); ctx.arc(cx + Math.cos(c) * r3, cy + Math.sin(c) * r3, s, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.fillStyle = ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.font = Math.round(W * 0.2) + "px 'Dela Gothic One','Hiragino Kaku Gothic StdN',sans-serif";
-    ctx.fillText(mode === 'skin' ? '竜' : '威', cx, cy + W * 0.012);
-  }
-  var raf = null;
-  function loop(t) { draw(t); raf = requestAnimationFrame(loop); }
-  function start() { if (reduce) { draw(1200); return; } if (!raf) raf = requestAnimationFrame(loop); }
-  function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
-  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
-  if (window.matchMedia) { var mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', function () { draw(1200); }); }
-  try { new MutationObserver(function () { draw(1200); }).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']}); } catch (e) {}
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { draw(1200); });
-
+  /* ---------- ability mode（§1.5 のスキン／いかく切り替え） ---------- */
   var segBtns = Array.prototype.slice.call(document.querySelectorAll('[data-mode]'));
   function setMode(m) {
-    mode = m;
     segBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.mode === m ? 'true' : 'false'); });
     document.querySelectorAll('[data-rondo]').forEach(function (p) { p.hidden = p.dataset.rondo !== m; });
-    var cap = $('emblemCap'); if (cap) cap.textContent = '輪舞観測図 ／ MODE: ' + (m === 'skin' ? 'SKIN' : 'INTIMIDATE');
-    if (reduce) draw(1200);
   }
   segBtns.forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.mode); }); });
-  if (cv) {
-    cv.addEventListener('click', function () { setMode(mode === 'skin' ? 'intim' : 'skin'); });
-    cv.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMode(mode === 'skin' ? 'intim' : 'skin'); } });
-  }
-  setMode('skin'); start();
+  setMode('skin');
 
   /* ---------- stat calculator ---------- */
   var NAT_ORDER = ['jolly', 'adamant', 'careful', 'impish', 'calm', 'bold', 'brave', 'relaxed', 'sassy', 'modest', 'timid', 'hardy'];

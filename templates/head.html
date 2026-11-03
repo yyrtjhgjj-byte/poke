@@ -77,11 +77,11 @@ p{margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- masthead ---------- */
-.mast{padding-top:28px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:20px 28px;align-items:start}
+.mast{padding-top:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 28px;align-items:start}
 .specimen{margin:0;display:grid;gap:8px;justify-items:center;align-self:center}
-.specimen .plate{background:var(--plate);border:1px solid var(--plateRule);border-radius:3px;padding:12px 14px;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+.specimen .plate{background:var(--plate);border:1px solid var(--plateRule);border-radius:3px;padding:12px 14px;box-shadow:var(--shadow)}
 .specimen img{display:block;width:216px;height:auto;image-rendering:crisp-edges;image-rendering:pixelated}
-.specimen figcaption{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--ink3)}
+.specimen figcaption{display:flex;align-items:center;gap:16px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--ink3)}
 .labline{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);display:flex;flex-wrap:wrap;gap:4px 14px}
 .labline b{color:var(--goldInk);font-weight:600}
 .title{margin-top:10px;font-family:var(--f-display);font-weight:400;line-height:1.05;letter-spacing:.01em}
@@ -91,10 +91,6 @@ p{margin:0}
 .abstract-line{margin-top:14px;max-width:62ch;color:var(--ink2)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .mast .chips{margin-top:14px}
-.emblem-box{display:grid;justify-items:center;gap:8px}
-.emblem-side{display:grid;justify-items:center;gap:10px}
-.emblem{width:168px;height:168px;display:block;cursor:pointer;border-radius:50%}
-.emblem-cap{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--ink3);text-align:center}
 .meta{grid-column:1 / -1;margin:6px 0 0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--rule)}
 .meta div{padding:10px 12px 10px 0;min-width:0}
 .meta div+div{padding-left:12px;border-left:1px solid var(--rule)}
@@ -326,11 +322,12 @@ input[type=range]{width:100%;accent-color:var(--goldInk)}
 .src{display:grid;gap:6px;font-size:13.5px}
 footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-family:var(--f-mono);font-size:11.5px;color:var(--ink3)}
 
-@media (max-width: 1100px){
-  /* 標本写真は題字の下の段へ（題字の列が狭まって「ドラフィア」が折り返さないように） */
-  .mast{grid-template-columns:minmax(0,1fr) auto}
-  .specimen{grid-column:1 / -1;grid-row:2;justify-self:start;grid-auto-flow:column;align-items:end;gap:16px}
-  .specimen img{width:168px}
+@media (max-width: 860px){ .specimen img{width:168px} }
+@media (max-width: 760px){
+  /* 題字の列が狭まって「ドラフィア」が折り返さないよう、標本写真は題字の下へ */
+  .mast{grid-template-columns:minmax(0,1fr)}
+  .specimen{justify-self:center}
+  .specimen img{width:216px}
 }
 @media (max-width: 860px){
   .calc{grid-template-columns:minmax(0,1fr)}
@@ -343,10 +340,6 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
 @media (max-width: 560px){
   body{font-size:14.5px}
   .mast{grid-template-columns:minmax(0,1fr)}
-  .emblem-box{grid-row:1;justify-self:start;grid-template-columns:auto auto;align-items:center;gap:14px}
-  .emblem-side{justify-items:start}
-  .specimen{grid-row:auto;justify-self:center;grid-auto-flow:row;align-items:center;gap:8px}
-  .specimen img{width:216px}
   .sp-row .nm{white-space:normal;line-height:1.25}
   .tbl.stackable thead{display:none}
   .tbl.stackable tr{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:2px 8px;padding:9px 10px;border-bottom:1px solid var(--rule2)}
@@ -362,7 +355,6 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
   .tbl.spd td:nth-child(n+3){grid-column:1 / -1;font-size:13px;color:var(--ink2)}
   .tbl.spd td:nth-child(3)::before{content:"抜ける：";color:var(--ink3)}
   .tbl.spd td:nth-child(4)::before{content:"同速・抜かれる：";color:var(--ink3)}
-  .emblem{width:96px;height:96px}
   .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   .meta div:nth-child(3n+1){padding-left:12px;border-left:1px solid var(--rule)}
   .meta div:nth-child(2n+1){padding-left:0;border-left:none}
