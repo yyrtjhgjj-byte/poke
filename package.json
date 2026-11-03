@@ -1,0 +1,16 @@
+{
+  "name": "draffia-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "オリジナルポケモン「ドラフィア」のSV対戦考察レポートと計算ツール一式",
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "build": "node scripts/build.js",
+    "snapshot": "node scripts/snapshot.js",
+    "all": "npm run validate && npm run build && npm run snapshot",
+    "look": "python3 scripts/look.py"
+  },
+  "devDependencies": {
+    "@smogon/calc": "0.12.0"
+  }
+}
