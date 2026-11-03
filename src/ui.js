@@ -235,7 +235,7 @@
     notes.push('相性 ×' + r.eff + (m.rondo && r.eff > 0 ? '（輪舞補正込み）' : ''));
     notes.push('タイプ一致 ×' + (r.stab / 4096).toFixed(2).replace(/0$/, ''));
     if (m.pri) notes.push('優先度' + (m.pri > 0 ? '+' : '') + m.pri);
-    if (m.rondo) notes.push('音技');
+    if (m.rondo) notes.push('踊り技・非接触');
     if (mv === 'doubleedge' && r.max > 0) notes.push('反動 ' + Math.round(r.min / 3) + '〜' + Math.round(r.max / 3));
     if (mv === 'facade' && o.statused) notes.push('威力140→スキン168');
     if (t0.final) notes.push('満タン特性で半減');
