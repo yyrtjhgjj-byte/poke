@@ -34,6 +34,7 @@ const evStr = (id, keys) => KEYS.filter(k => SETS[id].ev[k] && (!keys || keys.in
 const statLine = (id) => { const s = ST[id]; return `${s.hp}-${s.atk}-${s.def}-×-${s.spd}-${s.spe}`; };
 const setSpe = (id) => SETS[id].speMul ? Math.floor(ST[id].spe * SETS[id].speMul) : ST[id].spe;
 const skinBp = (mv) => E.pokeRound(C.DM[mv].bp * 4915 / 4096);
+const sprite = () => { const b = fs.readFileSync(P('assets/draffia.png')); return `<img src="data:image/png;base64,${b.toString('base64')}" width="216" height="174" alt="ドラフィアの外観。白い体毛に金色の差し色、小さな翼と長い尾を持つ（依頼者提供のドット絵）">`; };
 const typeChips = () => C.SP.draffia.t.map(t => `<span class="chip t-${t}">${JP[t]}</span>`).join(' ');
 function tgt(key, extra) { const t = C.target(key); return Object.assign({sp: t.sp, st: t.st, final: t.final, defStage: t.defStage || 0, label: t.label}, extra || {}); }
 const atk = (o) => C.drfAtk(o);
@@ -408,7 +409,7 @@ const chipCss = E.TYPES.concat(['Stellar']).map(t => `.t-${t}{background:var(--t
 head = head.replace('</style>', chipCss + '\n</style>');
 let body = fs.readFileSync(P('templates/body.html'), 'utf8');
 const parts = {
-  TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
+  SPRITE: sprite(), TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
   RADAR: radar(), RADARTABLE: radarTable(), STATBARS: statBars(), SINGLES_ATK: singlesAtk(), SINGLES_DEF: singlesDef(), CHEER: cheer(),
   SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_CAT: expCat(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
   RANKAXIS: rankAxis(), ADOPT_S: adopt(CFG.adoptS, false), ADOPT_D: adopt(CFG.adoptD, true),

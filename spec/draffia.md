@@ -44,7 +44,9 @@
 
 ### 外観
 
-`draffia-sprite.jpg`（依頼者提供のドット絵）。白い体毛に金色の差し色。
+`sprite/draffia-v1.jpg`（依頼者提供のドット絵、初回依頼時）。白い体毛に金色の差し色。
+
+2026-11-04 に最新のドット絵 `sprite/draffia.png`（透過PNG、72×58を約17倍に拡大したもの）を受領。レポートの表紙にはこちらを載せる（`scripts/sprite.py` で元の画素数に戻した `assets/draffia.png` を埋め込む）。
 
 ## 解釈（v1で確定させたもの）
 

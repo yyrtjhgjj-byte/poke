@@ -23,6 +23,8 @@
   --t-Fighting:#A33A31; --t-Poison:#7D4391; --t-Ground:#8A6A28; --t-Flying:#5A6FBE; --t-Psychic:#C23E68; --t-Bug:#6B7D1F;
   --t-Rock:#7F6E3C; --t-Ghost:#534F92; --t-Dragon:#4A3FBF; --t-Dark:#463C3C; --t-Steel:#557080; --t-Fairy:#B5559A; --t-Stellar:#3A6E8F;
   --chipInk:#FFFFFF;
+  /* 標本写真の台紙：ドット絵の黒い輪郭が沈まないよう、ダークでも明るい紙にする */
+  --plate:#FFFFFF; --plateRule:#D3D8E1;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -34,6 +36,7 @@
     --good:#62C98F; --goodWash:#14291D; --mid:#E9B54C; --midWash:#2D2411; --bad:#F38181; --badWash:#341A1A;
     --hp:#4CC27F; --hpLow:#F07468;
     --shadow:0 1px 0 rgba(0,0,0,.35), 0 12px 28px -16px rgba(0,0,0,.7);
+    --plate:#E6E9EF; --plateRule:#7F8798;
     color-scheme:dark;
   }
 }
@@ -46,6 +49,7 @@
   --good:#62C98F; --goodWash:#14291D; --mid:#E9B54C; --midWash:#2D2411; --bad:#F38181; --badWash:#341A1A;
   --hp:#4CC27F; --hpLow:#F07468;
   --shadow:0 1px 0 rgba(0,0,0,.35), 0 12px 28px -16px rgba(0,0,0,.7);
+  --plate:#E6E9EF; --plateRule:#7F8798;
   color-scheme:dark;
 }
 
@@ -73,7 +77,11 @@ p{margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- masthead ---------- */
-.mast{padding-top:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 28px;align-items:start}
+.mast{padding-top:28px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:20px 28px;align-items:start}
+.specimen{margin:0;display:grid;gap:8px;justify-items:center;align-self:center}
+.specimen .plate{background:var(--plate);border:1px solid var(--plateRule);border-radius:3px;padding:12px 14px;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+.specimen img{display:block;width:216px;height:auto;image-rendering:crisp-edges;image-rendering:pixelated}
+.specimen figcaption{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--ink3)}
 .labline{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);display:flex;flex-wrap:wrap;gap:4px 14px}
 .labline b{color:var(--goldInk);font-weight:600}
 .title{margin-top:10px;font-family:var(--f-display);font-weight:400;line-height:1.05;letter-spacing:.01em}
@@ -318,6 +326,12 @@ input[type=range]{width:100%;accent-color:var(--goldInk)}
 .src{display:grid;gap:6px;font-size:13.5px}
 footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-family:var(--f-mono);font-size:11.5px;color:var(--ink3)}
 
+@media (max-width: 1100px){
+  /* 標本写真は題字の下の段へ（題字の列が狭まって「ドラフィア」が折り返さないように） */
+  .mast{grid-template-columns:minmax(0,1fr) auto}
+  .specimen{grid-column:1 / -1;grid-row:2;justify-self:start;grid-auto-flow:column;align-items:end;gap:16px}
+  .specimen img{width:168px}
+}
 @media (max-width: 860px){
   .calc{grid-template-columns:minmax(0,1fr)}
   .out{position:static}
@@ -331,6 +345,8 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
   .mast{grid-template-columns:minmax(0,1fr)}
   .emblem-box{grid-row:1;justify-self:start;grid-template-columns:auto auto;align-items:center;gap:14px}
   .emblem-side{justify-items:start}
+  .specimen{grid-row:auto;justify-self:center;grid-auto-flow:row;align-items:center;gap:8px}
+  .specimen img{width:216px}
   .sp-row .nm{white-space:normal;line-height:1.25}
   .tbl.stackable thead{display:none}
   .tbl.stackable tr{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:2px 8px;padding:9px 10px;border-bottom:1px solid var(--rule2)}
