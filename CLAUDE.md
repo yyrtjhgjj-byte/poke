@@ -35,7 +35,7 @@
 5. `git diff notes/claims.md` で、本文中のどの数値が変わったかを見る。値の前後の判定（有利・不利、「耐える」「抜ける」などの言い回し）が数値と食い違っていないかを確認し、`templates/body.html` を直す。
 6. 主観の値（総合評価、予想順位、レーダー、採用率）は `src/report.config.js` で見直す。
 7. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。Python の playwright が無い環境では `pip install playwright` のうえ `--chrome /opt/pw-browsers/chromium` を付ける。
-8. 要約版PDFも作り直す：`npm run pdf`（下の「要約版PDF」）。
+8. A4資料も作り直す：`npm run pdf`（下の「A4資料（PDF）」）。
 9. コミット・push・`main` へのマージまで確認なしで行う（上の「Git とアーティファクトの運用」）。
 
 ## 自動で追従するもの
@@ -61,11 +61,12 @@
 - `notes/findings.md`・`notes/forecast.md` は v1 時点の作業メモで、自動更新されない。
 - §0 冒頭の改訂記録（v1既読者向け）は履歴なので、数値もトークンにせず固定で書いている。次に性能を変えたら、既存の記録は残し、新しい版の記録を上に足す（ヘッダーの `REV.n` も上げる）。記録はどれも `<details class="panel rev">` で、押して開閉できる。最新の記録だけ `latest` クラスと `open` 属性を付けて開いた状態にし、古い記録からは外す。
 
-## 要約版PDF
+## A4資料（PDF）
 
-- `templates/summary.html` → `npm run pdf`（`scripts/summary.js`）→ `dist/draffia-summary.html` と `dist/draffia-summary.pdf`（A4縦2枚）。
-- 数値は本編と同じトークン。§2.1 対面表の判定（有利・五分・不利の相手）と、採用率の各項目1位は本編・`report.config.js` から自動で入る。
-- 文章・型の技構成・試作構築・要注意の相手は手書き。本編を直したら要約も合わせる。
+- `templates/a4.html` → `npm run pdf`（`scripts/a4.js`）→ `dist/draffia-a4.html` と `dist/draffia-a4.pdf`（A4縦2枚）。
+- 単独で読める資料として書く。「要約」「本編」「詳細は〜を参照」など、Web版の存在をうかがわせる文言は紙面に入れない（依頼者の指示）。版表示（REV）も入れない。
+- 数値はWeb版と同じトークン。§2.1 対面表の判定（有利・五分・不利の相手）と、採用率の各項目1位はWeb版・`report.config.js` から自動で入る。
+- 文章・型の技構成・試作構築・要注意の相手は手書き。Web版を直したらこちらも合わせる。
 - 実行するとページごとのはみ出し(px)が出る。0 以外なら文章を詰めて2枚に収める。フォントは Google Fonts を読む（届かないと IPA ゴシックで代わりに出る）。
 
 ## 数値トークン
