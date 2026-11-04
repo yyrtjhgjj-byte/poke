@@ -39,7 +39,7 @@
 ## 自動で追従するもの
 
 - 生成表：`scripts/build.js` が `templates/body.html` の `<!--@NAME-->` を埋める（同じ名前が複数あってもすべて置換）。
-  SPRITE、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
+  SPRITE、ILLUST、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
   ロンドの優先度は `DM.rondo.pri`（スキン版）と `priIntim`（いかく版）から表とページ内計算機に入る。
 - 本文中の数値：`{{…}}` トークン（下記）。ビルド時に計算し、`notes/claims.md` に「章・値・前後の文・トークン」を一覧で書き出す。
 - 型の定義：`src/sets.js`。本文・生成表・スナップショットが同じ定義を使う。
@@ -103,7 +103,9 @@
 - トークンは `templates/head.html` の `:root`（ライト）と2つのダーク定義。色は必ずトークン経由。
 - フォント：Dela Gothic One（見出し）、Zen Kaku Gothic New（本文）、IBM Plex Mono（数値）、Yomogi（研究員メモ）。
 - 実在のポケモンやキャラクターの絵は描かない。表紙にあった抽象アニメーション「輪舞観測図」は依頼者の指示で撤去した（戻さない）。
-- ドラフィアの外観は依頼者のドット絵を使う。原本は `spec/sprite/draffia.png`（最新）と `spec/sprite/draffia-v1.jpg`（初回）。表紙の「標本写真」には `python3 scripts/sprite.py` で 72×58 に戻した `assets/draffia.png` を data URI で埋め込み、`image-rendering: pixelated` で3倍表示する。ドット絵を差し替えたら sprite.py を実行してからビルドする。
+- ドラフィアの外観は依頼者のドット絵を使う。原本は `spec/sprite/draffia.png`（最新）と `spec/sprite/draffia-v1.jpg`（初回）。表紙の「標本写真」には `python3 scripts/assets.py` で 72×58 に戻した `assets/draffia.png` を data URI で埋め込み、`image-rendering: pixelated` で3倍表示する。
+- 依頼者のイラスト `spec/art/draffia-sylveon.png`（ニンフィアとドラフィア）は、assets.py で幅1400pxの WebP（`assets/draffia-sylveon.webp`）にして §1.1 の図1-2「観察記録」に埋め込む。
+- 画像を差し替え・追加したら `python3 scripts/assets.py` を実行してからビルドする。
 - 原本の透明な画素には灰色の色情報が残っている（透過を無視するビューアでは汚れて見えるが、ページ上は問題ない）。
 
 ## 環境データ

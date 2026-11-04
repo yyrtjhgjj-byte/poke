@@ -10,8 +10,8 @@
 ## 構成
 
 ```
-spec/        性能仕様（原文・改訂履歴）と依頼者のドット絵（sprite/）
-assets/      ページに埋め込む画像（scripts/sprite.py で生成）
+spec/        性能仕様（原文・改訂履歴）と依頼者の画像（sprite/ ドット絵、art/ イラスト）
+assets/      ページに埋め込む画像（scripts/assets.py で生成）
 src/
   data.js    種族値・タイプ・技データ ← 性能を変えるときはここ
   sets.js    ドラフィアの型（性格・努力値・持ち物）。本文・表・スナップショット共通
