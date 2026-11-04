@@ -8,7 +8,8 @@
     "build": "node scripts/build.js",
     "snapshot": "node scripts/snapshot.js",
     "all": "npm run validate && npm run build && npm run snapshot",
-    "look": "python3 scripts/look.py"
+    "look": "python3 scripts/look.py",
+    "pdf": "node scripts/summary.js"
   },
   "devDependencies": {
     "@smogon/calc": "0.12.0"

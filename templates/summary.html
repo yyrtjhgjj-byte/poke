@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ドラフィア徹底考察レポート 要約版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=block">
+<style>
+/* 要約版（A4縦2枚）。npm run pdf で dist/draffia-summary.pdf に書き出す。数値は本編と同じトークン。 */
+:root{
+  --paper:#FFFFFF; --ink:#191C23; --ink2:#4E5565; --ink3:#7A8292; --rule:#D3D8E1; --rule2:#E6E9EF;
+  --gold:#D9A520; --goldInk:#7E5E00; --goldWash:#FBF1D2; --indigo:#4A4CB0; --stamp:#BE3328;
+  --good:#1F7444; --goodWash:#E1F1E7; --mid:#8A6200; --midWash:#FBEFD2; --bad:#AF3434; --badWash:#F7E1E1;
+  --f-display:'Dela Gothic One','IPAGothic',sans-serif;
+  --f-body:'Zen Kaku Gothic New','IPAPGothic','IPAGothic',sans-serif;
+  --f-mono:'IBM Plex Mono','IPAGothic',monospace;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:8.2pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;padding:10mm 11.5mm 8mm;display:flex;flex-direction:column;gap:2.8mm;overflow:hidden;break-after:page;position:relative}
+.page:last-child{break-after:auto}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.lab{font-family:var(--f-mono);font-size:7pt;letter-spacing:.14em;color:var(--ink2);display:flex;flex-wrap:wrap;gap:2px 12px;text-transform:uppercase}
+.lab b{color:var(--goldInk)}
+h1{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.05}
+h1 .name{font-size:28pt}
+h1 .doc{font-size:12pt;color:var(--ink2);margin-left:8px}
+h2{font-size:11pt;font-weight:900;margin:0 0 1.6mm;display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--ink);padding-bottom:1mm}
+h2 .n{font-family:var(--f-mono);font-size:8pt;color:var(--goldInk);font-weight:600}
+h3{font-size:9pt;font-weight:900;margin:0 0 1mm}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6mm;align-items:start}
+.plate{border:1px solid var(--rule);border-radius:2px;padding:2.5mm 3mm;text-align:center}
+.plate img{display:block;width:144px;height:auto;image-rendering:pixelated}
+.plate .cap{font-family:var(--f-mono);font-size:6.5pt;letter-spacing:.1em;color:var(--ink3);margin-top:1mm}
+.idgrid{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);gap:.6mm 3mm;margin-top:2.5mm;font-size:8.2pt}
+.idgrid dt{font-family:var(--f-mono);font-size:7pt;color:var(--ink3);padding-top:.4mm}
+.idgrid dd{margin:0}
+.chip{display:inline-block;border-radius:2px;padding:0 5px;font-size:7.5pt;font-weight:700;color:#fff;background:#4A3FBF}
+.verdicts{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.verdict{border:1px solid var(--rule);border-radius:2px;padding:1.8mm 3mm;display:grid;grid-template-columns:auto minmax(0,1fr);gap:3mm;align-items:center}
+.grade{width:15mm;height:15mm;border-radius:50%;border:2px solid var(--stamp);color:var(--stamp);display:grid;place-items:center;font-family:var(--f-display);font-size:17pt;transform:rotate(-8deg)}
+.verdict h3{margin:0}
+.verdict .rank{font-family:var(--f-mono);font-size:7.5pt;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-size:7.8pt;line-height:1.4}
+th,td{border-bottom:1px solid var(--rule2);padding:.8mm 1.4mm;text-align:left;vertical-align:top}
+thead th{font-family:var(--f-mono);font-size:6.8pt;letter-spacing:.05em;color:var(--ink2);background:var(--rule2);border-bottom:1px solid var(--rule);font-weight:600}
+tbody th{font-weight:700;white-space:nowrap}
+td.n{font-family:var(--f-mono);white-space:nowrap}
+.tag{font-family:var(--f-mono);font-size:6.5pt;border:1px solid currentColor;border-radius:2px;padding:0 3px;margin-left:4px;color:var(--indigo);font-weight:600}
+.tag.main{color:var(--stamp)}
+table.sets{table-layout:fixed}
+table.sets th:nth-child(1){width:31mm}
+table.sets th:nth-child(2){width:39mm}
+table.sets th:nth-child(3){width:25mm}
+table.sets th:nth-child(4),table.sets td:nth-child(4){width:60mm;white-space:nowrap}
+ol.find{margin:0;padding:0;list-style:none;counter-reset:f;display:grid;gap:.9mm}
+ol.find li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2.5mm}
+ol.find li::before{counter-increment:f;content:"所見" counter(f);font-family:var(--f-mono);font-size:6.8pt;font-weight:600;color:var(--goldInk);border:1px solid var(--gold);border-radius:2px;padding:0 4px;height:fit-content;margin-top:.4mm;white-space:nowrap}
+ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.v{display:inline-block;border-radius:2px;padding:0 4px;font-size:7.2pt;font-weight:700;margin-right:3px}
+.v-good{background:var(--goodWash);color:var(--good)} .v-mid{background:var(--midWash);color:var(--mid)} .v-bad{background:var(--badWash);color:var(--bad)}
+.match{display:grid;gap:.6mm;font-size:7.9pt}
+.note{font-size:7.6pt;color:var(--ink2)}
+.teams{display:grid;gap:.5mm;font-size:7.9pt}
+.teams div{display:grid;grid-template-columns:27mm minmax(0,1fr);gap:2mm}
+.teams b{font-weight:900}
+.foot{margin-top:auto;border-top:1.5px solid var(--ink);padding-top:1.5mm;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1mm 8mm;font-family:var(--f-mono);font-size:6.6pt;color:var(--ink3)}
+.memo{font-size:7.6pt;background:var(--goldWash);border:1px solid var(--gold);border-radius:2px;padding:1.5mm 2.5mm}
+</style>
+</head>
+<body>
+
+<!-- ======================= 1枚目 ======================= -->
+<section class="page">
+  <div class="head">
+    <div>
+      <div class="lab"><span><b>RONDO LAB</b>　輪舞研究室</span><span>REPORT RL-2026-1103 REV.3</span><span>要約版 2026.11.04</span></div>
+      <h1 style="margin-top:2mm"><span class="name">ドラフィア</span><span class="doc">徹底考察レポート 要約</span></h1>
+      <p style="margin-top:2mm;color:var(--ink2)">SV ランクバトル シーズン41（レギュレーションI、禁止級2体まで）を想定し、シングルとダブルでの性能、型、構築、採用率を検証した本編の要約である。数値はLv50・個体値31・SVのダメージ計算式による。</p>
+      <dl class="idgrid">
+        <dt>分類</dt><dd>りんぶポケモン</dd>
+        <dt>タイプ</dt><dd><span class="chip">ドラゴン</span></dd>
+        <dt>特性</dt><dd>いかく ／ 夢：ドラゴンスキン</dd>
+        <dt>高さ／重さ</dt><dd class="mono">0.6m ／ 7.8kg</dd>
+        <dt>種族値</dt><dd class="mono" style="grid-column:span 3">{{base line}}</dd>
+        <dt>進化</dt><dd style="grid-column:span 3">イーブイから、なつき度が高い状態でレベルアップ（手持ちにニンフィアがいること）</dd>
+      </dl>
+    </div>
+    <div class="plate"><!--@SPRITE--><div class="cap">標本写真 DRF-001</div></div>
+  </div>
+
+  <div class="verdicts">
+    <div class="verdict"><div class="grade">{{grade S}}</div><div><h3>シングル</h3><div class="rank">予想使用率　定着後 {{rank S settled}}</div><p>優先度+2のロンドとハチマキすてみで、禁止級の竜・妖とパオジアンを先に落とす対面アタッカー。鋼・てんねん・硬い受けには止まる。</p></div></div>
+    <div class="verdict"><div class="grade">{{grade D}}</div><div><h3>ダブル</h3><div class="rank">予想使用率　定着後 {{rank D settled}}</div><p>いかく・優先度+1の交代・ドラゴンエール、隣のイーブイ系へのA・C・S+2を1枠で担う支援役。水・炎・電気・草を半減する。</p></div></div>
+  </div>
+
+  <div>
+    <h2><span class="n">1</span>専用技 ドラゴニックロンド</h2>
+    <table>
+      <thead><tr><th style="width:22mm"></th><th>ドラゴンスキンのとき</th><th>いかくのとき</th></tr></thead>
+      <tbody>
+        <tr><th>分類</th><td>攻撃技。ドラゴン・威力{{bp rondo}}・命中100・PP5。踊り技・非接触</td><td>変化技（自分が対象）。PP5。踊り技</td></tr>
+        <tr><th>優先度</th><td class="n">+2</td><td class="n">+1</td></tr>
+        <tr><th>計算</th><td>ランク込みのAとCの高い方で計算（同値は特殊）。こおり・フェアリーへの相性は×2に置き換える（ザシアン(王)は×1、ドラゴン/こおりは×4）</td><td>—</td></tr>
+        <tr><th>味方への効果</th><td>攻撃が当たると、隣のイーブイ系のこうげき・とくこう・すばやさ+2</td><td>隣のイーブイ系のA・C・S+2のあと、控えと交代する</td></tr>
+        <tr><th>後続への効果</th><td>—</td><td>相手のいずれか1体より遅ければ、次に出るポケモンのS+1（イーブイ系ならA+1・C+1・S+2）</td></tr>
+        <tr><th>止められるもの</th><td>サイコフィールド（接地した相手）・しっぽアーマー・じょおうのいげん・ビビッドボディ・ファストガード・まもる・ねこだまし・みがわり。防がれると味方への上昇も起きない</td><td>ちょうはつ・アンコール・ねこだまし。サイコフィールドやまもるでは止まらない</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:1mm">「味方の場のイーブイの進化系」にドラフィア自身は含まない。したがってシングルで味方を強化できるのは、いかく版で後から出るイーブイ系だけである。</p>
+  </div>
+
+  <div>
+    <h2><span class="n">2</span>主要所見</h2>
+    <ol class="find">
+      <li><div><b>先制で上位の竜・妖・氷を落とす。</b> 陽気ハチマキのロンドで（相手はH4振り）、{{kolist S1 rondo flutter_cs chienpao_as miraidon_cs koraidon_as}}。テラスタルフェアリーでも抜群のまま。優先度+1以下の先制技（こおりのつぶて・ふいうち等）より必ず先に動き、同じ+2のしんそくにも素早さ（{{spcmp S1 dragonite jolly 252}}）で勝つ。</div></li>
+      <li><div><b>スキン化したすてみタックルは実質威力{{bp doubleedge skin}}の一致技。</b> ハチマキでH4の{{kolist S1 doubleedge koraidon_as miraidon_cs urshifur_as kyogre_cs calyrexs_cs}}。ただしフェアリーに無効、鋼に半減。</div></li>
+      <li><div><b>ダブルの「竜の加護」。</b> ドラゴンエール＋ピントレンズで竜の味方（ミライドン・コライドン・タケルライコ）が確定急所になる。1発目はメガネとほぼ同じ火力で、2発目以降は約2倍。</div></li>
+      <li><div><b>輪舞ブイズ。</b> 隣のニンフィアは1回のロンドでA・C・S+2となり、S{{spe sylveon modest 252}}は{{spe sylveon modest 252 +2}}で最速の黒バドレックス（{{spe calyrexs timid 252}}）も抜く。+2のハイパーボイス（全体）はミライドンまで確定1発。止め手はサイコフィールドとねこだまし。</div></li>
+      <li><div><b>最大の弱点はH{{base hp}}・B{{base def}}・D{{base spd}}の薄さ。</b> 無振りだと、パオジアンの珠つららおとしは{{hit S1 pao_icicle_lo ko}}、ミライドンのりゅうせいぐんは{{hit S1 mir_draco ko}}、ハバタクカミのムーンフォースは{{hit S1 fm_moon_timid ko}}。先制技では止まらないが、上から殴られると1発で落ちる。</div></li>
+    </ol>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h3>しんそくとの比較</h3>
+      <p>テラスタルなしのしんそく（カイリュー意地ハチマキ）よりロンドが強い。テラスノーマルのしんそくは等倍の相手ではやや上だが、ロンドは竜・妖・氷に抜群でゴーストにも当たり、上位相手には多くの場面で勝る。差は耐久にあり、「しんそく並みの先制技を持つ紙耐久のアタッカー」といえる。</p>
+    </div>
+    <div>
+      <h3>ドラフィア対策</h3>
+      <ul class="pts">
+        <li>鋼で受ける（ザシアン(王)・ザマゼンタ(王)・ドドゲザン）</li>
+        <li>硬い受けポケモンで受ける（ホウオウ・ディンルー・キョジオーン）、てんねん（ヘイラッシャ・ドオー）</li>
+        <li>タスキで耐えて返す（パオジアンのタスキ型など）</li>
+        <li>先制技を防ぐ特性・フィールド、ねこだまし、みがわり</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot"><span>RONDO LAB ／ RL-2026-1103 REV.3 要約版</span><span>1 / 2</span></div>
+</section>
+
+<!-- ======================= 2枚目 ======================= -->
+<section class="page">
+  <div>
+    <h2><span class="n">3</span>シングル（見せ合い6→3）</h2>
+    <div class="match">
+      <p><b>使用率上位20体との対面</b>（本命S-1が1対1で向き合った場合）　<!--@MATCH_TALLY--></p>
+      <!--@MATCH_LIST-->
+    </div>
+    <table class="sets" style="margin-top:1.5mm">
+      <thead><tr><th>型</th><th>特性・性格・努力値</th><th>持ち物</th><th>技</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr><th>S-1 竜皮ハチマキ<span class="tag main">本命</span></th><td>スキン・{{nat S1}} {{ev S1}}</td><td>こだわりハチマキ</td><td>ロンド・すてみ・かみくだく・アイアンテール</td><td>竜・妖を先制処理</td></tr>
+        <tr><th>S-2 竜皮スカーフ</th><td>スキン・{{nat S2}} {{ev S2}}</td><td>スカーフ（S{{setspe S2}}）</td><td>すてみ・ロンド・かみくだく・くさわけ</td><td>終盤の掃除役</td></tr>
+        <tr><th>S-3 竜舞アタッカー</th><td>スキン・{{nat S3}} {{ev S3}}</td><td>珠・テラス竜</td><td>りゅうのまい・すてみ・ロンド・かみくだく</td><td>受け崩し（+1でS{{setspe S3 +1}}）</td></tr>
+        <tr><th>S-4 いかく起点作り</th><td>いかく・{{nat S4}} {{ev S4}}</td><td>たべのこし</td><td>ロンド・あくび・ねがいごと・ドラゴンテール</td><td>物理を受け、後続を加速</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2><span class="n">4</span>ダブル（見せ合い6→4）</h2>
+    <table class="sets">
+      <thead><tr><th>型</th><th>特性・性格・努力値</th><th>持ち物</th><th>技</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr><th>D-1 いかくロンド<span class="tag main">本命</span></th><td>いかく・{{nat D1}} {{ev D1}}</td><td>オボン・マント・ハバン</td><td>ロンド・エール・てだすけ・まもる</td><td>いかくサイクル・エール</td></tr>
+        <tr><th>D-2 竜の加護</th><td>D-1と同じ配分</td><td>メンタルハーブ</td><td>エール・ロンド・てだすけ・まもる</td><td>竜の味方を確定急所に</td></tr>
+        <tr><th>D-3 竜皮アタッカー</th><td>スキン・{{nat D3}} {{ev D3}}</td><td>クリアチャーム</td><td>ロンド・すてみ・かみくだく・まもる</td><td>妖・氷の先制処理</td></tr>
+        <tr><th>D-4 輪舞ブイズ</th><td>スキン・{{nat D4}} {{ev D4}}</td><td>おんみつマント</td><td>ロンド・すてみ・かみくだく・まもる</td><td>ニンフィアをA・C・S+2</td></tr>
+      </tbody>
+    </table>
+    <div class="cols" style="margin-top:1.8mm">
+      <div>
+        <h3>要注意の相手と技</h3>
+        <ul class="pts">
+          <li>白バドのブリザードランス：いかく込みで{{hit D1 ci_lance_d ko}}</li>
+          <li>パオジアンの珠つららおとし：いかく込みでも{{hit D1 pao_icicle_lo ko}}</li>
+          <li>ザマゼンタ(王)のボディプレス（いかく無効）</li>
+          <li>イエッサン♀のサイコフィールド：攻撃版ロンドとブイズ強化が止まる</li>
+          <li>ねこだまし（ガオガエン）、ちょうはつ（トルネロス・エルフーン）</li>
+        </ul>
+      </div>
+      <div>
+        <h3>相性のよい味方</h3>
+        <ul class="pts">
+          <li>ミライドン・コライドン・タケルライコ：エールで確定急所</li>
+          <li>ガオガエン：弱点が重ならず、二重いかくサイクルを組める</li>
+          <li>ニンフィア：ロンドでA・C・S+2を受け、全体技で押し切る</li>
+          <li>ザシアン(王)：弱点の氷・竜・妖をすべて半減以下で受ける</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="n">5</span>試作構築</h2>
+    <div class="teams">
+      <div><b>T-S1 バドザシ竜皮</b><span>ドラフィア（S-1）・ザシアン(王)・黒バドレックス・ディンルー・ヘイラッシャ・キラフロル</span></div>
+      <div><b>T-S2 晴れ輪舞</b><span>ドラフィア（S-4）・コライドン・ホウオウ・ハバタクカミ・ディンルー・キラフロル</span></div>
+      <div><b>T-D1 竜の加護</b><span>ドラフィア（D-2）・ミライドン・黒バドレックス・連撃ウーラオス・トルネロス・モロバレル</span></div>
+      <div><b>T-D2 二重いかく晴れ</b><span>ドラフィア（D-1）・ガオガエン・コライドン・ハバタクカミ・オーガポン（竈）・エルフーン</span></div>
+      <div><b>T-D3 輪舞ブイズ</b><span>ドラフィア（D-4）・ニンフィア・ブースター・エーフィ・グラードン・ザシアン(王)</span></div>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="n">6</span>予測（ラボ推計）</h2>
+    <div class="cols">
+      <div>
+        <h3>予想使用率順位</h3>
+        <table>
+          <tbody>
+            <tr><th>シングル</th><td>初月 {{rank S early}} → 定着後 {{rank S settled}}</td></tr>
+            <tr><th>ダブル</th><td>初月 {{rank D early}} → 定着後 {{rank D settled}}</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:1.8mm">採用率の上位（推計）</h3>
+        <!--@ADOPT_TOP-->
+      </div>
+      <div>
+        <h3>環境への影響</h3>
+        <ul class="pts">
+          <li>テラスタルフェアリーで竜技を透かす定番がロンドには通じない</li>
+          <li>優先度+1の先制技（こおりのつぶて・ふいうち）の価値が下がる</li>
+          <li>鋼とてんねん（ザマゼンタ・ドドゲザン・ドオー等）の需要が増える</li>
+          <li>ダブルでサイコフィールド・ちょうはつ・ニンフィアが増える</li>
+        </ul>
+        <p class="memo" style="margin-top:2.5mm">研究員メモ　寒い日はニンフィアのリボンに包まって動かない。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>計算：Lv50・個体値31・SVダメージ式（Smogon製計算機と13件照合）　環境：S41 レギュI（2026-11-03時点）</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>
