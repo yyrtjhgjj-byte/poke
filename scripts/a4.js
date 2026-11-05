@@ -26,7 +26,7 @@ let adopt = '<table><thead><tr><th></th><th>シングル</th><th>ダブル</th><
 for (const k of ['特性', '型', '持ち物', 'テラスタル']) adopt += `<tr><th>${k}</th><td>${top(CFG.adoptS, k)}</td><td>${top(CFG.adoptD, k)}</td></tr>`;
 adopt += '</tbody></table>';
 
-const sprite = `<img src="data:image/png;base64,${fs.readFileSync(P('assets/draffia.png')).toString('base64')}" width="150" height="121" alt="ドラフィアの外観（依頼者提供のドット絵）">`;
+const sprite = `<img src="data:image/png;base64,${fs.readFileSync(P('assets/draffia.png')).toString('base64')}" width="150" height="121" alt="ドラフィアの外観">`;
 const parts = {SPRITE: sprite, MATCH_TALLY: tally, MATCH_LIST: list, ADOPT_TOP: adopt};
 for (const k in parts) {
   const tag = `<!--@${k}-->`;
