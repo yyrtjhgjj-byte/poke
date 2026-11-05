@@ -35,7 +35,53 @@ const statLine = (id) => { const s = ST[id]; return `${s.hp}-${s.atk}-${s.def}-�
 const setSpe = (id) => SETS[id].speMul ? Math.floor(ST[id].spe * SETS[id].speMul) : ST[id].spe;
 const skinBp = (mv) => E.pokeRound(C.DM[mv].bp * 4915 / 4096);
 const sprite = () => { const b = fs.readFileSync(P('assets/draffia.png')); return `<img src="data:image/png;base64,${b.toString('base64')}" width="216" height="174" alt="ドラフィアの外観。白い体毛に金色の差し色、小さな翼と長い尾を持つ（依頼者提供のドット絵）">`; };
-const illust = () => { const b = fs.readFileSync(P('assets/draffia-sylveon.webp')); return `<img src="data:image/webp;base64,${b.toString('base64')}" width="1400" height="1074" loading="lazy" alt="花の咲く草むらで仰向けに寝転ぶニンフィアに、ドラフィアが目を細めて頬を寄せているイラスト（依頼者提供）">`; };
+const illust = () => { const b = fs.readFileSync(P('assets/draffia-sylveon.webp')); return `<img id="illust-obs" src="data:image/webp;base64,${b.toString('base64')}" width="1400" height="1074" loading="lazy" alt="花の咲く草むらで仰向けに寝転ぶニンフィアに、ドラフィアが目を細めて頬を寄せているイラスト（依頼者提供）">`; };
+/* ---------- §8 記録庫（spec/lore.md から組み立てる。本文は依頼者の原文のまま） ---------- */
+function archive() {
+  const src = fs.readFileSync(P('spec/lore.md'), 'utf8').split('\n');
+  const docs = []; let doc = null, sec = null;
+  for (const raw of src) {
+    if (raw.startsWith('## ')) { const [kind, title, note] = raw.slice(3).split('|').map(x => x.trim()); doc = {kind, title, note, secs: []}; docs.push(doc); sec = null; continue; }
+    if (!doc) continue;
+    if (raw.startsWith('### ')) { const [head, sub, badge] = raw.slice(4).split('|').map(x => x.trim()); sec = {head, sub, badge, lines: []}; doc.secs.push(sec); continue; }
+    if (sec) sec.lines.push(raw.replace(/\s+$/, ''));
+  }
+  const KIND = {diary: '日記', report: '調査報告', notebook: '日記帳', essay: '手記', chart: 'カルテ', tale: '童話'};
+  for (const d of docs) if (!KIND[d.kind]) throw new Error('spec/lore.md: 未知の種類 ' + d.kind);
+  const groups = (lines) => { const g = []; let cur = []; for (const l of lines) { if (l.trim() === '') { if (cur.length) g.push(cur); cur = []; } else cur.push(l); } if (cur.length) g.push(cur); return g; };
+  const para = (g, cls) => `<p${cls ? ` class="${cls}"` : ''}>${g.map(esc).join('<br>')}</p>`;
+  const paras = (lines) => groups(lines).map(g => para(g)).join('');
+  const sprite = `<img src="data:image/png;base64,${fs.readFileSync(P('assets/draffia.png')).toString('base64')}" width="144" height="116" alt="進化したばかりのドラフィア（依頼者提供のドット絵）">`;
+  let h = '<div class="arc-index">' + docs.map((d, i) => {
+    const sub = d.kind === 'diary' ? `${KIND[d.kind]}・全${d.secs.length}回` : KIND[d.kind];
+    const note = d.note || (d.kind === 'essay' || d.kind === 'tale' ? `『${d.secs[0].head}』` : d.secs[0].head);
+    return `<button type="button" class="arc-card" data-jump="arc-${i + 1}"><span class="arc-no">ARC-${String(i + 1).padStart(2, '0')}・${sub}</span><b>${esc(d.title)}</b><span class="arc-note">${esc(note)}</span></button>`;
+  }).join('') + '</div>';
+  docs.forEach((d, i) => {
+    h += `<h3 class="sub arc-anchor" id="arc-${i + 1}"><span class="n">8.${i + 1}</span>${esc(d.title)}</h3>`;
+    if (d.kind === 'diary') {
+      if (d.note) h += `<p class="arc-lead">${esc(d.note)}</p>`;
+      h += '<ol class="timeline">' + d.secs.map(s => `<li class="entry${s.badge ? ' key' : ''}"><div class="when"><span class="d">${esc(s.sub || '')}</span><span class="k">${esc(s.head)}</span>${s.badge ? `<span class="ev">${esc(s.badge)}</span>` : ''}</div><div class="arc-text">${paras(s.lines)}${s.badge === '進化' ? `<figure class="arc-sprite">${sprite}<figcaption>図鑑「データがありません。未確認のポケモンです」</figcaption></figure>` : ''}</div></li>`).join('') + '</ol>';
+    } else if (d.kind === 'report') {
+      const [main, ...rest] = d.secs;
+      h += `<article class="arc-doc report"><header><span class="arc-tag">REPORT</span><span class="stamp">受理<small>DRF-001</small></span></header><h4>${esc(main.head)}</h4><div class="arc-text">${paras(main.lines)}</div>`;
+      for (const s of rest) h += `<div class="arc-memo"><span class="who">${esc(s.head)}${s.sub ? `（${esc(s.sub)}）` : ''}</span>${paras(s.lines)}</div>`;
+      h += '</article>';
+    } else if (d.kind === 'notebook') {
+      for (const s of d.secs) h += `<article class="arc-doc notebook"><div class="nb-date">${esc(s.head)}</div><div class="arc-text">${paras(s.lines)}</div></article>`;
+    } else if (d.kind === 'essay') {
+      for (const s of d.secs) { const g = groups(s.lines); h += `<article class="arc-doc essay"><h4 class="essay-title">『${esc(s.head)}』</h4><div class="arc-text">${g.slice(0, -1).map(x => para(x)).join('')}${para(g[g.length - 1], 'pull')}</div></article>`; }
+    } else if (d.kind === 'chart') {
+      for (const s of d.secs) {
+        const fields = []; for (const l of s.lines) { if (l.startsWith('- ')) { const t = l.slice(2), k = t.indexOf('：'); fields.push({label: t.slice(0, k), body: t.slice(k + 1).trim() ? [t.slice(k + 1).trim()] : []}); } else if (l.trim() && fields.length) fields[fields.length - 1].body.push(l.trim()); }
+        h += `<article class="arc-doc chart"><header><span class="arc-tag">CHART</span><b>${esc(s.head)}</b></header><dl>${fields.map(f => `<dt>${esc(f.label)}</dt><dd>${f.body.map(b => `<p>${esc(b)}</p>`).join('')}</dd>`).join('')}</dl></article>`;
+      }
+    } else if (d.kind === 'tale') {
+      for (const s of d.secs) h += `<article class="arc-doc tale"><img class="tale-art" data-copy-from="illust-obs" width="1400" height="1074" alt="草むらで寝転ぶニンフィアに、ドラフィアが頬を寄せているイラスト（依頼者提供）"><p class="tale-kicker">${esc(d.title)}</p><h4 class="tale-title">${esc(s.head)}</h4><div class="tale-text">${paras(s.lines)}</div></article>`;
+    }
+  });
+  return h;
+}
 const typeChips = () => C.SP.draffia.t.map(t => `<span class="chip t-${t}">${JP[t]}</span>`).join(' ');
 function tgt(key, extra) { const t = C.target(key); return Object.assign({sp: t.sp, st: t.st, final: t.final, defStage: t.defStage || 0, label: t.label}, extra || {}); }
 const atk = (o) => C.drfAtk(o);
@@ -410,7 +456,7 @@ const chipCss = E.TYPES.concat(['Stellar']).map(t => `.t-${t}{background:var(--t
 head = head.replace('</style>', chipCss + '\n</style>');
 let body = fs.readFileSync(P('templates/body.html'), 'utf8');
 const parts = {
-  SPRITE: sprite(), ILLUST: illust(), TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
+  SPRITE: sprite(), ILLUST: illust(), ARCHIVE: archive(), TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
   RADAR: radar(), RADARTABLE: radarTable(), STATBARS: statBars(), SINGLES_ATK: singlesAtk(), SINGLES_DEF: singlesDef(), CHEER: cheer(),
   SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_CAT: expCat(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
   RANKAXIS: rankAxis(), ADOPT_S: adopt(CFG.adoptS, false), ADOPT_D: adopt(CFG.adoptD, true),

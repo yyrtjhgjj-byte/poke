@@ -9,7 +9,8 @@
 - 返答は敬語（です・ます）。
 - レポート本文は「である調」。ラボ風・遊び心あり（研究員メモ、受理スタンプ、表紙の標本写真）。
 - 本文は現行の仕様だけで完結する書き方にする。「〜になったため」「v1より〜」のような版どうしの比較は、§0 冒頭の改訂記録にだけ書く（依頼者の指示）。§1.7 の前提にも「v2で明記」などの版の注記は付けない。
-- 章はタブ切り替え（ハッシュ：abstract / specimen / singles / doubles / training / teams / lab / forecast）。
+- 章はタブ切り替え（ハッシュ：abstract / specimen / singles / doubles / training / teams / lab / forecast / archive）。
+- §8 記録庫（archive）は依頼者が書いた物語・記録を載せる章。原文は `spec/lore.md` で、`build.js` の `archive()` が種類ごとの見せ方（年表の日記、調査報告、日記帳、手記、カルテ、絵本）で組み立てる。本文は依頼者の原文のまま、勝手に直さない。資料を足すときは lore.md に `## 種類 | 題 | 添え書き` で追記する。
 - 依頼者は性能を調整しながら考察を回したい。作り直しではなく差分更新を優先する。
 
 ## 公開先
@@ -41,7 +42,7 @@
 ## 自動で追従するもの
 
 - 生成表：`scripts/build.js` が `templates/body.html` の `<!--@NAME-->` を埋める（同じ名前が複数あってもすべて置換）。
-  SPRITE、ILLUST、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
+  SPRITE、ILLUST、ARCHIVE、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
   ロンドの優先度は `DM.rondo.pri`（スキン版）と `priIntim`（いかく版）から表とページ内計算機に入る。
 - 本文中の数値：`{{…}}` トークン（下記）。ビルド時に計算し、`notes/claims.md` に「章・値・前後の文・トークン」を一覧で書き出す。
 - 型の定義：`src/sets.js`。本文・生成表・スナップショットが同じ定義を使う。

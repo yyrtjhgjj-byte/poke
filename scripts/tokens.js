@@ -8,7 +8,7 @@ const E = C.E;
 const STAT_KEYS = ['hp', 'atk', 'def', 'spa', 'spd', 'spe'];
 const LETTER = {hp: 'H', atk: 'A', def: 'B', spa: 'C', spd: 'D', spe: 'S'};
 const FMTS = new Set(['pct', 'ko', 'full', 'p1', 'surv', 'range']);
-const CHAPTERS = {abstract: '§0 要旨', specimen: '§1 検体', singles: '§2 シングル', doubles: '§3 ダブル', training: '§4 育成論', teams: '§5 パーティ', lab: '§6 実験室', forecast: '§7 予測'};
+const CHAPTERS = {abstract: '§0 要旨', specimen: '§1 検体', singles: '§2 シングル', doubles: '§3 ダブル', training: '§4 育成論', teams: '§5 パーティ', lab: '§6 実験室', forecast: '§7 予測', archive: '§8 記録庫'};
 
 function fail(msg) { throw new Error('トークン: ' + msg); }
 function setOf(id) { const s = SETS[id]; if (!s) fail(`型 ${id} がない（src/sets.js）`); return s; }

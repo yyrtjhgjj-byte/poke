@@ -8,7 +8,7 @@ from playwright.async_api import async_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SHOTS = ROOT / '.shots'
-VIEWS = ['abstract', 'specimen', 'singles', 'doubles', 'training', 'teams', 'lab', 'forecast']
+VIEWS = ['abstract', 'specimen', 'singles', 'doubles', 'training', 'teams', 'lab', 'forecast', 'archive']
 
 
 def wrap(src: str) -> str:

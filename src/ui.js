@@ -4,7 +4,7 @@
   var $ = function (id) { return document.getElementById(id); };
 
   /* ---------- chapter tabs (hash routing) ---------- */
-  var VIEWS = ['abstract', 'specimen', 'singles', 'doubles', 'training', 'teams', 'lab', 'forecast'];
+  var VIEWS = ['abstract', 'specimen', 'singles', 'doubles', 'training', 'teams', 'lab', 'forecast', 'archive'];
   var chapters = {};
   document.querySelectorAll('[data-chapter]').forEach(function (s) { chapters[s.id] = s; });
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
@@ -36,6 +36,18 @@
   var initial = hashView();
   show(initial);
   if (VIEWS.indexOf(initial) > 0 && chapters[initial]) { setTimeout(function () { try { chapters[initial].scrollIntoView({block: 'start'}); } catch (e) {} }, 0); }
+
+  /* ---------- §8 記録庫：目録から各資料へ移動、童話の挿絵は §1 のイラストを使い回す ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-jump]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $(b.dataset.jump);
+      if (t) { try { t.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block: 'start'}); } catch (e) { t.scrollIntoView(); } }
+    });
+  });
+  document.querySelectorAll('img[data-copy-from]').forEach(function (img) {
+    var s = $(img.dataset.copyFrom); if (s) img.src = s.src;
+  });
 
   /* ---------- ability mode（§1.5 のスキン／いかく切り替え） ---------- */
   var segBtns = Array.prototype.slice.call(document.querySelectorAll('[data-mode]'));
