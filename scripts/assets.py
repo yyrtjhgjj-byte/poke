@@ -1,7 +1,7 @@
 """依頼者の画像から、ページに埋め込む assets/ の画像を作る。
 
 1) ドット絵 spec/sprite/draffia.png → assets/draffia.png（元の画素数 72×58 に戻す）
-2) イラスト spec/art/draffia-sylveon.png → assets/draffia-sylveon.webp（幅1400px・WebP）
+2) イラスト spec/art/draffia-sylveon.png → assets/draffia-sylveon.webp（幅1400px・WebP、Web版）と .jpg（PDF用）
 
 原本は約17倍に拡大された 72×58 のドット絵。各マスの内側の中央値を取り、
 透明な画素の色情報は0にそろえる（見た目は変えない）。ページでは image-rendering: pixelated で拡大表示する。
@@ -39,3 +39,7 @@ w = 1400
 im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
 im.save(ART_OUT, 'WEBP', quality=80, method=6)
 print(f'{ART_OUT.relative_to(ROOT)}  {im.width}x{im.height}  {ART_OUT.stat().st_size} bytes')
+# PDF 用（Chromium は JPEG をそのまま埋め込むので軽い。WebP だと再圧縮されて大きくなる）
+ART_JPG = ROOT / 'assets' / 'draffia-sylveon.jpg'
+im.save(ART_JPG, 'JPEG', quality=84, optimize=True, progressive=True)
+print(f'{ART_JPG.relative_to(ROOT)}  {im.width}x{im.height}  {ART_JPG.stat().st_size} bytes')

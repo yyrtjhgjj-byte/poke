@@ -71,6 +71,14 @@
 - 文章・型の技構成・試作構築・要注意の相手は手書き。Web版を直したらこちらも合わせる。
 - 実行するとページごとのはみ出し(px)が出る。0 以外なら文章を詰めて2枚に収める。フォントは Google Fonts を読む（届かないと IPA ゴシックで代わりに出る）。
 
+## しょうかいガイド（PDF）
+
+- 対戦に詳しくない人向けに「こういうポケモンです」を伝える、A4縦2枚の資料。`templates/guide.html` → `scripts/guide.js` → `dist/draffia-guide.pdf`（`npm run pdf` で A4資料と続けて作る）。
+- 口調は「です・ます」、ひらがな多めのやさしい文。丸ゴシック（Zen Maru Gothic）とクリーム・金・ピンクの配色。
+- 中身は設定（spec）と §8 記録庫の物語から取る。新しい設定は作らない。物語からの引用は一字一句そのまま。
+- 種族値のバーは `{{!base …}}` で自動。タイプ相性・性格・わざの説明は手書き。
+- イラストは PDF 用の JPEG（`assets/draffia-sylveon.jpg`）を使う（WebP だと Chromium が再圧縮して PDF が数MBになる）。
+
 ## 数値トークン
 
 `templates/body.html`（と `build.js` 内の説明文、`report.config.js` のレーダー根拠）に `{{種類 引数…}}` で書く。

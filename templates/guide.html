@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ドラフィア ― おどる仔竜のしょうかい</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@500;700;900&family=Yomogi&display=block">
+<style>
+/* 一般向けのしょうかい資料（A4縦2枚）。npm run pdf で dist/draffia-guide.pdf に書き出す。 */
+:root{
+  --cream:#FFFBF2; --ink:#2B2A33; --ink2:#5C5A66; --ink3:#8E8B98; --line:#EADFC8;
+  --gold:#E8B530; --goldDeep:#9A6B00; --goldSoft:#FFF1C7;
+  --pink:#F2A7C3; --pinkSoft:#FDE6EF; --pinkDeep:#B8456F;
+  --lav:#C9C3F0; --lavSoft:#EEEBFC; --lavDeep:#5D52B8;
+  --mint:#DDF1E6; --mintDeep:#2F7A52;
+  --t-Dragon:#5B4CD1; --t-Ice:#3E9BB0; --t-Fairy:#D06AA8; --t-Fire:#E0703A; --t-Water:#3D7FD6; --t-Electric:#C99A00; --t-Grass:#4C9A49;
+  --f-title:'Dela Gothic One','IPAGothic',sans-serif;
+  --f-body:'Zen Maru Gothic','IPAPGothic','IPAGothic',sans-serif;
+  --f-hand:'Yomogi','IPAGothic',cursive;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--f-body);font-weight:500;font-size:9.6pt;line-height:1.7;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;padding:11mm 12mm 9mm;display:flex;flex-direction:column;gap:4mm;overflow:hidden;break-after:page;position:relative;
+  background-image:radial-gradient(circle at 1.2mm 1.2mm, rgba(232,181,48,.18) 1.1mm, transparent 1.3mm);background-size:9mm 9mm}
+.page:last-child{break-after:auto}
+p{margin:0}
+h2{font-family:var(--f-body);font-weight:900;font-size:13pt;margin:0 0 2mm;display:flex;align-items:center;gap:2.5mm}
+h2 .dot{width:4mm;height:4mm;border-radius:50%;background:var(--gold);box-shadow:2.2mm 0 0 var(--pink);margin-right:2.2mm}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:5mm;padding:4mm 5mm}
+.kicker{font-weight:700;color:var(--goldDeep);letter-spacing:.2em;font-size:9pt}
+.title{font-family:var(--f-title);font-weight:400;font-size:40pt;line-height:1.05;margin:1mm 0 0;letter-spacing:.02em}
+.catch{font-weight:900;font-size:13pt;color:var(--pinkDeep);margin-top:1.5mm}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 74mm;gap:5mm;align-items:end}
+.hero .lead{margin-top:3mm;color:var(--ink2);font-size:10pt}
+.badge{display:inline-block;border-radius:99px;padding:.5mm 3.5mm;font-weight:900;font-size:8.6pt;color:#fff;background:var(--t-Dragon)}
+.art{border-radius:5mm;overflow:hidden;border:2px solid #fff;box-shadow:0 2mm 5mm rgba(120,90,20,.18);line-height:0}
+.art img{width:100%;height:auto;display:block}
+.profile{display:grid;grid-template-columns:44mm minmax(0,1fr);gap:5mm;align-items:center}
+.sprite{background:var(--goldSoft);border-radius:50%;width:44mm;height:44mm;display:grid;place-items:center;border:2px dashed var(--gold)}
+.sprite img{width:34mm;height:auto;image-rendering:pixelated}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);gap:1.4mm 3mm;font-size:9.4pt}
+.facts dt{color:var(--ink3);font-weight:700;font-size:8.2pt;padding-top:.5mm}
+.facts dd{margin:0;font-weight:700}
+.dex{margin-top:3mm;background:var(--lavSoft);border-radius:4mm;padding:2.5mm 4mm;font-size:9.4pt;position:relative}
+.dex b{display:block;font-size:7.8pt;color:var(--lavDeep);letter-spacing:.15em}
+.cute{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm}
+.cute .card{padding:3.2mm 4mm;display:grid;grid-template-columns:auto minmax(0,1fr);gap:3mm;align-items:start}
+.cute .no{font-family:var(--f-title);font-size:15pt;color:var(--gold);line-height:1}
+.cute h3{margin:0 0 .8mm;font-size:10.5pt;font-weight:900}
+.cute p{font-size:9pt;color:var(--ink2);line-height:1.65}
+.quote{font-family:var(--f-hand);font-size:11pt;line-height:1.7;background:var(--pinkSoft);border-radius:4mm;padding:3mm 5mm;color:var(--ink)}
+.quote small{display:block;font-family:var(--f-body);font-size:7.8pt;color:var(--pinkDeep);margin-top:1mm;font-weight:700}
+.foot{margin-top:auto;display:flex;justify-content:space-between;font-size:7.6pt;color:var(--ink3);font-weight:700}
+/* 2枚目 */
+.move{background:linear-gradient(135deg,var(--goldSoft),#fff 60%);border:1.5px solid var(--gold);border-radius:5mm;padding:4mm 5mm}
+.move .name{font-family:var(--f-title);font-size:20pt;line-height:1.1}
+.move .sub{font-weight:700;color:var(--goldDeep);font-size:9pt;margin-top:.5mm}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm;margin-top:3mm}
+.mode{background:#fff;border-radius:4mm;padding:3mm 4mm;border:1.5px solid var(--line)}
+.mode h3{margin:0 0 1mm;font-size:10.5pt;font-weight:900}
+.mode h3 small{display:block;font-size:8pt;color:var(--ink3);font-weight:700}
+.mode p{font-size:9pt;color:var(--ink2);line-height:1.65}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.evo{display:grid;grid-template-columns:auto auto auto auto auto;gap:2mm;align-items:center;justify-content:start;margin:1mm 0 2.5mm}
+.evo span{border-radius:99px;padding:1mm 3.5mm;font-weight:900;font-size:9pt;background:#fff;border:1.5px solid var(--line)}
+.evo .me{background:var(--goldSoft);border-color:var(--gold)}
+.evo .via{border:none;background:none;color:var(--pinkDeep);font-size:8.4pt;padding:0;text-align:center;line-height:1.3}
+.evo i{font-style:normal;color:var(--ink3);font-weight:900}
+.bars{display:grid;gap:1.4mm;margin-top:1mm}
+.bar{display:grid;grid-template-columns:15mm minmax(0,1fr) 8mm;gap:2mm;align-items:center;font-size:8.6pt;font-weight:700}
+.bar .tr{height:3.2mm;background:#F3EBDA;border-radius:99px;overflow:hidden}
+.bar .fl{height:100%;border-radius:99px;background:var(--lav)}
+.bar.hi .fl{background:var(--gold)}
+.bar .v{text-align:right;color:var(--ink2)}
+.types{display:flex;flex-wrap:wrap;gap:1.5mm;align-items:center;font-size:8.6pt;margin-top:1.5mm}
+.types b{font-weight:900;margin-right:1mm}
+.chip{display:inline-block;border-radius:99px;padding:.2mm 2.8mm;font-weight:900;color:#fff;font-size:8.2pt}
+ul.list{margin:0;padding:0;list-style:none;display:grid;gap:1.6mm}
+ul.list li{display:grid;grid-template-columns:4mm minmax(0,1fr);gap:1.5mm;font-size:9pt;line-height:1.6}
+ul.list li::before{content:"";width:2.4mm;height:2.4mm;border-radius:50%;background:var(--pink);margin-top:1.5mm}
+ul.list.gold li::before{background:var(--gold)}
+.memo{font-family:var(--f-hand);font-size:10.5pt;background:var(--goldSoft);border:1.5px dashed var(--gold);border-radius:3mm;padding:2.5mm 4mm;transform:rotate(-.8deg)}
+.memo small{font-family:var(--f-body);font-weight:700;color:var(--goldDeep);font-size:7.8pt;letter-spacing:.1em;display:block}
+</style>
+</head>
+<body>
+
+<!-- ======================= 1枚目 ======================= -->
+<section class="page">
+  <div class="hero">
+    <div>
+      <div class="kicker">りんぶポケモン</div>
+      <h1 class="title">ドラフィア</h1>
+      <p class="catch">ニンフィアが だいすきな、おどる仔竜。</p>
+      <p class="lead">イーブイの しんかの なかで ただひとつの ドラゴンタイプ。ふわふわの白い毛なみに、金色のアクセント。小さなツノと翼をパタパタさせて、きょうも たのしく輪舞（ロンド）を おどっています。</p>
+      <p style="margin-top:3mm"><span class="badge">ドラゴンタイプ</span></p>
+    </div>
+    <div class="art"><!--@ILLUST--></div>
+  </div>
+
+  <div class="card profile">
+    <div class="sprite"><!--@SPRITE--></div>
+    <div>
+      <dl class="facts" style="margin:0">
+        <dt>ぶんるい</dt><dd>りんぶポケモン</dd>
+        <dt>タイプ</dt><dd>ドラゴン</dd>
+        <dt>たかさ</dt><dd>0.6m</dd>
+        <dt>おもさ</dt><dd>13.8kg</dd>
+        <dt>とくせい</dt><dd>いかく</dd>
+        <dt>かくれとくせい</dt><dd>ドラゴンスキン</dd>
+      </dl>
+      <div class="dex"><b>ずかん</b>ニンフィアに たいそう よく なつき リボンで なでられると うれしそうに おどりだす。おどる すがたを みた なかまは ふしぎと ちからが みなぎるという。</div>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="dot"></span>ここが かわいい！</h2>
+    <div class="cute">
+      <div class="card"><span class="no">1</span><div><h3>ニンフィアが だいすき</h3><p>ニンフィアを「お姉ちゃん」とよんで、どこへでも トコトコ ついていきます。お気に入りの場所は、あおむけに ねころんだ ニンフィアの おなかの上。</p></div></div>
+      <div class="card"><span class="no">2</span><div><h3>こわがりの いかくは「綿毛玉」</h3><p>おどろくと 白い毛を ボワッと 2倍くらいに ふくらませて いかくします。でも見た目は 大きな白い綿毛玉。安心すると すぐに しぼんで すり寄ってきます。</p></div></div>
+      <div class="card"><span class="no">3</span><div><h3>おどるのが だいすき</h3><p>きげんが いいと「いっしょに おどろう！」と 足を引っぱって さそいます。いっしょに おどると、なぜか みんなの つかれが ふきとぶそうです。</p></div></div>
+      <div class="card"><span class="no">4</span><div><h3>すねると しっぽで アピール</h3><p>かまってもらえないと 部屋のすみで 丸くなり、黄色い しっぽの先だけを パタパタ。寒い日は ニンフィアのリボンに くるまって うごきません。</p></div></div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:3.5mm 5mm">
+    <h2 style="margin-bottom:1.5mm"><span class="dot"></span>バトルでは こんな子</h2>
+    <p style="font-size:9pt;color:var(--ink2)">小さくても 立派な ドラゴン。いかくで あいての力を そいだり、仲間の イーブイの しんかポケモンを 踊りで パワーアップさせたり、先手で おどって フェアリーや こおりタイプの 強敵を ふきとばしたり。小さな体で、チームを 明るく 引っぱります。</p>
+  </div>
+
+  <div class="quote">「世界で一番新しくて、世界で一番甘えん坊なぼくのドラゴンポケモン。」<small>― はじめてドラフィアを見つけたトレーナーの日記より</small></div>
+
+  <div class="foot"><span>RONDO LAB　ドラフィア しょうかいガイド</span><span>1 / 2</span></div>
+</section>
+
+<!-- ======================= 2枚目 ======================= -->
+<section class="page">
+  <div class="move">
+    <div class="name">ドラゴニックロンド</div>
+    <div class="sub">ドラフィアだけの とくべつな わざ ／ たのしく 輪舞を おどる</div>
+    <div class="modes">
+      <div class="mode"><h3>みんなを おうえん<small>とくせい：いかく</small></h3><p>おどって 仲間の イーブイの しんかポケモンの こうげき・とくこう・すばやさを ぐーんと上げてから、すばやく 控えと交代します。ドラフィアより速い あいてと たたかうときは、次に出てくる仲間の すばやさも上がります。</p></div>
+      <div class="mode"><h3>竜の気の うずで こうげき<small>かくれとくせい：ドラゴンスキン</small></h3><p>くるくる おどると 尾の房から 金色の竜の気が こぼれ、うずになって あいてに当たります。あいてより先に出せて、ふつうの ドラゴンわざが きかない フェアリータイプや、こおりタイプにも よく効きます。</p></div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h2><span class="dot"></span>しんかの ひみつ</h2>
+      <div class="evo"><span>イーブイ</span><i>→</i><span class="via">ニンフィアの<br>そばで なかよく</span><i>→</i><span class="me">ドラフィア</span></div>
+      <p style="font-size:9pt;color:var(--ink2)">イーブイが とても よく なついた状態で レベルアップすると しんかします。ただし、てもちに ニンフィアが いることが じょうけん。こわがりで 眠っていた「竜の力」が、ニンフィアのリボンに 安心させてもらって、やっと 目をさますのだと 考えられています。</p>
+    </div>
+    <div class="card">
+      <h2><span class="dot"></span>ちから くらべ</h2>
+      <div class="bars">
+        <div class="bar"><span>HP</span><span class="tr"><span class="fl" style="display:block;width:calc({{!base hp}} / 150 * 100%)"></span></span><span class="v">{{!base hp}}</span></div>
+        <div class="bar hi"><span>こうげき</span><span class="tr"><span class="fl" style="display:block;width:calc({{!base atk}} / 150 * 100%)"></span></span><span class="v">{{!base atk}}</span></div>
+        <div class="bar"><span>ぼうぎょ</span><span class="tr"><span class="fl" style="display:block;width:calc({{!base def}} / 150 * 100%)"></span></span><span class="v">{{!base def}}</span></div>
+        <div class="bar"><span>とくこう</span><span class="tr"><span class="fl" style="display:block;width:calc({{!base spa}} / 150 * 100%)"></span></span><span class="v">{{!base spa}}</span></div>
+        <div class="bar"><span>とくぼう</span><span class="tr"><span class="fl" style="display:block;width:calc({{!base spd}} / 150 * 100%)"></span></span><span class="v">{{!base spd}}</span></div>
+        <div class="bar hi"><span>すばやさ</span><span class="tr"><span class="fl" style="display:block;width:calc({{!base spe}} / 150 * 100%)"></span></span><span class="v">{{!base spe}}</span></div>
+      </div>
+      <p style="font-size:8.6pt;color:var(--ink2);margin-top:1.5mm">こうげきと すばやさが じまん。小さな体なので、打たれ強さは ひかえめです。へっちゃらな タイプの わざは、受けるダメージが はんぶんです。</p>
+      <div class="types"><b>にがて</b><span class="chip" style="background:var(--t-Ice)">こおり</span><span class="chip" style="background:var(--t-Dragon)">ドラゴン</span><span class="chip" style="background:var(--t-Fairy)">フェアリー</span></div>
+      <div class="types"><b>へっちゃら</b><span class="chip" style="background:var(--t-Fire)">ほのお</span><span class="chip" style="background:var(--t-Water)">みず</span><span class="chip" style="background:var(--t-Electric)">でんき</span><span class="chip" style="background:var(--t-Grass)">くさ</span></div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h2><span class="dot"></span>おせわメモ</h2>
+      <ul class="list">
+        <li><span>毛なみは 空気をたっぷり ふくんだ ふわふわの ダブルコート。冬に だっこすると とても あたたかい。</span></li>
+        <li><span>はじめての場所では 毛を ふくらませがち。まずは やさしく 声をかけて、こわくないよと 伝えてあげよう。</span></li>
+        <li><span>ツノと 背中の翼の 付け根は くすぐったがりポイント。</span></li>
+        <li><span>ニンフィアが そばにいると、うっとりして とても おとなしくなります。</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2><span class="dot"></span>まめちしき</h2>
+      <ul class="list gold">
+        <li><span>イーブイの しんかポケモンの中で、いちばん 小がら（たかさ 0.6m）。</span></li>
+        <li><span>だいすきな お姉ちゃんの ニンフィア（フェアリータイプ）は、じつは タイプ相性では ドラゴンの天敵。</span></li>
+        <li><span>研究所で いっしょに おどったら、スタッフ全員の 肩こりが 治ったという 記録があります。</span></li>
+        <li><span>ある地方には、リボンの妖精と おどる白い仔竜の 童話『うたう妖精と、おどる仔竜』が 伝わっています。</span></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="memo"><small>研究員メモ</small>測定器を持って近づいたら「キュルルッ！」と いかくされた。午後は全員で 輪舞を おどることになり、業務は まったく 進まなかった。</div>
+
+  <div class="foot"><span>RONDO LAB　ドラフィア しょうかいガイド</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>
