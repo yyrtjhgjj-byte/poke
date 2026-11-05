@@ -7,7 +7,7 @@
     "validate": "node scripts/validate.js",
     "build": "node scripts/build.js",
     "snapshot": "node scripts/snapshot.js",
-    "all": "npm run validate && npm run build && npm run snapshot",
+    "all": "npm run validate && npm run build && npm run snapshot && npm run pdf",
     "look": "python3 scripts/look.py",
     "pdf": "node scripts/a4.js && node scripts/guide.js"
   },

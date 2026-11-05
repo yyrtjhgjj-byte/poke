@@ -31,7 +31,8 @@ scripts/
   analysis/    型を詰めるときに使った探索スクリプト
 research/    環境データ（使用率・ルール）のスナップショットと出典
 notes/       仮定、結論、採用率推計の根拠、計算スナップショット、本文中の計算値一覧（claims.md）
-dist/        完成したHTML
+dist/        完成したHTML（Web版）と、PDF の印刷前HTML
+pdf/         PDF の成果物（npm run pdf / npm run all で更新。中身は pdf/README.md）
 ```
 
 ## 使い方

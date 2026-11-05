@@ -33,11 +33,11 @@
 2. `src/data.js` の `SP.draffia`（`b` 種族値、`t` タイプ、`skin` 変換先）と `DM`（技）を更新。
    - 専用技の挙動：`src/core.js` の `drfAtk`（`mv.rondo` 分岐、A/C比較）と `src/engine.js` の `eff(…, {rondo})`（妖・氷を×2に上書き）。
 3. 型の配分を変えるなら `src/sets.js`。ダブル耐久型は `scripts/analysis/opt.js` で探索できる。
-4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md`。
+4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md` → `pdf/` の PDF 2点。
 5. `git diff notes/claims.md` で、本文中のどの数値が変わったかを見る。値の前後の判定（有利・不利、「耐える」「抜ける」などの言い回し）が数値と食い違っていないかを確認し、`templates/body.html` を直す。
 6. 主観の値（総合評価、予想順位、レーダー、採用率）は `src/report.config.js` で見直す。
 7. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。Python の playwright が無い環境では `pip install playwright` のうえ `--chrome /opt/pw-browsers/chromium` を付ける。
-8. A4資料も作り直す：`npm run pdf`（下の「A4資料（PDF）」）。
+8. PDF は手順4の `npm run all` で `pdf/` に作り直される（PDF だけなら `npm run pdf`）。はみ出しが 0 でなければ直す。
 9. コミット・push・`main` へのマージまで確認なしで行う（上の「Git とアーティファクトの運用」）。
 
 ## 自動で追従するもの
@@ -65,7 +65,8 @@
 
 ## A4資料（PDF）
 
-- `templates/a4.html` → `npm run pdf`（`scripts/a4.js`）→ `dist/draffia-a4.html` と `dist/draffia-a4.pdf`（A4縦2枚）。
+- PDF の成果物置き場は `pdf/`（中身は `pdf/README.md`）。`npm run pdf`・`npm run all` で毎回上書きされる。
+- `templates/a4.html` → `scripts/a4.js` → `pdf/draffia-battle.pdf`（A4縦2枚。印刷前のHTMLは `dist/draffia-a4.html`）。
 - 単独で読める資料として書く。「要約」「本編」「詳細は〜を参照」など、Web版の存在をうかがわせる文言は紙面に入れない（依頼者の指示）。版表示（REV）も入れない。
 - 数値はWeb版と同じトークン。§2.1 対面表の判定（有利・五分・不利の相手）と、採用率の各項目1位はWeb版・`report.config.js` から自動で入る。
 - 文章・型の技構成・試作構築・要注意の相手は手書き。Web版を直したらこちらも合わせる。
@@ -73,7 +74,7 @@
 
 ## しょうかいガイド（PDF）
 
-- 対戦に詳しくない人向けに「こういうポケモンです」を伝える、A4縦2枚の資料。`templates/guide.html` → `scripts/guide.js` → `dist/draffia-guide.pdf`（`npm run pdf` で A4資料と続けて作る）。
+- 対戦に詳しくない人向けに「こういうポケモンです」を伝える、A4縦2枚の資料。`templates/guide.html` → `scripts/guide.js` → `pdf/draffia-guide.pdf`（`npm run pdf` で A4資料と続けて作る）。
 - 口調は「です・ます」、ひらがな多めのやさしい文。丸ゴシック（Zen Maru Gothic）とクリーム・金・ピンクの配色。
 - 中身は設定（spec）と §8 記録庫の物語から取る。新しい設定は作らない。物語からの引用は一字一句そのまま。
 - 種族値のバーは `{{!base …}}` で自動。タイプ相性・性格・わざの説明は手書き。

@@ -1,6 +1,6 @@
 /* 一般向けのしょうかい資料（A4縦2枚）を作る。
    templates/guide.html の <!--@SPRITE--> <!--@ILLUST--> を埋め、{{…}} トークンを解決して
-   dist/draffia-guide.html と dist/draffia-guide.pdf を書き出す（ヘッドレス Chromium で印刷）。
+   印刷用HTMLを dist/draffia-guide.html に、PDF を pdf/draffia-guide.pdf に書き出す（ヘッドレス Chromium で印刷）。
    使い方: npm run pdf（A4資料と続けて作る） */
 const fs = require('fs');
 const path = require('path');
@@ -30,9 +30,10 @@ fs.writeFileSync(P('dist/draffia-guide.html'), html);
   await page.evaluate(() => document.fonts.ready);
   const fonts = await page.evaluate(() => ['Zen Maru Gothic', 'Dela Gothic One', 'Yomogi'].map(f => [f, document.fonts.check(`12px "${f}"`)]));
   const over = await page.evaluate(() => [...document.querySelectorAll('.page')].map(p => p.scrollHeight - p.clientHeight));
-  await page.pdf({path: P('dist/draffia-guide.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true});
+  fs.mkdirSync(P('pdf'), {recursive: true});
+  await page.pdf({path: P('pdf/draffia-guide.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true});
   await browser.close();
   console.log('fonts', JSON.stringify(fonts));
   console.log('はみ出し(px)', JSON.stringify(over), over.some(v => v > 0) ? '← ページに収まっていない' : 'OK');
-  console.log('written dist/draffia-guide.pdf', (fs.statSync(P('dist/draffia-guide.pdf')).size / 1024).toFixed(1) + 'KB');
+  console.log('written pdf/draffia-guide.pdf', (fs.statSync(P('pdf/draffia-guide.pdf')).size / 1024).toFixed(1) + 'KB');
 })();
