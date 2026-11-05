@@ -345,7 +345,7 @@ function expLR() {
     const t = tgt(k);
     h += `<tr><th class="rowh" style="white-space:normal">${esc(t.label)}</th>` + cols.map(([, mv, s]) => cell(atk(atkOpts('S3', {atkStage: k === 'dondozo_hb' ? 0 : s, move: mv, target: t})))).join('') + '</tr>';
   }
-  return h + '</tbody></table></div><p class="prose small" style="margin-top:10px">スキンのとっておきは威力{{bp lastresort skin}}で、すてみ（{{bp doubleedge skin}}）より約17%強く反動もない。ただし覚えている他の技をすべて1回ずつ使うまで撃てない。「りゅうのまい／とっておき」の2技構成なら2ターン目から撃てるが、先制ロンドを失う。テラス竜+1のとっておきはディンルー（HB特化）に{{dmg S3 lastresort tinglu_hb full}}。ヘイラッシャ行はてんねんのため+1列も±0で計算。</p>';
+  return h + '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-1</b>　ようき A252・いのちのたま・テラスドラゴンの S-3 で比較。</p><p class="prose small" style="margin-top:10px">スキンのとっておきは威力{{bp lastresort skin}}で、すてみ（{{bp doubleedge skin}}）より約17%強く反動もない。ただし覚えている他の技をすべて1回ずつ使うまで撃てない。「りゅうのまい／とっておき」の2技構成なら2ターン目から撃てるが、先制ロンドを失う。テラス竜+1のとっておきはディンルー（HB特化）に{{dmg S3 lastresort tinglu_hb full}}。ヘイラッシャ行はてんねんのため+1列も±0で計算。</p>';
 }
 function expFacade() {
   const tg = ['koraidon_as', 'miraidon_cs', 'chienpao_as', 'urshifur_as', 'incin_hd', 'rilla_ha', 'amoong_hb', 'flutter_cs'];
@@ -354,7 +354,7 @@ function expFacade() {
     const t = tgt(k);
     h += `<tr><th class="rowh" style="white-space:normal">${esc(t.label)}</th>${cell(atk(atkOpts('AS', {move: 'facade', statused: true, burn: true, target: t})))}${cell(atk(atkOpts('AS', {move: 'doubleedge', target: t})))}${cell(atk(atkOpts('AS', {move: 'rondo', burn: true, target: t})))}${cell(atk(atkOpts('AS', {move: 'rondo', target: t})))}</tr>`;
   }
-  return h + '</tbody></table></div><p class="prose small" style="margin-top:10px">からげんきはやけどでも威力が落ちず、スキンで{{bp facadest skin}}になる。すてみより約17%強く反動もない。眠り・まひにならないため、ダブルのキノコのほうし（モロバレル・ドーブル）とあくびを無視できる。</p><p class="prose small" style="margin-top:6px">ただしかえんだまはロンドの威力も半減させ、ハバタクカミへのロンドは{{dmg AS rondo flutter_cs burn full}}まで落ちる。どくどくだまならロンドは落ちないが、毒のダメージが1/16、2/16、3/16と増えていく。ロンドを主力にするなら毒、すてみの代わりとして使い切るなら火傷が向く。</p>';
+  return h + '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-2</b>　ようき A252・持ち物なし。からげんきは状態異常時の威力で計算。</p><p class="prose small" style="margin-top:10px">からげんきはやけどでも威力が落ちず、スキンで{{bp facadest skin}}になる。すてみより約17%強く反動もない。眠り・まひにならないため、ダブルのキノコのほうし（モロバレル・ドーブル）とあくびを無視できる。</p><p class="prose small" style="margin-top:6px">ただしかえんだまはロンドの威力も半減させ、ハバタクカミへのロンドは{{dmg AS rondo flutter_cs burn full}}まで落ちる。どくどくだまならロンドは落ちないが、毒のダメージが1/16、2/16、3/16と増えていく。ロンドを主力にするなら毒、すてみの代わりとして使い切るなら火傷が向く。</p>';
 }
 function expSyl() {
   const syl = C.stats('sylveon', 'modest', {hp: 4, spa: 252, spe: 252});
@@ -384,7 +384,7 @@ function expSyl() {
     h += '</tr>';
   }
   const newly = ko1[2].filter(n => !ko1[0].includes(n));
-  h += '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-4</b>　フェアリースキン（威力×1.2）・タイプ一致・ダブルの全体技補正（×0.75）込み。「抜ける相手」は使用率上位の一般的な最速・準速のうち、+2後の素早さより遅い最も速い相手。</p>';
+  h += '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-3</b>　フェアリースキン（威力×1.2）・タイプ一致・ダブルの全体技補正（×0.75）込み。「抜ける相手」は使用率上位の一般的な最速・準速のうち、+2後の素早さより遅い最も速い相手。</p>';
   h += `<p class="prose small" style="margin-top:10px">ロンド1回（+2）で、確定1発の相手に${newly.join('・')}が加わる。持ち物なしでもこの火力で、+2のすばやさ（無補正S252で${E.boost(s1, 2)}）は一覧のすべてを抜く。ロンド2回（+4）では${ko1[4].filter(n => !ko1[2].includes(n)).join('・') || '新たな確定1発はない'}${ko1[4].filter(n => !ko1[2].includes(n)).length ? 'も確定1発になる' : ''}。残る壁は鋼と炎（ガオガエン・ザマゼンタ・ザシアン・サーフゴー）で、ここはドラフィアのロンドも通りにくい。</p>`;
   h += '<p class="prose small" style="margin-top:6px">止め方は3つある。①サイコフィールド（イエッサン♀）・しっぽアーマー（リキキリン）・まもるで攻撃版ロンドを防ぐ。接地した相手にはロンドが当たらず、上昇も起きない。最も分かりやすい止め方で、いかく版なら止まらない。②ねこだましでドラフィアを怯ませる（おんみつマントで防げる）。③上がったニンフィアに、鋼・毒の打点やくろいきり・ほえるで対応する。ロンドはすばやさだけでなくこうげき・とくこうもまとめて上げるため、ニンフィアの隣に置く理由として十分な強さがある。</p>';
   return h;
@@ -402,7 +402,7 @@ function expES() {
     h += `<tr><th class="rowh" style="white-space:normal">${esc(t.label)}</th>${cell(ro)}${cell(a)}${cell(b)}</tr>`;
   }
   const u = tgt('urshifur_as'), rU = atk(atkOpts('S1', {move: 'rondo', target: u})), eU = es(u, 6144), nU = es(u, 4096);
-  h += `</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-5</b>　どちらも優先度+2。同じ優先度の中は素早さ順なので、最速ドラフィア（${ST.S1.spe}）が最速カイリュー（${C.stats('dragonite', 'jolly', {spe: 252}).spe}）より先に動く。</p>`;
+  h += `</tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-4</b>　どちらも優先度+2。同じ優先度の中は素早さ順なので、最速ドラフィア（${ST.S1.spe}）が最速カイリュー（${C.stats('dragonite', 'jolly', {spe: 252}).spe}）より先に動く。</p>`;
   h += `<p class="prose small" style="margin-top:10px">${tg.length}体のうち、ロンドがテラスノーマルのしんそくより多く削る相手は${win}体、テラスなしのしんそくより多く削る相手は${winT}体。等倍の相手（連撃ウーラオス）で比べると、テラスノーマルのしんそくはロンドの約${(eU.maxPct / rU.maxPct).toFixed(2)}倍、テラスなしのしんそくは約${(nU.maxPct / rU.maxPct).toFixed(2)}倍。<b>テラスを切らない限りロンドの方が強く、テラスノーマルと比べても、竜・妖・氷に抜群を取れてゴーストに無効化されないぶん、レギュIの上位相手にはロンドが勝る。</b></p>`;
   h += '<p class="prose small" style="margin-top:6px">差が出るのは耐久で、カイリューはH{{base dragonite hp}}・B{{base dragonite def}}・D{{base dragonite spd}}にマルチスケイル、ドラフィアはH{{base hp}}・B{{base def}}・D{{base spd}}。ドラフィアは先制で殴れる代わりに、上から1発もらうと落ちる（§2.5）。「しんそく並みの先制技を持つ、紙耐久のアタッカー」という見立ては計算上も成り立つ。</p>';
   return h;
