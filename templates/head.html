@@ -267,18 +267,6 @@ input[type=range]{width:100%;accent-color:var(--goldInk)}
 .points{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:13.5px}
 
 /* ---------- speed chart ---------- */
-.speed{display:grid;gap:4px;position:relative}
-.sp-row{display:grid;grid-template-columns:9.5em minmax(0,1fr) 3em;gap:10px;align-items:center;font-size:13px}
-.sp-row .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sp-row .tr{height:14px;position:relative;background:var(--rule2);border-radius:2px}
-.sp-row .fl{position:absolute;inset:0 auto 0 0;background:var(--ink3);opacity:.5;border-radius:2px}
-.sp-row.faster .fl{background:var(--gold);opacity:1}
-.sp-row.self .fl{background:var(--indigo);opacity:1}
-.sp-row.self .nm{font-weight:900;color:var(--indigo)}
-.sp-row .v2{font-family:var(--f-mono);font-size:12px;text-align:right}
-.sp-row .mark{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--indigo)}
-.sp-sum{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;margin-top:10px}
-.sp-sum .big{font-family:var(--f-mono);font-size:28px;font-weight:600;color:var(--goldInk)}
 
 /* ---------- calculator ---------- */
 .calc{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
@@ -417,7 +405,6 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
   .tale-text{padding:0 18px;font-size:15.5px}
   body{font-size:14.5px}
   .mast{grid-template-columns:minmax(0,1fr)}
-  .sp-row .nm{white-space:normal;line-height:1.25}
   .tbl.stackable thead{display:none}
   .tbl.stackable tr{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:2px 8px;padding:9px 10px;border-bottom:1px solid var(--rule2)}
   .tbl.stackable.st5 tr{grid-template-columns:minmax(0,1fr) auto auto auto}
@@ -437,7 +424,6 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
   .meta div:nth-child(2n+1){padding-left:0;border-left:none}
   .meta div:nth-child(n+3){border-top:1px solid var(--rule)}
   .bar,.scale{grid-template-columns:3.6em 2.4em minmax(0,1fr) 6.4em;gap:8px}
-  .sp-row{grid-template-columns:7.4em minmax(0,1fr) 2.6em;gap:8px;font-size:12px}
   .mvstats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mvstats div:nth-child(3){border-left:none}
   .mvstats div:nth-child(n+3){border-top:1px solid var(--rule)}

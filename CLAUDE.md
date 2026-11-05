@@ -2,7 +2,7 @@
 
 このリポジトリは、依頼者が設計したオリジナルポケモン「ドラフィア」の対戦考察レポートを作る作業場。
 最初の版は 2026-11-03 に作成し、claude.ai のアーティファクトとして公開した。
-同日にロンドの仕様をv2へ改訂（スキン版の優先度+2、ブイズへの上昇をA・C・Sに拡大）、続けてv3（音技→踊り技、非接触を明記）。2026-11-05 に v4（スキン版のロンドを物理技に統一、「AとCの高い方」を削除）。仕様の正は `spec/draffia.md` の最新節。
+同日にロンドの仕様をv2へ改訂（スキン版の優先度+2、ブイズへの上昇をA・C・Sに拡大）、続けてv3（音技→踊り技、非接触を明記）。2026-11-05 に v4（スキン版のロンドを物理技に統一、「AとCの高い方」を削除）、続けて v5（いかく版で後続を上げる条件「相手より遅いとき」を削除）。仕様の正は `spec/draffia.md` の最新節。
 
 ## 依頼者について
 
@@ -43,19 +43,19 @@
 ## 自動で追従するもの
 
 - 生成表：`scripts/build.js` が `templates/body.html` の `<!--@NAME-->` を埋める（同じ名前が複数あってもすべて置換）。
-  SPRITE、ILLUST、ARCHIVE、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
+  SPRITE、ILLUST、ARCHIVE、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEEDTBL、TERA、TRAINING、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
   ロンドの優先度は `DM.rondo.pri`（スキン版）と `priIntim`（いかく版）から表とページ内計算機に入る。
 - 本文中の数値：`{{…}}` トークン（下記）。ビルド時に計算し、`notes/claims.md` に「章・値・前後の文・トークン」を一覧で書き出す。
 - 型の定義：`src/sets.js`。本文・生成表・スナップショットが同じ定義を使う。
 - 主観の値：`src/report.config.js`（評価、順位、レーダーの値と根拠、採用率）。
-- ページ内の実数値計算機・ダメージ計算機・すばやさチェッカーも `src/` を読むので追従する。
+- ページ内の実数値計算機・ダメージ計算機も `src/` を読むので追従する（§3.6 にあった「ロンドの素早さ上昇チェッカー」は v5 で条件がなくなったため撤去した）。
 
 ## 手書きのまま残っているもの（性能を変えたら要確認）
 
 - 判定ラベル：§2.1 対面表と §3.1 関係表の「有利・五分・不利」など。件数（表2-1の内訳）は自動。
 - §1.6 習得技の★評価、§1.5 のロンド対タイプ表、§1.3 の補足文、§1.4 の特性説明。
 - 型カードの持ち物・テラス・技構成と、定性的な説明（「物理はいかく込みで受ける配分」など）。
-- §3.3 のガオガエン側の列、§3.2・§3.8・§5・§7.3 の文章、§7 の総評文。
+- §3.3 のガオガエン側の列、§3.2・§3.7・§5・§7.3 の文章、§7 の総評文。
 - 環境の順位（使用率○位）と仮想敵の配分（`src/core.js` の `TARGETS`・`ATTACKS`）。
 - ロンドの命中・PP・優先度など仕様そのものの値（`spec/draffia.md` が正）。本文の「優先度+2」「A・C・S+2」「A+1・C+1・S+2」「踊り技・非接触」は手書き。
 - `scripts/build.js` の EXP_SYL・EXP_ES の文章のうち、上昇の段階数（+1/+2/+4の列）と「止め方」「残る壁」の記述。

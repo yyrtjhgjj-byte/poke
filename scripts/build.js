@@ -249,11 +249,6 @@ const SPEED_LIST = [
   ['ガオガエン', 'incineroar', 'hardy', 252], ['イエッサン♀（最遅）', 'indeedeef', 'sassy', 0, 0], ['リキキリン（最遅）', 'farigiraf', 'sassy', 0, 0],
   ['白バドレックス（最遅）', 'calyrexi', 'brave', 0, 0], ['モロバレル（最遅）', 'amoonguss', 'sassy', 0, 0]
 ].map(([n, sp, nat, ev, iv]) => [n, C.stats(sp, nat, {spe: ev}, iv === 0 ? {spe: 0} : {}).spe]).sort((a, b) => b[1] - a[1]);
-function speedRows() {
-  const me = C.stats('draffia', 'hardy', {}).spe;
-  return '<div class="speed" id="speedChart">' + SPEED_LIST.map(([n, s]) =>
-    `<div class="sp-row" data-spe="${s}"><span class="nm">${n}</span><span class="tr"><span class="fl" style="width:${(s / 240 * 100).toFixed(1)}%"></span><span class="mark" style="left:calc(${(me / 240 * 100).toFixed(1)}% - 1px)"></span></span><span class="v2">${s}</span></div>`).join('') + '</div>';
-}
 function speedTable() {
   const list = SPEED_LIST.concat([['ニンフィア', C.stats('sylveon', 'hardy', {spe: 252}).spe]]);
   const jolly = C.stats('draffia', 'jolly', {spe: 252}).spe, neutral = C.stats('draffia', 'hardy', {spe: 252}).spe, none = C.stats('draffia', 'hardy', {}).spe;
@@ -268,7 +263,7 @@ function speedTable() {
     const side = [tie.length ? `${tie.join('・')}と同速` : '', ...above].filter(Boolean).join('。') || '—';
     h += `<tr><td class="num">${s}</td><td>${lab}</td><td>${below || '—'}</td><td>${side}</td></tr>`;
   }
-  return h + '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表4-1</b>　相手は図3-1の一覧（一般的な最速・準速、トリル型は最遅）にニンフィア（無補正S252）を加えたもの。スカーフ等の補正は含まない。</p>';
+  return h + '</tbody></table></div><p class="cap" style="margin-top:8px"><b>表4-1</b>　相手は使用率上位の一般的な最速・準速（トリル型は最遅）に、ニンフィア（無補正S252）を加えたもの。スカーフ等の補正は含まない。</p>';
 }
 
 /* ---------- tera matrix ---------- */
@@ -322,7 +317,7 @@ function training() {
       L('S3', 'doubleedge', 'tinglu_hb'), L('S3', 'doubleedge', 'kingambit_ha'), L('S3', 'doubleedge', 'dondozo_hb', null, {atkStage: 0}, 'てんねん'),
       L('S3', 'rondo', 'zacianc_as'), L('S3', 'crunch', 'gholdengo_h')]]]);
   h += trainCard('4.4', 'S-4', 'いかく起点作り', 'S4', [['持ち物', 'たべのこし'], ['回復', `ねがいごと ${Math.floor(ST.S4.hp / 2)}`]],
-    '<p>HB特化。いかくと合わせて物理禁止級の主力技を1発耐え、あくびとロンドで退く。特防は無振りなので、特殊アタッカーの前には出さない。</p><p>Sは無振り{{stat S4 spe}}で、最速の{{spvs S4 zacianc/jolly koraidon/jolly}}。ロンドで後続のすばやさを上げる条件（相手より遅い）を満たしやすい。</p>',
+    '<p>HB特化。いかくと合わせて物理禁止級の主力技を1発耐え、あくびとロンドで退く。特防は無振りなので、特殊アタッカーの前には出さない。</p><p>Sは無振り{{stat S4 spe}}。いかく版ロンドは優先度+1で退くので、すばやさに振る必要がない。</p>',
     [['被ダメージ（物理はいかく込み）', [D('S4', 'zac_pr'), D('S4', 'zac_bb'), D('S4', 'pao_icicle_lo'), D('S4', 'kor_outrage'), D('S4', 'kor_scale'),
       D('S4', 'kor_cc'), D('S4', 'ursr_cc_band'), D('S4', 'ursr_ss_band', null, '急所でいかく無視'), D('S4', 'lando_eq'), D('S4', 'hooh_bb')]],
      ['被ダメージ（特殊・参考）', [D('S4', 'cs_barrage'), D('S4', 'fm_moon_timid'), D('S4', 'kyo_icebeam')]]]);
@@ -372,7 +367,7 @@ function expSyl() {
   h += '</tbody></table></div>';
   h += '<div class="panel stack" style="gap:8px"><h4 style="margin:0">ロンドがブイズに渡す能力上昇</h4><ul class="points small">' +
     '<li><b>スキン版</b>：攻撃が当たるたびに、隣のイーブイ系のA・C・S+2。優先度+' + C.DM.rondo.pri + 'で先に動くため、同じターンの味方の技から乗る。</li>' +
-    '<li><b>いかく版</b>：隣のイーブイ系のA・C・S+2（変化技なので防がれにくい）。ドラフィアは退き、相手より遅ければ後から出るイーブイ系はA+1・C+1・S+2。</li>' +
+    '<li><b>いかく版</b>：隣のイーブイ系のA・C・S+2（変化技なので防がれにくい）。ドラフィアは退き、後から出るイーブイ系はA+1・C+1・S+2。</li>' +
     '<li><b>シングル</b>：隣がいないため、いかく版で後から出るイーブイ系のA+1・C+1・S+2だけが残る。</li></ul></div></div>';
   const tg = ['koraidon_as', 'urshifur_as', 'chienpao_as', 'miraidon_cs', 'ironhands_ha', 'ogerpon_as', 'rilla_ha', 'tornadus_h', 'calyrexs_cs', 'farigiraf_hb', 'incin_hd', 'calyrexi_ha', 'kingambit_ha', 'zamazenta_hb', 'zacianc_as', 'gholdengo_h'];
   const cols = [['±0', 0, 'ロンドなし'], ['+1', 1, 'いかく版で後から着地'], ['+2', 2, 'ロンド1回'], ['+4', 4, 'ロンド2回']];
@@ -449,7 +444,7 @@ let body = fs.readFileSync(P('templates/body.html'), 'utf8');
 const parts = {
   SPRITE: sprite(), ILLUST: illust(), ARCHIVE: archive(), TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
   RADAR: radar(), RADARTABLE: radarTable(), STATBARS: statBars(), SINGLES_ATK: singlesAtk(), SINGLES_DEF: singlesDef(), CHEER: cheer(),
-  SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
+  SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
   RANKAXIS: rankAxis(), ADOPT_S: adopt(CFG.adoptS, false), ADOPT_D: adopt(CFG.adoptD, true),
 };
 for (const k in parts) {

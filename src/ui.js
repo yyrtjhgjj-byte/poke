@@ -88,29 +88,6 @@
   scNat.addEventListener('change', statCalc);
   statCalc();
 
-  /* ---------- speed checker ---------- */
-  var spRows = Array.prototype.slice.call(document.querySelectorAll('.sp-row[data-spe]'));
-  function speedCheck() {
-    var ev = +$('spd-ev').value, iv = +$('spd-iv').value, nat = +$('spd-nat').value;
-    $('spd-evv').textContent = ev;
-    var me = E.calcStat(C.SP.draffia.b[5], ev, iv, nat, false);
-    if ($('spd-tw').checked) me *= 2;
-    var max = Math.max(240, Math.ceil(me * 1.05));
-    var cnt = 0;
-    spRows.forEach(function (r) {
-      var s = +r.dataset.spe, fast = s > me;
-      if (fast) cnt++;
-      r.classList.toggle('faster', fast);
-      r.querySelector('.fl').style.width = (s / max * 100) + '%';
-      r.querySelector('.mark').style.left = 'calc(' + (me / max * 100) + '% - 1px)';
-    });
-    $('spd-me').textContent = me;
-    $('spd-count').textContent = cnt;
-    $('spd-total').textContent = spRows.length;
-  }
-  ['spd-ev', 'spd-iv', 'spd-nat', 'spd-tw'].forEach(function (id) { $(id).addEventListener('input', speedCheck); $(id).addEventListener('change', speedCheck); });
-  speedCheck();
-
   /* ---------- damage calculator ---------- */
   var TYPES = E.TYPES;
   function fillStages(sel, def) {
