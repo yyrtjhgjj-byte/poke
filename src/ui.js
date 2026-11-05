@@ -187,7 +187,7 @@
     if (!r) { renderOut(head, null, t0.st.hp, ['いかくのときロンドは変化技（優先度+' + C.DM.rondo.priIntim + 'の交代）']); return; }
     var notes = [];
     notes.push(JP[r.type] + (r.skinned ? '（スキン変換・×1.2）' : ''));
-    notes.push(r.cat === 'phys' ? '物理' : '特殊（A≦Cで判定）');
+    notes.push(r.cat === 'phys' ? '物理' : '特殊');
     notes.push('相性 ×' + r.eff + (m.rondo && r.eff > 0 ? '（輪舞補正込み）' : ''));
     notes.push('タイプ一致 ×' + (r.stab / 4096).toFixed(2).replace(/0$/, ''));
     if (m.pri) notes.push('優先度' + (m.pri > 0 ? '+' : '') + m.pri);

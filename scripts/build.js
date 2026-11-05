@@ -342,15 +342,6 @@ function training() {
 }
 
 /* ---------- experiments ---------- */
-function expCat() {
-  const J = ST.AS, A = ST.S1A;
-  let h = `<div class="scroll"><table class="tbl compact"><thead><tr><th class="num">攻撃ランク</th><th class="num">陽気（A${J.atk} / C${J.spa}）</th><th class="num">意地（A${A.atk} / C${A.spa}）</th></tr></thead><tbody>`;
-  for (let s = 0; s >= -6; s--) {
-    const f = (st) => { const a = E.boost(st.atk, s); const phys = a > st.spa; return `<td class="num ${phys ? '' : 'x2'}">${phys ? '物理' : '特殊'}（${a}／${st.spa}）</td>`; };
-    h += `<tr><td class="num">${s}</td>${f(J)}${f(A)}</tr>`;
-  }
-  return h + '</tbody></table></div><p class="prose small" style="margin-top:10px">いかくやワイドブレイカーで攻撃が{{rondoflip AS}}まで下がると、陽気のロンドは特攻で計算される（同値は特殊）。特殊になれば攻撃ランクの低下は関係なくなるが、無振りの特攻{{rondoflip AS spa}}では打点にならない。意地は{{rondoflip S1A}}で切り替わる。性能に影響する場面はほぼなく、仕様の確認として記録する。</p>';
-}
 function expLR() {
   const cols = [['すてみ +1', 'doubleedge', 1], ['とっておき +1', 'lastresort', 1], ['すてみ ±0', 'doubleedge', 0], ['とっておき ±0', 'lastresort', 0]];
   const tg = ['tinglu_hb', 'dondozo_hb', 'hooh_hb', 'garganacl_hb', 'gliscor_hb', 'kingambit_ha', 'incin_hb'];
@@ -458,7 +449,7 @@ let body = fs.readFileSync(P('templates/body.html'), 'utf8');
 const parts = {
   SPRITE: sprite(), ILLUST: illust(), ARCHIVE: archive(), TYPECHIPS: typeChips(), DEFCHART: defChart(), SKINTABLE: skinTable(),
   RADAR: radar(), RADARTABLE: radarTable(), STATBARS: statBars(), SINGLES_ATK: singlesAtk(), SINGLES_DEF: singlesDef(), CHEER: cheer(),
-  SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_CAT: expCat(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
+  SPEED: speedRows(), SPEEDTBL: speedTable(), TERA: teraMatrix(), TRAINING: training(), EXP_LR: expLR(), EXP_FACADE: expFacade(), EXP_SYL: expSyl(), EXP_ES: expES(),
   RANKAXIS: rankAxis(), ADOPT_S: adopt(CFG.adoptS, false), ADOPT_D: adopt(CFG.adoptD, true),
 };
 for (const k in parts) {

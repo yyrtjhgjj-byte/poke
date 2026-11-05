@@ -457,7 +457,7 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
 <div class="wrap">
 <header class="mast">
   <div>
-    <div class="labline"><span><b>RONDO LAB</b>　輪舞研究室</span><span>イーブイ系統分岐研究所</span><span>REPORT RL-2026-1103</span><span>REV.3</span></div>
+    <div class="labline"><span><b>RONDO LAB</b>　輪舞研究室</span><span>イーブイ系統分岐研究所</span><span>REPORT RL-2026-1103</span><span>REV.4</span></div>
     <h1 class="title"><span class="name">ドラフィア<span class="ruby">DRAFFIA</span></span><span class="doc">徹底考察レポート</span></h1>
     <p class="abstract-line">SV最終環境（ランクバトル シーズン41・レギュレーションI）を想定し、シングルとダブルでの性能、型、育成論、パーティ、採用率を検証した。数値はすべてLv50の実数値とSVのダメージ計算式による。</p>
     <div class="chips">
@@ -505,6 +505,19 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
 
   <!-- 改訂記録：履歴なので数値は固定（トークンにしない）。新しい版を上に足し、最新だけ open で開いておく -->
   <details class="panel rev latest" open>
+    <summary>
+      <span class="est">改訂 v4</span>
+      <span class="rev-title">v3既読者向け：ロンドを物理技に統一</span>
+      <span class="cap">2026.11.05・<span class="rev-open">押すと畳む</span><span class="rev-closed">押すと開く</span></span>
+    </summary>
+    <div class="prose small">
+      <p>スキン版のドラゴニックロンドは、こうげきととくこうの高い方で計算する仕様から、常に物理技として計算する仕様に変わった。ドラフィアのこうげきはとくこうを大きく上回るため、ふだんの計算結果は何も変わらない。ダメージの数値、総合評価（シングルA-・ダブルA+）、予想順位、採用率の推計は据え置いた。</p>
+      <p>違いが出るのは、いかくやワイドブレイカーでこうげきが大きく下がったときだけである。陽気A252では攻撃-3段階から特攻での計算に切り替わっていたが、v4ではそのまま物理として下がり続ける。とはいえ無振りの特攻ではもともと打点にならなかったため、実戦上の影響はほぼない。やけどで威力が半分になる点も変わらない。</p>
+      <p>この切り替わりを確かめていた実験記録①（ロンドの物理・特殊判定）は役目を終えたため削除し、以降の実験記録の番号を1つずつ繰り上げた。</p>
+    </div>
+  </details>
+
+  <details class="panel rev">
     <summary>
       <span class="est">改訂 v3</span>
       <span class="rev-title">v2既読者向け：ロンドの分類変更で変わったこと</span>
@@ -559,7 +572,7 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     <li><div><b>いかく時のロンドは優先度+1の交代技。</b> 相手より遅いと後続のすばやさを1段階上げ、後続がイーブイ系ならこうげき・とくこう+1、すばやさ+2になる。最速178でも黒バドレックス、ザシアン(王)、コライドン、ミライドン、ハバタクカミ、パオジアンより遅く、レギュIでは条件を満たす場面が多い。</div></li>
     <li><div><b>ダブルでは「ドラゴンエール＋ピントレンズ」で竜の味方が確定急所になる。</b> メガネのミライドンと1発目の火力はほぼ同じで、技を自由に選べ、りゅうせいぐんの特攻低下も急所で無視される。2発目以降はメガネ型の約2倍の打点になる。</div></li>
     <li><div><b>最大の弱点はH95・B65・D65の薄さ。</b> 無振り（S-1）だと、パオジアンの珠つららおとしは確定1発、ミライドンのりゅうせいぐんは確定1発、ハバタクカミのムーンフォースは確定1発。ねこだまし以外の先制技では止まらないが、上から殴られれば1発で落ちる。</div></li>
-    <li><div><b>ダブルでは隣のイーブイ系をA・C・S+2にする。</b> ロンドは優先度が高く、同じターンの味方の技から上昇が乗る。ニンフィアは1回で224（最速の黒バドレックスより速い）になり、全体技のハイパーボイスで上位のアタッカーをまとめて落とす（§6 実験記録④）。</div></li>
+    <li><div><b>ダブルでは隣のイーブイ系をA・C・S+2にする。</b> ロンドは優先度が高く、同じターンの味方の技から上昇が乗る。ニンフィアは1回で224（最速の黒バドレックスより速い）になり、全体技のハイパーボイスで上位のアタッカーをまとめて落とす（§6 実験記録③）。</div></li>
   </ol>
 
   <h3 class="sub"><span class="n">0.2</span>性能プロファイル</h3>
@@ -667,12 +680,12 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     </div>
     <div class="rondo-mode" data-rondo="skin">
       <dl class="mvstats">
-        <div><dt>TYPE</dt><dd>ドラゴン</dd></div>
+        <div><dt>TYPE</dt><dd>ドラゴン・物理</dd></div>
         <div><dt>POWER</dt><dd>75</dd></div>
         <div><dt>ACC / PP</dt><dd>100 / 5</dd></div>
         <div><dt>PRIORITY</dt><dd>+2</dd></div>
       </dl>
-      <p class="mvtext" style="margin-top:12px">楽しく輪舞を踊って攻撃する。AとCの高い方で計算。こおり・フェアリータイプには効果抜群。味方の場にイーブイの進化系がいれば、そのこうげき・とくこう・すばやさを2段階上げる。踊り技。非接触。</p>
+      <p class="mvtext" style="margin-top:12px">楽しく輪舞を踊って攻撃する。物理技。こおり・フェアリータイプには効果抜群。味方の場にイーブイの進化系がいれば、そのこうげき・とくこう・すばやさを2段階上げる。踊り技。非接触。</p>
       <p class="cap" style="margin-top:12px"><b>仕様の補足</b></p>
       <ul class="points" style="margin-top:4px">
         <li>味方への上昇は、ロンドが相手に当たったときに起きる。まもる・サイコフィールド・しっぽアーマーなどで防がれたとき、ねこだましで怯んだときは起きない。</li>
@@ -685,7 +698,6 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
         <li>優先度+2は、しんそく・このゆびとまれ・いかりのこな・サイドチェンジと同じ枠。同じ枠の中は素早さ順なので、ドラフィアより遅いモロバレルなどのいかりのこな・このゆびとまれより先に撃てる（優先度で上回るのではなく、素早さで勝つ）。ねこだまし・ファストガード（+3）とまもる（+4）は先に動く。</li>
         <li>先制技なので、サイコフィールド（接地した相手）、しっぽアーマー、ビビッドボディ、じょおうのいげん、ファストガードで防がれる。イエッサン♀は登場時にサイコフィールドを張るため、並んだ時点で接地した相手にはロンドが当たらない。</li>
         <li>PPは5（ポイントマックスで8）。シングルの3体選出なら足りるが、連打前提の型では管理が要る。</li>
-        <li>陽気A252は攻撃-3段階で特攻（C72）以下になり、特殊技として計算される（§6 実験記録①）。</li>
       </ul>
     </div>
     <div class="rondo-mode" data-rondo="intim" hidden>
@@ -742,11 +754,11 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
         <tr><th class="rowh">アイアンテール</th><td><span class="chip t-Steel">鋼</span></td><td class="num">★2</td><td class="num">★1</td><td>命中75。ロンドのPP切れ対策と、いかく型の妖打点。</td></tr>
         <tr><th class="rowh">くさわけ</th><td><span class="chip t-Grass">草</span></td><td class="num">★2</td><td class="num">★1</td><td>ディンルー・ヘイラッシャ・キョジオーンに抜群、S+1。威力50で削り止まり。</td></tr>
         <tr><th class="rowh">ワイドブレイカー</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★1</td><td class="num">★3</td><td>相手全体の攻撃-1。いかくと重ねて物理を抑える。</td></tr>
-        <tr><th class="rowh">からげんき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★2</td><td class="num">★2</td><td>どくどくだま・かえんだまで168。実験記録③参照。</td></tr>
+        <tr><th class="rowh">からげんき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★2</td><td class="num">★2</td><td>どくどくだま・かえんだまで168。実験記録②参照。</td></tr>
         <tr><th class="rowh">ドラゴンテール</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★2</td><td class="num">★1</td><td>積み対策の強制交代。優先度-6、命中90。</td></tr>
         <tr><th class="rowh">ドラゴンクロー</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★1</td><td class="num">★1</td><td>スキン型ではすてみの下位。いかく型に打点は要らない。</td></tr>
         <tr><th class="rowh">でんこうせっか</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>48の先制技。ロンドの方が全面的に強い。</td></tr>
-        <tr><th class="rowh">とっておき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>168だが発動条件が重い。実験記録②参照。</td></tr>
+        <tr><th class="rowh">とっておき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>168だが発動条件が重い。実験記録①参照。</td></tr>
         <tr class="grp"><td colspan="5">変化技</td></tr>
         <tr><th class="rowh">まもる</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★1</td><td class="num">★4</td><td>ダブルの基本。</td></tr>
         <tr><th class="rowh">ドラゴンエール</th><td><span class="chip t-Dragon">竜</span></td><td class="num">—</td><td class="num">★4</td><td>味方の急所ランク+1、竜タイプなら+2。ピントレンズと合わせて確定急所。</td></tr>
@@ -769,7 +781,7 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     <ol class="points" style="font-size:14px;gap:8px">
       <li>計算はLv50・個体値31・SVのダメージ計算式（端数処理を含む）による。計算エンジンはSmogon製ダメージ計算機と13件の照合で一致を確認済み。</li>
       <li>ドラゴンスキンは既存のスキン系特性と同じ処理（ノーマル技をドラゴンに変え、威力×1.2）と仮定。</li>
-      <li>ドラゴニックロンド（スキン時）は、ランク補正込みのAとCを比べて高い方で計算（同値は特殊）。単体攻撃と仮定。こおり・フェアリーへの相性はフリーズドライと同様に「×2へ上書き」し、残りのタイプと掛け合わせる。</li>
+      <li>ドラゴニックロンド（スキン時）は物理技。単体攻撃と仮定。こおり・フェアリーへの相性はフリーズドライと同様に「×2へ上書き」し、残りのタイプと掛け合わせる。</li>
       <li>「味方の場のイーブイの進化系」にドラフィア自身は含まない。したがってシングルでは場の味方への上昇は起きない。スキン版の上昇は攻撃が当たったときに起き、防がれた場合や怯んだ場合は起きない。</li>
       <li>いかく版の「相手よりすばやさが低いとき」は、ランク・道具補正込みの実数値で比較。ダブルでは「相手の場のいずれか1体より遅い」で成立する。後から出るイーブイ系の上昇は合計A+1・C+1・S+2。控えがいない場合は失敗とする。</li>
       <li>ドラゴニックロンドは踊り技・非接触。踊り技はスキン版・いかく版の両方に付くと解釈する。「おどりこ」で真似されたときの挙動は仕様にないため扱わない。</li>
@@ -1018,7 +1030,7 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     <div class="panel stack" style="gap:6px"><h4 style="margin:0">いかくサイクル</h4><p class="small">いかくを入れ、次のターンにロンドで先制交代。相手が速ければ後続の素早さが上がる。物理禁止級（白バド・コライドン・ウーラオス）の圧力を毎回削ぐ。</p></div>
     <div class="panel stack" style="gap:6px"><h4 style="margin:0">竜の加護</h4><p class="small">ドラゴンエールで竜タイプの味方の急所ランクを+2。ピントレンズかきょううんで確定急所になり、いかく・壁・能力低下を無視して殴れる。</p></div>
     <div class="panel stack" style="gap:6px"><h4 style="margin:0">妖・氷の先制処理</h4><p class="small">スキン型はロンドでハバタクカミ、パオジアン、エルフーン、オーロンゲを先に削る。このゆびとまれ・いかりのこなも優先度+2だが、同じ優先度の中は素早さ順なので、ドラフィアより遅いモロバレルなどの誘導には吸われない。サイコフィールドの下では接地した相手への攻撃が失敗し、ブイズへの上昇も起きない（しっぽアーマーも同じ）。</p></div>
-    <div class="panel stack" style="gap:6px"><h4 style="margin:0">ブイズの強化</h4><p class="small">隣のイーブイ系をA・C・S+2にする。スキン版は攻撃しながら毎ターン、いかく版は退く前に1回、防がれにくい形で渡す。相方の本命はニンフィア（§3.4 D-4、§6 実験記録④）。</p></div>
+    <div class="panel stack" style="gap:6px"><h4 style="margin:0">ブイズの強化</h4><p class="small">隣のイーブイ系をA・C・S+2にする。スキン版は攻撃しながら毎ターン、いかく版は退く前に1回、防がれにくい形で渡す。相方の本命はニンフィア（§3.4 D-4、§6 実験記録③）。</p></div>
   </div>
 
   <h3 class="sub"><span class="n">3.3</span>ガオガエンとの比較</h3>
@@ -1130,7 +1142,7 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
         </div>
         <ul class="points">
           <li>ロンドが当たるたびに、隣のニンフィアのこうげき・とくこう・すばやさ+2。ロンドが先に動くため、1ターン目のハイパーボイスから+2が乗る。</li>
-          <li>S112は+2で224になり、最速の黒バドレックス（222）を抜く。+2のハイパーボイス（全体）の確定数は§6 実験記録④。</li>
+          <li>S112は+2で224になり、最速の黒バドレックス（222）を抜く。+2のハイパーボイス（全体）の確定数は§6 実験記録③。</li>
           <li>ねこだましで怯むと上昇が起きないため、持ち物はおんみつマント。ロンドの対象にまもるを合わせられたときも上昇しないので、対象は2体で散らす。</li>
           <li>まもる・サイコフィールドを避けたいときは、D-1（いかく版）で代える。変化技なので防がれず、退く前に+2を渡せる。</li>
         </ul>
@@ -1376,19 +1388,16 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     <p class="cap" style="margin-top:12px"><b>注</b>　相手の配分は表示の通り。ハバタクカミ等の「ブースト」「タスキ」は計算に含めない。ザマゼンタ(王)は防御+1、カイリューとルナアーラは満タン時の半減特性込み。</p>
   </div>
 
-  <h3 class="sub"><span class="n">6.2</span>実験記録① ロンドの物理・特殊判定</h3>
-  <div class="scroll"><table class="tbl compact"><thead><tr><th class="num">攻撃ランク</th><th class="num">陽気（A182 / C72）</th><th class="num">意地（A200 / C72）</th></tr></thead><tbody><tr><td class="num">0</td><td class="num ">物理（182／72）</td><td class="num ">物理（200／72）</td></tr><tr><td class="num">-1</td><td class="num ">物理（121／72）</td><td class="num ">物理（133／72）</td></tr><tr><td class="num">-2</td><td class="num ">物理（91／72）</td><td class="num ">物理（100／72）</td></tr><tr><td class="num">-3</td><td class="num x2">特殊（72／72）</td><td class="num ">物理（80／72）</td></tr><tr><td class="num">-4</td><td class="num x2">特殊（60／72）</td><td class="num x2">特殊（66／72）</td></tr><tr><td class="num">-5</td><td class="num x2">特殊（52／72）</td><td class="num x2">特殊（57／72）</td></tr><tr><td class="num">-6</td><td class="num x2">特殊（45／72）</td><td class="num x2">特殊（50／72）</td></tr></tbody></table></div><p class="prose small" style="margin-top:10px">いかくやワイドブレイカーで攻撃が-3まで下がると、陽気のロンドは特攻で計算される（同値は特殊）。特殊になれば攻撃ランクの低下は関係なくなるが、無振りの特攻72では打点にならない。意地は-4で切り替わる。性能に影響する場面はほぼなく、仕様の確認として記録する。</p>
-
-  <h3 class="sub"><span class="n">6.3</span>実験記録② とっておき</h3>
+  <h3 class="sub"><span class="n">6.2</span>実験記録① とっておき</h3>
   <div class="scroll"><table class="tbl"><thead><tr><th>相手（陽気・珠・テラス竜）</th><th class="num">すてみ +1</th><th class="num">とっておき +1</th><th class="num">すてみ ±0</th><th class="num">とっておき ±0</th></tr></thead><tbody><tr><th class="rowh" style="white-space:normal">ディンルー（HB特化）</th><td class="num">76.3–90.5%<span class="ko ">確2</span></td><td class="num">89.3–105.3%<span class="ko kr">乱1 31.3%</span></td><td class="num">50.8–60.7%<span class="ko ">確2</span></td><td class="num">59.5–70.6%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ヘイラッシャ（HB特化）</th><td class="num">55.6–65.8%<span class="ko ">確2</span></td><td class="num">63.8–75.9%<span class="ko ">確2</span></td><td class="num">55.6–65.8%<span class="ko ">確2</span></td><td class="num">63.8–75.9%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ホウオウ（HB特化）</th><td class="num">116.0–136.6%<span class="ko k1">確1</span></td><td class="num">135.7–160.1%<span class="ko k1">確1</span></td><td class="num">77.0–91.5%<span class="ko ">確2</span></td><td class="num">90.1–107.5%<span class="ko kr">乱1 43.8%</span></td></tr><tr><th class="rowh" style="white-space:normal">キョジオーン（HB特化）</th><td class="num">92.8–110.6%<span class="ko kr">乱1 62.5%</span></td><td class="num">108.2–128.0%<span class="ko k1">確1</span></td><td class="num">62.8–73.9%<span class="ko ">確2</span></td><td class="num">72.9–86.5%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">グライオン（H244 B252）</th><td class="num">110.5–130.9%<span class="ko k1">確1</span></td><td class="num">129.3–152.5%<span class="ko k1">確1</span></td><td class="num">73.5–87.8%<span class="ko ">確2</span></td><td class="num">86.2–102.2%<span class="ko kr">乱1 12.5%</span></td></tr><tr><th class="rowh" style="white-space:normal">ドドゲザン（H252 A252）</th><td class="num">66.7–78.3%<span class="ko ">確2</span></td><td class="num">77.8–91.8%<span class="ko ">確2</span></td><td class="num">44.4–52.7%<span class="ko ">乱2 22.3%</span></td><td class="num">52.2–61.4%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ガオガエン（HB特化）</th><td class="num">122.3–144.1%<span class="ko k1">確1</span></td><td class="num">143.1–168.8%<span class="ko k1">確1</span></td><td class="num">81.2–96.5%<span class="ko ">確2</span></td><td class="num">95.0–113.4%<span class="ko kr">乱1 75.0%</span></td></tr></tbody></table></div><p class="prose small" style="margin-top:10px">スキンのとっておきは威力168で、すてみ（144）より約17%強く反動もない。ただし覚えている他の技をすべて1回ずつ使うまで撃てない。「りゅうのまい／とっておき」の2技構成なら2ターン目から撃てるが、先制ロンドを失う。テラス竜+1のとっておきはディンルー（HB特化）に89〜106%（乱数1発 31.3%）。ヘイラッシャ行はてんねんのため+1列も±0で計算。</p>
 
-  <h3 class="sub"><span class="n">6.4</span>実験記録③ からげんき型</h3>
+  <h3 class="sub"><span class="n">6.3</span>実験記録② からげんき型</h3>
   <div class="scroll"><table class="tbl"><thead><tr><th>相手（陽気A252）</th><th class="num">からげんき<br><span class="muted">状態異常・168</span></th><th class="num">すてみ<br><span class="muted">状態異常なし</span></th><th class="num">ロンド<br><span class="muted">やけど</span></th><th class="num">ロンド<br><span class="muted">もうどく</span></th></tr></thead><tbody><tr><th class="rowh" style="white-space:normal">コライドン（H4 AS）</th><td class="num">144.3–171.6%<span class="ko k1">確1</span></td><td class="num">123.9–147.7%<span class="ko k1">確1</span></td><td class="num">33.0–39.2%<span class="ko ">乱3 99.8%</span></td><td class="num">65.9–78.4%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ミライドン（H4 CS）</th><td class="num">163.6–194.3%<span class="ko k1">確1</span></td><td class="num">140.9–167.0%<span class="ko k1">確1</span></td><td class="num">37.5–44.3%<span class="ko ">確3</span></td><td class="num">75.0–88.6%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">パオジアン（H4 AS）</th><td class="num">110.3–130.8%<span class="ko k1">確1</span></td><td class="num">94.9–112.2%<span class="ko kr">乱1 75.0%</span></td><td class="num">50.0–59.6%<span class="ko ">確2</span></td><td class="num">100.0–119.2%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">連撃ウーラオス（H4 AS）</th><td class="num">81.8–97.2%<span class="ko ">確2</span></td><td class="num">70.5–83.5%<span class="ko ">確2</span></td><td class="num">18.8–22.2%<span class="ko ">乱5</span></td><td class="num">37.5–44.3%<span class="ko ">確3</span></td></tr><tr><th class="rowh" style="white-space:normal">ガオガエン（HD特化）</th><td class="num">77.2–91.1%<span class="ko ">確2</span></td><td class="num">65.8–77.7%<span class="ko ">確2</span></td><td class="num">17.3–20.8%<span class="ko ">乱5</span></td><td class="num">34.7–41.6%<span class="ko ">確3</span></td></tr><tr><th class="rowh" style="white-space:normal">ゴリランダー（H252 A252）</th><td class="num">75.8–89.9%<span class="ko ">確2</span></td><td class="num">65.2–76.8%<span class="ko ">確2</span></td><td class="num">16.9–20.3%<span class="ko ">乱5</span></td><td class="num">33.8–40.6%<span class="ko ">確3</span></td></tr><tr><th class="rowh" style="white-space:normal">モロバレル（HB特化）</th><td class="num">58.4–69.2%<span class="ko ">確2</span></td><td class="num">50.2–59.7%<span class="ko ">確2</span></td><td class="num">13.1–15.4%<span class="ko ">乱7</span></td><td class="num">26.2–31.2%<span class="ko ">確4</span></td></tr><tr><th class="rowh" style="white-space:normal">ハバタクカミ（H4 CS）</th><td class="num muted">無効</td><td class="num muted">無効</td><td class="num">78.6–93.9%<span class="ko ">確2</span></td><td class="num">157.3–187.8%<span class="ko k1">確1</span></td></tr></tbody></table></div><p class="prose small" style="margin-top:10px">からげんきはやけどでも威力が落ちず、スキンで168になる。すてみより約17%強く反動もない。眠り・まひにならないため、ダブルのキノコのほうし（モロバレル・ドーブル）とあくびを無視できる。</p><p class="prose small" style="margin-top:6px">ただしかえんだまはロンドの威力も半減させ、ハバタクカミへのロンドは78〜94%（確定2発）まで落ちる。どくどくだまならロンドは落ちないが、毒のダメージが1/16、2/16、3/16と増えていく。ロンドを主力にするなら毒、すてみの代わりとして使い切るなら火傷が向く。</p>
 
-  <h3 class="sub"><span class="n">6.5</span>実験記録④ ニンフィアとの輪舞</h3>
+  <h3 class="sub"><span class="n">6.4</span>実験記録③ ニンフィアとの輪舞</h3>
   <div class="cols"><div class="scroll"><table class="tbl compact"><thead><tr><th>ニンフィアの配分</th><th class="num">素早さ</th><th class="num">ロンド後（+2）</th><th>抜ける相手</th></tr></thead><tbody><tr><td>無振り</td><td class="num">80</td><td class="num">160</td><td>霊獣ランドロス（157）まで</td></tr><tr><td>無補正S252</td><td class="num">112</td><td class="num">224</td><td>黒バドレックス（222）を含む一覧のすべて</td></tr><tr><td>おくびょうS252</td><td class="num">123</td><td class="num">246</td><td>黒バドレックス（222）を含む一覧のすべて</td></tr></tbody></table></div><div class="panel stack" style="gap:8px"><h4 style="margin:0">ロンドがブイズに渡す能力上昇</h4><ul class="points small"><li><b>スキン版</b>：攻撃が当たるたびに、隣のイーブイ系のA・C・S+2。優先度+2で先に動くため、同じターンの味方の技から乗る。</li><li><b>いかく版</b>：隣のイーブイ系のA・C・S+2（変化技なので防がれにくい）。ドラフィアは退き、相手より遅ければ後から出るイーブイ系はA+1・C+1・S+2。</li><li><b>シングル</b>：隣がいないため、いかく版で後から出るイーブイ系のA+1・C+1・S+2だけが残る。</li></ul></div></div><div class="scroll" style="margin-top:16px"><table class="tbl"><thead><tr><th>ハイパーボイス（全体）→<br><span class="muted">ニンフィア 控えめC252・持ち物なし</span></th><th class="num">C±0<br><span class="muted">ロンドなし</span></th><th class="num">C+1<br><span class="muted">いかく版で後から着地</span></th><th class="num">C+2<br><span class="muted">ロンド1回</span></th><th class="num">C+4<br><span class="muted">ロンド2回</span></th></tr></thead><tbody><tr><th class="rowh" style="white-space:normal">コライドン（H4 AS）</th><td class="num">152.3–184.1%<span class="ko k1">確1</span></td><td class="num">231.8–272.7%<span class="ko k1">確1</span></td><td class="num">306.8–361.4%<span class="ko k1">確1</span></td><td class="num">463.6–545.5%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">連撃ウーラオス（H4 AS）</th><td class="num">115.9–136.4%<span class="ko k1">確1</span></td><td class="num">173.9–204.5%<span class="ko k1">確1</span></td><td class="num">231.8–272.7%<span class="ko k1">確1</span></td><td class="num">345.5–406.8%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">パオジアン（H4 AS）</th><td class="num">123.1–146.2%<span class="ko k1">確1</span></td><td class="num">184.6–216.7%<span class="ko k1">確1</span></td><td class="num">246.2–289.7%<span class="ko k1">確1</span></td><td class="num">366.7–432.1%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">ミライドン（H4 CS）</th><td class="num">68.2–81.8%<span class="ko ">確2</span></td><td class="num">102.3–120.5%<span class="ko k1">確1</span></td><td class="num">136.4–161.4%<span class="ko k1">確1</span></td><td class="num">204.5–242.0%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">テツノカイナ（H252 A252）</th><td class="num">71.3–83.5%<span class="ko ">確2</span></td><td class="num">105.7–124.9%<span class="ko k1">確1</span></td><td class="num">141.0–166.3%<span class="ko k1">確1</span></td><td class="num">211.5–249.0%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">オーガポン（H4 AS）</th><td class="num">44.2–52.6%<span class="ko ">乱2 20.3%</span></td><td class="num">67.3–79.5%<span class="ko ">確2</span></td><td class="num">89.1–105.8%<span class="ko kr">乱1 37.5%</span></td><td class="num">134.6–158.3%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">ゴリランダー（H252 A252）</th><td class="num">43.5–51.2%<span class="ko ">乱2 6.3%</span></td><td class="num">65.2–76.8%<span class="ko ">確2</span></td><td class="num">87.0–102.9%<span class="ko kr">乱1 18.8%</span></td><td class="num">130.4–153.6%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">トルネロス（H252 S252）</th><td class="num">43.5–51.6%<span class="ko ">乱2 8.6%</span></td><td class="num">65.1–77.4%<span class="ko ">確2</span></td><td class="num">87.1–103.2%<span class="ko kr">乱1 25.0%</span></td><td class="num">130.6–153.8%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">黒バドレックス（H4 CS）</th><td class="num">38.1–46.0%<span class="ko ">確3</span></td><td class="num">58.0–68.2%<span class="ko ">確2</span></td><td class="num">76.7–90.3%<span class="ko ">確2</span></td><td class="num">115.9–136.4%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">リキキリン（HB特化）</th><td class="num">39.6–46.7%<span class="ko ">確3</span></td><td class="num">59.5–70.0%<span class="ko ">確2</span></td><td class="num">79.3–93.8%<span class="ko ">確2</span></td><td class="num">118.9–140.1%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">ガオガエン（HD特化）</th><td class="num">25.7–31.2%<span class="ko ">確4</span></td><td class="num">38.6–46.0%<span class="ko ">確3</span></td><td class="num">51.0–60.9%<span class="ko ">確2</span></td><td class="num">77.2–91.1%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">白バドレックス（H252 A252）</th><td class="num">26.1–30.9%<span class="ko ">確4</span></td><td class="num">39.1–46.4%<span class="ko ">確3</span></td><td class="num">52.2–61.4%<span class="ko ">確2</span></td><td class="num">78.3–92.8%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ドドゲザン（H252 A252）</th><td class="num">36.7–44.0%<span class="ko ">確3</span></td><td class="num">55.6–65.7%<span class="ko ">確2</span></td><td class="num">74.4–88.4%<span class="ko ">確2</span></td><td class="num">111.6–131.9%<span class="ko k1">確1</span></td></tr><tr><th class="rowh" style="white-space:normal">ザマゼンタ(王)（HB特化・B+1）</th><td class="num">25.6–30.2%<span class="ko ">確4</span></td><td class="num">38.2–45.7%<span class="ko ">確3</span></td><td class="num">51.3–60.3%<span class="ko ">確2</span></td><td class="num">76.9–90.5%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ザシアン(王)（H4 AS）</th><td class="num">17.9–21.4%<span class="ko ">乱5</span></td><td class="num">26.8–31.5%<span class="ko ">確4</span></td><td class="num">35.7–42.3%<span class="ko ">確3</span></td><td class="num">53.6–63.1%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">サーフゴー（H252 C252）</th><td class="num">18.6–22.2%<span class="ko ">乱5</span></td><td class="num">27.8–33.5%<span class="ko ">乱3 0.1%</span></td><td class="num">37.1–44.3%<span class="ko ">確3</span></td><td class="num">56.2–66.5%<span class="ko ">確2</span></td></tr></tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-4</b>　フェアリースキン（威力×1.2）・タイプ一致・ダブルの全体技補正（×0.75）込み。「抜ける相手」は図3-1の一覧で、+2後の素早さより遅い最速の相手。</p><p class="prose small" style="margin-top:10px">ロンド1回（+2）で、確定1発の相手にミライドン・テツノカイナが加わる。持ち物なしでもこの火力で、+2のすばやさ（無補正S252で224）は一覧のすべてを抜く。ロンド2回（+4）ではオーガポン・ゴリランダー・トルネロス・黒バドレックス・リキキリン・ドドゲザンも確定1発になる。残る壁は鋼と炎（ガオガエン・ザマゼンタ・ザシアン・サーフゴー）で、ここはドラフィアのロンドも通りにくい。</p><p class="prose small" style="margin-top:6px">止め方は3つある。①サイコフィールド（イエッサン♀）・しっぽアーマー（リキキリン）・まもるで攻撃版ロンドを防ぐ。接地した相手にはロンドが当たらず、上昇も起きない。最も分かりやすい止め方で、いかく版なら止まらない。②ねこだましでドラフィアを怯ませる（おんみつマントで防げる）。③上がったニンフィアに、鋼・毒の打点やくろいきり・ほえるで対応する。ロンドはすばやさだけでなくこうげき・とくこうもまとめて上げるため、ニンフィアの隣に置く理由として十分な強さがある。</p>
 
-  <h3 class="sub"><span class="n">6.6</span>実験記録⑤ しんそくとの比較</h3>
+  <h3 class="sub"><span class="n">6.5</span>実験記録④ しんそくとの比較</h3>
   <div class="scroll"><table class="tbl"><thead><tr><th>相手</th><th class="num">ロンド<br><span class="muted">S-1 陽気ハチマキ（A182）</span></th><th class="num">しんそく<br><span class="muted">カイリュー 意地ハチマキ（A204）・テラスノーマル</span></th><th class="num">しんそく<br><span class="muted">同・テラスなし</span></th></tr></thead><tbody><tr><th class="rowh" style="white-space:normal">ハバタクカミ（H4 CS）</th><td class="num">235.1–279.4%<span class="ko k1">確1</span></td><td class="num muted">無効</td><td class="num muted">無効</td></tr><tr><th class="rowh" style="white-space:normal">黒バドレックス（H4 CS）</th><td class="num">66.5–78.4%<span class="ko ">確2</span></td><td class="num muted">無効</td><td class="num muted">無効</td></tr><tr><th class="rowh" style="white-space:normal">ミライドン（H4 CS）</th><td class="num">110.2–130.7%<span class="ko k1">確1</span></td><td class="num">65.3–77.3%<span class="ko ">確2</span></td><td class="num">43.8–51.7%<span class="ko ">乱2 10.9%</span></td></tr><tr><th class="rowh" style="white-space:normal">コライドン（H4 AS）</th><td class="num">96.6–115.9%<span class="ko kr">乱1 87.5%</span></td><td class="num">58.0–68.8%<span class="ko ">確2</span></td><td class="num">38.6–46.0%<span class="ko ">確3</span></td></tr><tr><th class="rowh" style="white-space:normal">パオジアン（H4 AS）</th><td class="num">150.0–176.9%<span class="ko k1">確1</span></td><td class="num">88.5–104.5%<span class="ko kr">乱1 31.3%</span></td><td class="num">59.0–69.9%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">白バドレックス（H252 A252）</th><td class="num">64.7–78.3%<span class="ko ">確2</span></td><td class="num">39.6–46.9%<span class="ko ">確3</span></td><td class="num">26.6–31.4%<span class="ko ">確4</span></td></tr><tr><th class="rowh" style="white-space:normal">エルフーン（H252 S252）</th><td class="num">130.5–155.7%<span class="ko k1">確1</span></td><td class="num">79.0–93.4%<span class="ko ">確2</span></td><td class="num">52.7–62.3%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">オーロンゲ（HB特化）</th><td class="num">90.1–106.9%<span class="ko kr">乱1 37.5%</span></td><td class="num">54.0–63.9%<span class="ko ">確2</span></td><td class="num">36.1–42.6%<span class="ko ">確3</span></td></tr><tr><th class="rowh" style="white-space:normal">連撃ウーラオス（H4 AS）</th><td class="num">55.1–65.3%<span class="ko ">確2</span></td><td class="num">65.3–77.3%<span class="ko ">確2</span></td><td class="num">43.8–51.7%<span class="ko ">乱2 10.9%</span></td></tr><tr><th class="rowh" style="white-space:normal">カイオーガ（H4 CS）</th><td class="num">59.7–70.5%<span class="ko ">確2</span></td><td class="num">71.6–84.1%<span class="ko ">確2</span></td><td class="num">47.7–56.3%<span class="ko ">乱2 85.9%</span></td></tr><tr><th class="rowh" style="white-space:normal">オーガポン（H4 AS）</th><td class="num">71.2–84.6%<span class="ko ">確2</span></td><td class="num">85.3–100.6%<span class="ko kr">乱1 6.3%</span></td><td class="num">57.1–67.3%<span class="ko ">確2</span></td></tr><tr><th class="rowh" style="white-space:normal">ガオガエン（HB特化）</th><td class="num">37.1–43.6%<span class="ko ">確3</span></td><td class="num">44.6–52.5%<span class="ko ">乱2 20.7%</span></td><td class="num">29.7–35.1%<span class="ko ">乱3 16.6%</span></td></tr><tr><th class="rowh" style="white-space:normal">ザシアン(王)（H4 AS）</th><td class="num">50.6–60.7%<span class="ko ">確2</span></td><td class="num">30.4–35.7%<span class="ko ">乱3 43.0%</span></td><td class="num">20.2–23.8%<span class="ko ">確5</span></td></tr><tr><th class="rowh" style="white-space:normal">ドドゲザン（H252 A252）</th><td class="num">20.3–23.7%<span class="ko ">確5</span></td><td class="num">23.7–28.0%<span class="ko ">乱4 89.9%</span></td><td class="num">15.9–18.8%<span class="ko ">乱6</span></td></tr></tbody></table></div><p class="cap" style="margin-top:8px"><b>表6-5</b>　どちらも優先度+2。同じ優先度の中は素早さ順なので、最速ドラフィア（178）が最速カイリュー（145）より先に動く。</p><p class="prose small" style="margin-top:10px">14体のうち、ロンドがテラスノーマルのしんそくより多く削る相手は9体、テラスなしのしんそくより多く削る相手は14体。等倍の相手（連撃ウーラオス）で比べると、テラスノーマルのしんそくはロンドの約1.18倍、テラスなしのしんそくは約0.79倍。<b>テラスを切らない限りロンドの方が強く、テラスノーマルと比べても、竜・妖・氷に抜群を取れてゴーストに無効化されないぶん、レギュIの上位相手にはロンドが勝る。</b></p><p class="prose small" style="margin-top:6px">差が出るのは耐久で、カイリューはH91・B95・D100にマルチスケイル、ドラフィアはH95・B65・D65。ドラフィアは先制で殴れる代わりに、上から1発もらうと落ちる（§2.5）。「しんそく並みの先制技を持つ、紙耐久のアタッカー」という見立ては計算上も成り立つ。</p>
   <div class="memo-row" style="margin-top:20px">
     <p class="memo"><span class="who">研究員メモ #06（主任）</span>とっておきは実験室の外で使わないこと。</p>
@@ -1722,13 +1731,9 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     const skinned = !!(mv.skin && o.skin && type === 'Normal');
     if (skinned) { type = SP.draffia.skin; bpMods.push(4915); }
     if (mv.facade && o.statused) bp = mv.bp * (o.move === 'facade' ? 2 : 1);
-    let cat = 'phys';
-    if (mv.rondo) {
-      const A = E.boost(o.st.atk, o.atkStage || 0), C = E.boost(o.st.spa, o.spaStage || 0);
-      cat = A > C ? 'phys' : 'spec';
-    }
-    const atkStat = cat === 'phys' ? o.st.atk : o.st.spa;
-    const atkStage = cat === 'phys' ? (o.atkStage || 0) : (o.spaStage || 0);
+    const cat = 'phys';  // ドラフィアの攻撃技はすべて物理（ロンドも物理技）
+    const atkStat = o.st.atk;
+    const atkStage = o.atkStage || 0;
     const atkMods = [];
     if (o.item === 'band' && cat === 'phys') atkMods.push(6144);
     const tgt = o.target;
@@ -2067,7 +2072,7 @@ footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);display:
     if (!r) { renderOut(head, null, t0.st.hp, ['いかくのときロンドは変化技（優先度+' + C.DM.rondo.priIntim + 'の交代）']); return; }
     var notes = [];
     notes.push(JP[r.type] + (r.skinned ? '（スキン変換・×1.2）' : ''));
-    notes.push(r.cat === 'phys' ? '物理' : '特殊（A≦Cで判定）');
+    notes.push(r.cat === 'phys' ? '物理' : '特殊');
     notes.push('相性 ×' + r.eff + (m.rondo && r.eff > 0 ? '（輪舞補正込み）' : ''));
     notes.push('タイプ一致 ×' + (r.stab / 4096).toFixed(2).replace(/0$/, ''));
     if (m.pri) notes.push('優先度' + (m.pri > 0 ? '+' : '') + m.pri);

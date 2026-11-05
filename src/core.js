@@ -30,13 +30,9 @@
     const skinned = !!(mv.skin && o.skin && type === 'Normal');
     if (skinned) { type = SP.draffia.skin; bpMods.push(4915); }
     if (mv.facade && o.statused) bp = mv.bp * (o.move === 'facade' ? 2 : 1);
-    let cat = 'phys';
-    if (mv.rondo) {
-      const A = E.boost(o.st.atk, o.atkStage || 0), C = E.boost(o.st.spa, o.spaStage || 0);
-      cat = A > C ? 'phys' : 'spec';
-    }
-    const atkStat = cat === 'phys' ? o.st.atk : o.st.spa;
-    const atkStage = cat === 'phys' ? (o.atkStage || 0) : (o.spaStage || 0);
+    const cat = 'phys';  // ドラフィアの攻撃技はすべて物理（ロンドも物理技）
+    const atkStat = o.st.atk;
+    const atkStage = o.atkStage || 0;
     const atkMods = [];
     if (o.item === 'band' && cat === 'phys') atkMods.push(6144);
     const tgt = o.target;

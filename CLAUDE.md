@@ -2,7 +2,7 @@
 
 このリポジトリは、依頼者が設計したオリジナルポケモン「ドラフィア」の対戦考察レポートを作る作業場。
 最初の版は 2026-11-03 に作成し、claude.ai のアーティファクトとして公開した。
-同日にロンドの仕様をv2へ改訂（スキン版の優先度+2、ブイズへの上昇をA・C・Sに拡大）、続けてv3（音技→踊り技、非接触を明記）。仕様の正は `spec/draffia.md` の最新節。
+同日にロンドの仕様をv2へ改訂（スキン版の優先度+2、ブイズへの上昇をA・C・Sに拡大）、続けてv3（音技→踊り技、非接触を明記）。2026-11-05 に v4（スキン版のロンドを物理技に統一、「AとCの高い方」を削除）。仕様の正は `spec/draffia.md` の最新節。
 
 ## 依頼者について
 
@@ -31,7 +31,7 @@
 
 1. `spec/draffia.md` に新仕様を追記（原文は残す）。
 2. `src/data.js` の `SP.draffia`（`b` 種族値、`t` タイプ、`skin` 変換先）と `DM`（技）を更新。
-   - 専用技の挙動：`src/core.js` の `drfAtk`（`mv.rondo` 分岐、A/C比較）と `src/engine.js` の `eff(…, {rondo})`（妖・氷を×2に上書き）。
+   - 専用技の挙動：`src/core.js` の `drfAtk`（`mv.rondo` 分岐。ロンドは物理技）と `src/engine.js` の `eff(…, {rondo})`（妖・氷を×2に上書き）。
 3. 型の配分を変えるなら `src/sets.js`。ダブル耐久型は `scripts/analysis/opt.js` で探索できる。
 4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md` → `pdf/` の PDF 2点。
 5. `git diff notes/claims.md` で、本文中のどの数値が変わったかを見る。値の前後の判定（有利・不利、「耐える」「抜ける」などの言い回し）が数値と食い違っていないかを確認し、`templates/body.html` を直す。
@@ -43,7 +43,7 @@
 ## 自動で追従するもの
 
 - 生成表：`scripts/build.js` が `templates/body.html` の `<!--@NAME-->` を埋める（同じ名前が複数あってもすべて置換）。
-  SPRITE、ILLUST、ARCHIVE、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_CAT、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
+  SPRITE、ILLUST、ARCHIVE、TYPECHIPS、DEFCHART、SKINTABLE、RADAR、RADARTABLE、STATBARS、SINGLES_ATK、SINGLES_DEF、CHEER、SPEED、SPEEDTBL、TERA、TRAINING、EXP_LR、EXP_FACADE、EXP_SYL、EXP_ES、RANKAXIS、ADOPT_S、ADOPT_D。
   ロンドの優先度は `DM.rondo.pri`（スキン版）と `priIntim`（いかく版）から表とページ内計算機に入る。
 - 本文中の数値：`{{…}}` トークン（下記）。ビルド時に計算し、`notes/claims.md` に「章・値・前後の文・トークン」を一覧で書き出す。
 - 型の定義：`src/sets.js`。本文・生成表・スナップショットが同じ定義を使う。
@@ -99,7 +99,6 @@
 | `{{fasterlist S1 calyrexs/timid …}}` | 黒バドレックス、… | ドラフィアより速い相手の名前 |
 | `{{base}}` / `{{base hp}}` / `{{base top2}}` / `{{base incineroar def}}` | H95 A130 … ／ 525 / 95 / 攻撃130・素早さ110 | 種族値（種族省略でドラフィア） |
 | `{{bp doubleedge skin}}` / `{{bp doubleedge skin x2}}` | 144 / 288 | 威力（`skin` でスキン補正後） |
-| `{{rondoflip AS}}` / `{{rondoflip AS spa}}` | -3 / 72 | ロンドが特殊扱いになる攻撃ランク |
 | `{{eff weak}}` / `resist` / `immune` | 氷・竜・妖 | ドラフィアの弱点・半減・無効 |
 | `{{grade S}}` / `{{rank D settled}}` | B+ / 10〜20位 | `report.config.js` の値 |
 | `{{tally tbl-s-match}}` | 有利9・五分5・不利6 | 指定 id の表の判定ラベルを数える |

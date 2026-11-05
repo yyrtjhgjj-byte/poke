@@ -179,13 +179,6 @@ function kolist(args) {
   const names = (n) => n.length === 2 ? n.join('と') : n.join('、');
   return groups.map(g => `${names(g.n)}は${g.k}`).join('、');
 }
-function rondoflip(args) {
-  const [id, key = 'stage'] = args;
-  const st = setStats(id);
-  if (key === 'spa') return String(st.spa);
-  for (let s = 0; s >= -6; s--) if (E.boost(st.atk, s) <= st.spa) return String(s);
-  return '（-6でも物理）';
-}
 function tally(args, html) {
   const id = args[0];
   const i = html.indexOf(`id="${id}"`); if (i < 0) fail('表 ' + id + ' がない');
@@ -215,7 +208,6 @@ function evalToken(src, html) {
     case 'kolist': return kolist(args);
     case 'base': return base(args);
     case 'bp': return bp(args);
-    case 'rondoflip': return rondoflip(args);
     case 'grade': return CFG.grade[args[0]] || fail('grade ' + args[0]);
     case 'rank': { const r = (CFG.rank[args[0]] || {})[args[1]]; if (!r) fail('rank ' + args.join(' ')); return `${r[0]}〜${r[1]}位`; }
     case 'tally': return tally(args, html);

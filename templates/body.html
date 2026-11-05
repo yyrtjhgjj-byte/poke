@@ -1,7 +1,7 @@
 <div class="wrap">
 <header class="mast">
   <div>
-    <div class="labline"><span><b>RONDO LAB</b>　輪舞研究室</span><span>イーブイ系統分岐研究所</span><span>REPORT RL-2026-1103</span><span>REV.3</span></div>
+    <div class="labline"><span><b>RONDO LAB</b>　輪舞研究室</span><span>イーブイ系統分岐研究所</span><span>REPORT RL-2026-1103</span><span>REV.4</span></div>
     <h1 class="title"><span class="name">ドラフィア<span class="ruby">DRAFFIA</span></span><span class="doc">徹底考察レポート</span></h1>
     <p class="abstract-line">SV最終環境（ランクバトル シーズン41・レギュレーションI）を想定し、シングルとダブルでの性能、型、育成論、パーティ、採用率を検証した。数値はすべてLv50の実数値とSVのダメージ計算式による。</p>
     <div class="chips">
@@ -49,6 +49,19 @@
 
   <!-- 改訂記録：履歴なので数値は固定（トークンにしない）。新しい版を上に足し、最新だけ open で開いておく -->
   <details class="panel rev latest" open>
+    <summary>
+      <span class="est">改訂 v4</span>
+      <span class="rev-title">v3既読者向け：ロンドを物理技に統一</span>
+      <span class="cap">2026.11.05・<span class="rev-open">押すと畳む</span><span class="rev-closed">押すと開く</span></span>
+    </summary>
+    <div class="prose small">
+      <p>スキン版のドラゴニックロンドは、こうげきととくこうの高い方で計算する仕様から、常に物理技として計算する仕様に変わった。ドラフィアのこうげきはとくこうを大きく上回るため、ふだんの計算結果は何も変わらない。ダメージの数値、総合評価（シングルA-・ダブルA+）、予想順位、採用率の推計は据え置いた。</p>
+      <p>違いが出るのは、いかくやワイドブレイカーでこうげきが大きく下がったときだけである。陽気A252では攻撃-3段階から特攻での計算に切り替わっていたが、v4ではそのまま物理として下がり続ける。とはいえ無振りの特攻ではもともと打点にならなかったため、実戦上の影響はほぼない。やけどで威力が半分になる点も変わらない。</p>
+      <p>この切り替わりを確かめていた実験記録①（ロンドの物理・特殊判定）は役目を終えたため削除し、以降の実験記録の番号を1つずつ繰り上げた。</p>
+    </div>
+  </details>
+
+  <details class="panel rev">
     <summary>
       <span class="est">改訂 v3</span>
       <span class="rev-title">v2既読者向け：ロンドの分類変更で変わったこと</span>
@@ -103,7 +116,7 @@
     <li><div><b>いかく時のロンドは優先度+1の交代技。</b> 相手より遅いと後続のすばやさを1段階上げ、後続がイーブイ系ならこうげき・とくこう+1、すばやさ+2になる。最速{{stat S1 spe}}でも{{fasterlist S1 calyrexs/timid zacianc/jolly koraidon/jolly miraidon/timid fluttermane/timid chienpao/jolly}}より遅く、レギュIでは条件を満たす場面が多い。</div></li>
     <li><div><b>ダブルでは「ドラゴンエール＋ピントレンズ」で竜の味方が確定急所になる。</b> メガネのミライドンと1発目の火力はほぼ同じで、技を自由に選べ、りゅうせいぐんの特攻低下も急所で無視される。2発目以降はメガネ型の約2倍の打点になる。</div></li>
     <li><div><b>最大の弱点はH{{base hp}}・B{{base def}}・D{{base spd}}の薄さ。</b> 無振り（S-1）だと、パオジアンの珠つららおとしは{{hit S1 pao_icicle_lo ko}}、ミライドンのりゅうせいぐんは{{hit S1 mir_draco ko}}、ハバタクカミのムーンフォースは{{hit S1 fm_moon_timid ko}}。ねこだまし以外の先制技では止まらないが、上から殴られれば1発で落ちる。</div></li>
-    <li><div><b>ダブルでは隣のイーブイ系をA・C・S+2にする。</b> ロンドは優先度が高く、同じターンの味方の技から上昇が乗る。ニンフィアは1回で{{spe sylveon modest 252 +2}}（最速の黒バドレックスより速い）になり、全体技のハイパーボイスで上位のアタッカーをまとめて落とす（§6 実験記録④）。</div></li>
+    <li><div><b>ダブルでは隣のイーブイ系をA・C・S+2にする。</b> ロンドは優先度が高く、同じターンの味方の技から上昇が乗る。ニンフィアは1回で{{spe sylveon modest 252 +2}}（最速の黒バドレックスより速い）になり、全体技のハイパーボイスで上位のアタッカーをまとめて落とす（§6 実験記録③）。</div></li>
   </ol>
 
   <h3 class="sub"><span class="n">0.2</span>性能プロファイル</h3>
@@ -210,12 +223,12 @@
     </div>
     <div class="rondo-mode" data-rondo="skin">
       <dl class="mvstats">
-        <div><dt>TYPE</dt><dd>ドラゴン</dd></div>
+        <div><dt>TYPE</dt><dd>ドラゴン・物理</dd></div>
         <div><dt>POWER</dt><dd>{{bp rondo}}</dd></div>
         <div><dt>ACC / PP</dt><dd>100 / 5</dd></div>
         <div><dt>PRIORITY</dt><dd>+2</dd></div>
       </dl>
-      <p class="mvtext" style="margin-top:12px">楽しく輪舞を踊って攻撃する。AとCの高い方で計算。こおり・フェアリータイプには効果抜群。味方の場にイーブイの進化系がいれば、そのこうげき・とくこう・すばやさを2段階上げる。踊り技。非接触。</p>
+      <p class="mvtext" style="margin-top:12px">楽しく輪舞を踊って攻撃する。物理技。こおり・フェアリータイプには効果抜群。味方の場にイーブイの進化系がいれば、そのこうげき・とくこう・すばやさを2段階上げる。踊り技。非接触。</p>
       <p class="cap" style="margin-top:12px"><b>仕様の補足</b></p>
       <ul class="points" style="margin-top:4px">
         <li>味方への上昇は、ロンドが相手に当たったときに起きる。まもる・サイコフィールド・しっぽアーマーなどで防がれたとき、ねこだましで怯んだときは起きない。</li>
@@ -228,7 +241,6 @@
         <li>優先度+2は、しんそく・このゆびとまれ・いかりのこな・サイドチェンジと同じ枠。同じ枠の中は素早さ順なので、ドラフィアより遅いモロバレルなどのいかりのこな・このゆびとまれより先に撃てる（優先度で上回るのではなく、素早さで勝つ）。ねこだまし・ファストガード（+3）とまもる（+4）は先に動く。</li>
         <li>先制技なので、サイコフィールド（接地した相手）、しっぽアーマー、ビビッドボディ、じょおうのいげん、ファストガードで防がれる。イエッサン♀は登場時にサイコフィールドを張るため、並んだ時点で接地した相手にはロンドが当たらない。</li>
         <li>PPは5（ポイントマックスで8）。シングルの3体選出なら足りるが、連打前提の型では管理が要る。</li>
-        <li>陽気A252は攻撃{{rondoflip AS}}段階で特攻（C{{rondoflip AS spa}}）以下になり、特殊技として計算される（§6 実験記録①）。</li>
       </ul>
     </div>
     <div class="rondo-mode" data-rondo="intim" hidden>
@@ -285,11 +297,11 @@
         <tr><th class="rowh">アイアンテール</th><td><span class="chip t-Steel">鋼</span></td><td class="num">★2</td><td class="num">★1</td><td>命中75。ロンドのPP切れ対策と、いかく型の妖打点。</td></tr>
         <tr><th class="rowh">くさわけ</th><td><span class="chip t-Grass">草</span></td><td class="num">★2</td><td class="num">★1</td><td>ディンルー・ヘイラッシャ・キョジオーンに抜群、S+1。威力{{bp trailblaze}}で削り止まり。</td></tr>
         <tr><th class="rowh">ワイドブレイカー</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★1</td><td class="num">★3</td><td>相手全体の攻撃-1。いかくと重ねて物理を抑える。</td></tr>
-        <tr><th class="rowh">からげんき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★2</td><td class="num">★2</td><td>どくどくだま・かえんだまで{{bp facadest skin}}。実験記録③参照。</td></tr>
+        <tr><th class="rowh">からげんき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★2</td><td class="num">★2</td><td>どくどくだま・かえんだまで{{bp facadest skin}}。実験記録②参照。</td></tr>
         <tr><th class="rowh">ドラゴンテール</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★2</td><td class="num">★1</td><td>積み対策の強制交代。優先度-6、命中90。</td></tr>
         <tr><th class="rowh">ドラゴンクロー</th><td><span class="chip t-Dragon">竜</span></td><td class="num">★1</td><td class="num">★1</td><td>スキン型ではすてみの下位。いかく型に打点は要らない。</td></tr>
         <tr><th class="rowh">でんこうせっか</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>{{bp quickattack skin}}の先制技。ロンドの方が全面的に強い。</td></tr>
-        <tr><th class="rowh">とっておき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>{{bp lastresort skin}}だが発動条件が重い。実験記録②参照。</td></tr>
+        <tr><th class="rowh">とっておき</th><td><span class="chip t-Normal">ノ</span>→竜</td><td class="num">★1</td><td class="num">★1</td><td>{{bp lastresort skin}}だが発動条件が重い。実験記録①参照。</td></tr>
         <tr class="grp"><td colspan="5">変化技</td></tr>
         <tr><th class="rowh">まもる</th><td><span class="chip t-Normal">ノ</span></td><td class="num">★1</td><td class="num">★4</td><td>ダブルの基本。</td></tr>
         <tr><th class="rowh">ドラゴンエール</th><td><span class="chip t-Dragon">竜</span></td><td class="num">—</td><td class="num">★4</td><td>味方の急所ランク+1、竜タイプなら+2。ピントレンズと合わせて確定急所。</td></tr>
@@ -312,7 +324,7 @@
     <ol class="points" style="font-size:14px;gap:8px">
       <li>計算はLv50・個体値31・SVのダメージ計算式（端数処理を含む）による。計算エンジンはSmogon製ダメージ計算機と13件の照合で一致を確認済み。</li>
       <li>ドラゴンスキンは既存のスキン系特性と同じ処理（ノーマル技をドラゴンに変え、威力×1.2）と仮定。</li>
-      <li>ドラゴニックロンド（スキン時）は、ランク補正込みのAとCを比べて高い方で計算（同値は特殊）。単体攻撃と仮定。こおり・フェアリーへの相性はフリーズドライと同様に「×2へ上書き」し、残りのタイプと掛け合わせる。</li>
+      <li>ドラゴニックロンド（スキン時）は物理技。単体攻撃と仮定。こおり・フェアリーへの相性はフリーズドライと同様に「×2へ上書き」し、残りのタイプと掛け合わせる。</li>
       <li>「味方の場のイーブイの進化系」にドラフィア自身は含まない。したがってシングルでは場の味方への上昇は起きない。スキン版の上昇は攻撃が当たったときに起き、防がれた場合や怯んだ場合は起きない。</li>
       <li>いかく版の「相手よりすばやさが低いとき」は、ランク・道具補正込みの実数値で比較。ダブルでは「相手の場のいずれか1体より遅い」で成立する。後から出るイーブイ系の上昇は合計A+1・C+1・S+2。控えがいない場合は失敗とする。</li>
       <li>ドラゴニックロンドは踊り技・非接触。踊り技はスキン版・いかく版の両方に付くと解釈する。「おどりこ」で真似されたときの挙動は仕様にないため扱わない。</li>
@@ -561,7 +573,7 @@
     <div class="panel stack" style="gap:6px"><h4 style="margin:0">いかくサイクル</h4><p class="small">いかくを入れ、次のターンにロンドで先制交代。相手が速ければ後続の素早さが上がる。物理禁止級（白バド・コライドン・ウーラオス）の圧力を毎回削ぐ。</p></div>
     <div class="panel stack" style="gap:6px"><h4 style="margin:0">竜の加護</h4><p class="small">ドラゴンエールで竜タイプの味方の急所ランクを+2。ピントレンズかきょううんで確定急所になり、いかく・壁・能力低下を無視して殴れる。</p></div>
     <div class="panel stack" style="gap:6px"><h4 style="margin:0">妖・氷の先制処理</h4><p class="small">スキン型はロンドでハバタクカミ、パオジアン、エルフーン、オーロンゲを先に削る。このゆびとまれ・いかりのこなも優先度+2だが、同じ優先度の中は素早さ順なので、ドラフィアより遅いモロバレルなどの誘導には吸われない。サイコフィールドの下では接地した相手への攻撃が失敗し、ブイズへの上昇も起きない（しっぽアーマーも同じ）。</p></div>
-    <div class="panel stack" style="gap:6px"><h4 style="margin:0">ブイズの強化</h4><p class="small">隣のイーブイ系をA・C・S+2にする。スキン版は攻撃しながら毎ターン、いかく版は退く前に1回、防がれにくい形で渡す。相方の本命はニンフィア（§3.4 D-4、§6 実験記録④）。</p></div>
+    <div class="panel stack" style="gap:6px"><h4 style="margin:0">ブイズの強化</h4><p class="small">隣のイーブイ系をA・C・S+2にする。スキン版は攻撃しながら毎ターン、いかく版は退く前に1回、防がれにくい形で渡す。相方の本命はニンフィア（§3.4 D-4、§6 実験記録③）。</p></div>
   </div>
 
   <h3 class="sub"><span class="n">3.3</span>ガオガエンとの比較</h3>
@@ -673,7 +685,7 @@
         </div>
         <ul class="points">
           <li>ロンドが当たるたびに、隣のニンフィアのこうげき・とくこう・すばやさ+2。ロンドが先に動くため、1ターン目のハイパーボイスから+2が乗る。</li>
-          <li>S{{spe sylveon modest 252}}は+2で{{spe sylveon modest 252 +2}}になり、最速の黒バドレックス（{{spe calyrexs timid 252}}）を抜く。+2のハイパーボイス（全体）の確定数は§6 実験記録④。</li>
+          <li>S{{spe sylveon modest 252}}は+2で{{spe sylveon modest 252 +2}}になり、最速の黒バドレックス（{{spe calyrexs timid 252}}）を抜く。+2のハイパーボイス（全体）の確定数は§6 実験記録③。</li>
           <li>ねこだましで怯むと上昇が起きないため、持ち物はおんみつマント。ロンドの対象にまもるを合わせられたときも上昇しないので、対象は2体で散らす。</li>
           <li>まもる・サイコフィールドを避けたいときは、D-1（いかく版）で代える。変化技なので防がれず、退く前に+2を渡せる。</li>
         </ul>
@@ -919,19 +931,16 @@
     <p class="cap" style="margin-top:12px"><b>注</b>　相手の配分は表示の通り。ハバタクカミ等の「ブースト」「タスキ」は計算に含めない。ザマゼンタ(王)は防御+1、カイリューとルナアーラは満タン時の半減特性込み。</p>
   </div>
 
-  <h3 class="sub"><span class="n">6.2</span>実験記録① ロンドの物理・特殊判定</h3>
-  <!--@EXP_CAT-->
-
-  <h3 class="sub"><span class="n">6.3</span>実験記録② とっておき</h3>
+  <h3 class="sub"><span class="n">6.2</span>実験記録① とっておき</h3>
   <!--@EXP_LR-->
 
-  <h3 class="sub"><span class="n">6.4</span>実験記録③ からげんき型</h3>
+  <h3 class="sub"><span class="n">6.3</span>実験記録② からげんき型</h3>
   <!--@EXP_FACADE-->
 
-  <h3 class="sub"><span class="n">6.5</span>実験記録④ ニンフィアとの輪舞</h3>
+  <h3 class="sub"><span class="n">6.4</span>実験記録③ ニンフィアとの輪舞</h3>
   <!--@EXP_SYL-->
 
-  <h3 class="sub"><span class="n">6.6</span>実験記録⑤ しんそくとの比較</h3>
+  <h3 class="sub"><span class="n">6.5</span>実験記録④ しんそくとの比較</h3>
   <!--@EXP_ES-->
   <div class="memo-row" style="margin-top:20px">
     <p class="memo"><span class="who">研究員メモ #06（主任）</span>とっておきは実験室の外で使わないこと。</p>
