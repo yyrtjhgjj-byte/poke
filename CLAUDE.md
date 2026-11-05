@@ -66,11 +66,11 @@
 ## A4資料（PDF）
 
 - PDF の成果物置き場は `pdf/`（中身は `pdf/README.md`）。`npm run pdf`・`npm run all` で毎回上書きされる。
-- `templates/a4.html` → `scripts/a4.js` → `pdf/draffia-battle.pdf`（A4縦2枚。印刷前のHTMLは `dist/draffia-a4.html`）。
+- `templates/a4.html` → `scripts/a4.js` → `pdf/draffia-battle.pdf`（A4縦3枚。印刷前のHTMLは `dist/draffia-a4.html`）。
 - 単独で読める資料として書く。「要約」「本編」「詳細は〜を参照」など、Web版の存在をうかがわせる文言は紙面に入れない（依頼者の指示）。版表示（REV）も入れない。
-- 数値はWeb版と同じトークン。§2.1 対面表の判定（有利・五分・不利の相手）と、採用率の各項目1位はWeb版・`report.config.js` から自動で入る。
+- 数値はWeb版と同じトークン。§2.1 対面表の判定（有利・五分・不利の相手）、§1.6 習得技の評価（★と評価文。「実験記録○参照」は自動で外す）、採用率の各項目1位はWeb版・`report.config.js` から自動で入る。
 - 文章・型の技構成・試作構築・要注意の相手は手書き。Web版を直したらこちらも合わせる。
-- 実行するとページごとのはみ出し(px)が出る。0 以外なら文章を詰めて2枚に収める。フォントは Google Fonts を読む（届かないと IPA ゴシックで代わりに出る）。
+- 実行するとページごとのはみ出し(px)が出る。0 以外なら文章を詰めて3枚に収める。フォントは Google Fonts を読む（届かないと IPA ゴシックで代わりに出る）。
 
 ## しょうかいガイド（PDF）
 

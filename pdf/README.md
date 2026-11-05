@@ -4,7 +4,7 @@
 
 | ファイル | 内容 | 元のテンプレート |
 |---|---|---|
-| `draffia-battle.pdf` | 対戦向けの資料（A4縦2枚）。専用技、主要所見、シングル・ダブルの型と相手、試作構築、予測 | `templates/a4.html`（`scripts/a4.js`） |
+| `draffia-battle.pdf` | 対戦向けの資料（A4縦3枚）。1枚目：専用技・主要所見・対策、2枚目：特性とタイプ・すばやさ・習得技の評価・与／被ダメージ・持ち物、3枚目：シングル・ダブルの型と相手・試作構築・予測 | `templates/a4.html`（`scripts/a4.js`） |
 | `draffia-guide.pdf` | しょうかいガイド（A4縦2枚）。対戦に詳しくない人向けの「こういうポケモンです」 | `templates/guide.html`（`scripts/guide.js`） |
 
 印刷前のHTML（`dist/draffia-a4.html`・`dist/draffia-guide.html`）は確認用の中間ファイル。

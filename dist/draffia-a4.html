@@ -69,6 +69,22 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
 .teams div{display:grid;grid-template-columns:27mm minmax(0,1fr);gap:2mm}
 .teams b{font-weight:900}
 .foot{margin-top:auto;border-top:1.5px solid var(--ink);padding-top:1.5mm;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1mm 8mm;font-family:var(--f-mono);font-size:6.6pt;color:var(--ink3)}
+table.moves{table-layout:fixed}
+table.moves th:nth-child(1){width:30mm}
+table.moves th:nth-child(2){width:18mm}
+table.moves th:nth-child(3),table.moves th:nth-child(4){width:15mm}
+table.moves td.c,table.moves th.c{text-align:center;font-family:var(--f-mono)}
+table.moves th,table.moves td{padding:.32mm 1.3mm;font-size:7.3pt;line-height:1.35}
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm;margin-top:1.8mm}
+.roles div{border:1px solid var(--rule);border-top:2px solid var(--gold);border-radius:2px;padding:1.4mm 2mm;font-size:7.5pt;line-height:1.45}
+.roles b{display:block;font-size:8pt;margin-bottom:.4mm}
+table.items th,table.items td{padding:.5mm 1.3mm;font-size:7.4pt;line-height:1.35}
+table.items th{white-space:nowrap}
+table.dmg th,table.dmg td{padding:.55mm 1.3mm;line-height:1.35}
+table.dmg tbody th{white-space:nowrap}
+table.moves tr.grp td{background:var(--goldWash);color:var(--goldInk);font-weight:700;font-size:7pt;letter-spacing:.1em;padding:.4mm 1.4mm}
+table.dmg td{font-family:var(--f-mono);white-space:nowrap;font-size:7.4pt}
+table.dmg tbody th{font-weight:700;white-space:normal}
 .memo{font-size:7.6pt;background:var(--goldWash);border:1px solid var(--gold);border-radius:2px;padding:1.5mm 2.5mm}
 </style>
 </head>
@@ -141,13 +157,126 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
     </div>
   </div>
 
-  <div class="foot"><span>RONDO LAB ／ ドラフィア徹底考察レポート ／ 2026.11.04</span><span>1 / 2</span></div>
+  <div class="foot"><span>RONDO LAB ／ ドラフィア徹底考察レポート ／ 2026.11.04</span><span>1 / 3</span></div>
 </section>
 
 <!-- ======================= 2枚目 ======================= -->
 <section class="page">
+  <div class="cols">
+    <div>
+      <h2><span class="n">3</span>特性とタイプ</h2>
+      <table>
+        <tbody>
+          <tr><th>いかく</th><td>登場時に相手全体の攻撃-1。ロンド（優先度+1の交代）で退いては出し直すサイクルを回す。</td></tr>
+          <tr><th>ドラゴンスキン</th><td>ノーマル技をドラゴン化し威力×1.2（すてみは実質144の一致技）。ロンドが攻撃技になる。</td></tr>
+          <tr><th>相性</th><td>弱点：こおり・ドラゴン・フェアリー。半減：ほのお・みず・でんき・くさ（カイオーガ・コライドン・ミライドンの主力技を受けられる）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2><span class="n">4</span>すばやさ</h2>
+      <table>
+        <tbody>
+          <tr><th class="n">S178</th><td>最速。連撃ウーラオス（163）より速く、オーガポン（178）と同速で、トルネロス（179）より遅い</td></tr>
+          <tr><th class="n">S267</th><td>最速スカーフ／竜舞+1。黒バドレックス（222）、ザシアン(王)（220）より速い</td></tr>
+          <tr><th class="n">S130</th><td>無振り（S-4・D-1）。上位の禁止級の多くより遅く、いかく版ロンドで後続のすばやさが上がる</td></tr>
+          <tr><th class="n">S224</th><td>隣のニンフィア（S112）がロンドで+2。最速の黒バドレックス（222）も抜く</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div>
-    <h2><span class="n">3</span>シングル（見せ合い6→3）</h2>
+    <h2><span class="n">5</span>習得技の評価</h2>
+    <table class="moves">
+      <thead><tr><th>技</th><th>分類</th><th class="c">シングル</th><th class="c">ダブル</th><th>評価</th></tr></thead>
+      <tbody>
+<tr class="grp"><td colspan="5">攻撃技</td></tr>
+<tr><th>ドラゴニックロンド</th><td>竜 専用</td><td class="c">★5</td><td class="c">★5</td><td>全型で必須。スキンでは先制攻撃、いかくでは先制交代。</td></tr>
+<tr><th>すてみタックル</th><td>ノ→竜</td><td class="c">★5</td><td class="c">★3</td><td>スキン型の主砲。反動1/3は珠と重なると重い。</td></tr>
+<tr><th>かみくだく</th><td>悪</td><td class="c">★4</td><td class="c">★3</td><td>黒バドレックス・ルナアーラに4倍、サーフゴー・イエッサンに2倍。</td></tr>
+<tr><th>のしかかり</th><td>ノ→竜</td><td class="c">★3</td><td class="c">★2</td><td>反動なしの102。まひ30%。いのちのたま型のサブ主砲。</td></tr>
+<tr><th>アイアンテール</th><td>鋼</td><td class="c">★2</td><td class="c">★1</td><td>命中75。ロンドのPP切れ対策と、いかく型の妖打点。</td></tr>
+<tr><th>くさわけ</th><td>草</td><td class="c">★2</td><td class="c">★1</td><td>ディンルー・ヘイラッシャ・キョジオーンに抜群、S+1。威力50で削り止まり。</td></tr>
+<tr><th>ワイドブレイカー</th><td>竜</td><td class="c">★1</td><td class="c">★3</td><td>相手全体の攻撃-1。いかくと重ねて物理を抑える。</td></tr>
+<tr><th>からげんき</th><td>ノ→竜</td><td class="c">★2</td><td class="c">★2</td><td>どくどくだま・かえんだまで168。</td></tr>
+<tr><th>ドラゴンテール</th><td>竜</td><td class="c">★2</td><td class="c">★1</td><td>積み対策の強制交代。優先度-6、命中90。</td></tr>
+<tr><th>ドラゴンクロー</th><td>竜</td><td class="c">★1</td><td class="c">★1</td><td>スキン型ではすてみの下位。いかく型に打点は要らない。</td></tr>
+<tr><th>でんこうせっか</th><td>ノ→竜</td><td class="c">★1</td><td class="c">★1</td><td>48の先制技。ロンドの方が全面的に強い。</td></tr>
+<tr><th>とっておき</th><td>ノ→竜</td><td class="c">★1</td><td class="c">★1</td><td>168だが発動条件が重い。</td></tr>
+<tr class="grp"><td colspan="5">変化技</td></tr>
+<tr><th>まもる</th><td>ノ</td><td class="c">★1</td><td class="c">★4</td><td>ダブルの基本。</td></tr>
+<tr><th>ドラゴンエール</th><td>竜</td><td class="c">—</td><td class="c">★4</td><td>味方の急所ランク+1、竜タイプなら+2。ピントレンズと合わせて確定急所。</td></tr>
+<tr><th>てだすけ</th><td>ノ</td><td class="c">—</td><td class="c">★3</td><td>優先度+5で味方の技を1.5倍。</td></tr>
+<tr><th>あくび</th><td>ノ</td><td class="c">★3</td><td class="c">★2</td><td>いかく型の起点作り。次のターンにロンドで退ける。</td></tr>
+<tr><th>りゅうのまい</th><td>竜</td><td class="c">★3</td><td class="c">★1</td><td>竜舞型。+1で最速178が267になる。</td></tr>
+<tr><th>つぶらなひとみ</th><td>妖</td><td class="c">★1</td><td class="c">★3</td><td>優先度+1で攻撃-1。いかくと合わせると上から-2まで下がる。</td></tr>
+<tr><th>ねがいごと</th><td>ノ</td><td class="c">★2</td><td class="c">★1</td><td>H252で101回復。ロンドで後続に渡す。</td></tr>
+<tr><th>あまえる</th><td>妖</td><td class="c">★1</td><td class="c">★2</td><td>攻撃-2。いかくより遅いが確実に下げる。</td></tr>
+<tr><th>みがわり</th><td>ノ</td><td class="c">★1</td><td class="c">★1</td><td>H252で50消費。耐久が低く使いにくい。</td></tr>
+<tr><th>うそなき</th><td>悪</td><td class="c">—</td><td class="c">★1</td><td>特殊の味方を補助。いたずらごころがないため遅い。</td></tr>
+<tr><th>バトンタッチ</th><td>ノ</td><td class="c">★1</td><td class="c">—</td><td>竜舞の引き継ぎ専用。ロンドと役割が重なる。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2><span class="n">6</span>主要な与ダメージ</h2>
+      <table class="dmg">
+        <thead><tr><th>S-1 陽気ハチマキ → 相手（H4）</th><th>割合</th><th>確定数</th></tr></thead>
+        <tbody>
+          <tr><th>ロンド → ハバタクカミ</th><td>235〜280%</td><td>確定1発</td></tr>
+          <tr><th>ロンド → パオジアン</th><td>150〜177%</td><td>確定1発</td></tr>
+          <tr><th>ロンド → ミライドン</th><td>110〜131%</td><td>確定1発</td></tr>
+          <tr><th>ロンド → コライドン</th><td>96〜116%</td><td>乱数1発（87.5%）</td></tr>
+          <tr><th>ロンド → ザシアン(王)</th><td>50〜61%</td><td>確定2発</td></tr>
+          <tr><th>すてみ → 連撃ウーラオス</th><td>105〜125%</td><td>確定1発</td></tr>
+          <tr><th>すてみ → ホウオウ（HB）</th><td>66〜79%</td><td>確定2発</td></tr>
+          <tr><th>かみくだく → 黒バドレックス</th><td>188〜223%</td><td>確定1発</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2><span class="n">7</span>主要な被ダメージ</h2>
+      <table class="dmg">
+        <thead><tr><th>相手の攻撃</th><th>S-1 H4</th><th>S-4 HB</th><th>D-1 HD</th></tr></thead>
+        <tbody>
+          <tr><th>パオジアン 珠つらら</th><td>確定1発</td><td>確定2発</td><td>確定1発</td></tr>
+          <tr><th>ハバカミ ムーンフォース</th><td>確定1発</td><td>確定1発</td><td>確定2発</td></tr>
+          <tr><th>ミライドン 流星群</th><td>確定1発</td><td>確定1発</td><td>確定1発</td></tr>
+          <tr><th>コライドン 逆鱗（晴れ）</th><td>確定1発</td><td>乱数1発（68.8%）</td><td>確定1発</td></tr>
+          <tr><th>ザシアン +1じゃれつく</th><td>確定1発</td><td>確定2発</td><td>確定1発</td></tr>
+          <tr><th>黒バド アストラルビット</th><td>確定1発</td><td>乱数1発（6.3%）</td><td>確定2発</td></tr>
+          <tr><th>カイオーガ 冷凍ビーム</th><td>確定1発</td><td>乱数1発（18.8%）</td><td>確定2発</td></tr>
+          <tr><th>ウーラオス 鉢巻インファ</th><td>確定1発</td><td>確定2発</td><td>確定2発</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:.8mm">S-4・D-1は物理技をいかく込みで計算。相手は性格補正ありの252振り。</p>
+    </div>
+  </div>
+
+
+  <div>
+    <h2><span class="n">8</span>持ち物</h2>
+    <table class="items">
+      <tbody>
+        <tr><th>こだわりハチマキ</th><td>S-1：ロンドの確定数を大きく改善</td><th>オボンのみ</th><td>D-1：いかく交代の場持ちを伸ばす</td></tr>
+        <tr><th>こだわりスカーフ</th><td>S-2：S267で黒バドも抜く</td><th>おんみつマント</th><td>D-1・D-4：ねこだましの怯みを防ぐ</td></tr>
+        <tr><th>いのちのたま</th><td>S-3・D-3：技を選べる火力</td><th>ハバンのみ</th><td>D-1：抜群の竜技を半減</td></tr>
+        <tr><th>クリアチャーム</th><td>D-3：相手のいかくを無効化</td><th>メンタルハーブ</th><td>D-2：ちょうはつ・アンコールを1回解除</td></tr>
+        <tr><th>ラムのみ</th><td>S-3：あくび・まひ・やけどを解除</td><th>たべのこし</th><td>S-4：あくびとねがいごとの長期戦</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot"><span>RONDO LAB ／ ドラフィア徹底考察レポート ／ 2026.11.04</span><span>2 / 3</span></div>
+</section>
+
+<!-- ======================= 3枚目 ======================= -->
+<section class="page">
+  <div>
+    <h2><span class="n">9</span>シングル（見せ合い6→3）</h2>
     <div class="match">
       <p><b>使用率上位20体との対面</b>（本命S-1が1対1で向き合った場合）　有利10・五分5・不利5</p>
       <p><span class="v v-good">有利</span>コライドン、パオジアン、ミライドン、ハバタクカミ、連撃ウーラオス、カイリュー、キラフロル、カイオーガ、オーロンゲ、オーガポン</p>
@@ -166,7 +295,7 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
   </div>
 
   <div>
-    <h2><span class="n">4</span>ダブル（見せ合い6→4）</h2>
+    <h2><span class="n">10</span>ダブル（見せ合い6→4）</h2>
     <table class="sets">
       <thead><tr><th>型</th><th>特性・性格・努力値</th><th>持ち物</th><th>技</th><th>役割</th></tr></thead>
       <tbody>
@@ -176,6 +305,12 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
         <tr><th>D-4 輪舞ブイズ</th><td>スキン・ようき H4 A252 S252</td><td>おんみつマント</td><td>ロンド・すてみ・かみくだく・まもる</td><td>ニンフィアをA・C・S+2</td></tr>
       </tbody>
     </table>
+    <div class="roles">
+      <div><b>いかくサイクル</b>いかくを入れ、ロンドで先に退く。相手が速ければ後続のすばやさも上がる。</div>
+      <div><b>竜の加護</b>ドラゴンエール＋ピントレンズで、竜の味方の攻撃がすべて急所になる。</div>
+      <div><b>妖・氷の先制処理</b>スキン型のロンドで、ハバタクカミ・パオジアン・エルフーンを先に削る。</div>
+      <div><b>ブイズの強化</b>隣のニンフィアをA・C・S+2。止め手はサイコフィールドとねこだまし。</div>
+    </div>
     <div class="cols" style="margin-top:1.8mm">
       <div>
         <h3>要注意の相手と技</h3>
@@ -200,7 +335,7 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
   </div>
 
   <div>
-    <h2><span class="n">5</span>試作構築</h2>
+    <h2><span class="n">11</span>試作構築</h2>
     <div class="teams">
       <div><b>T-S1 バドザシ竜皮</b><span>ドラフィア（S-1）・ザシアン(王)・黒バドレックス・ディンルー・ヘイラッシャ・キラフロル</span></div>
       <div><b>T-S2 晴れ輪舞</b><span>ドラフィア（S-4）・コライドン・ホウオウ・ハバタクカミ・ディンルー・キラフロル</span></div>
@@ -211,7 +346,7 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
   </div>
 
   <div>
-    <h2><span class="n">6</span>予測（ラボ推計）</h2>
+    <h2><span class="n">12</span>予測（ラボ推計）</h2>
     <div class="cols">
       <div>
         <h3>予想使用率順位</h3>
@@ -237,7 +372,7 @@ ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.4mm}
     </div>
   </div>
 
-  <div class="foot"><span>計算：Lv50・個体値31・SVダメージ式（Smogon製計算機と13件照合）　環境：S41 レギュI（2026-11-03時点）</span><span>2 / 2</span></div>
+  <div class="foot"><span>計算：Lv50・個体値31・SVダメージ式（Smogon製計算機と13件照合）　環境：S41 レギュI（2026-11-03時点）</span><span>3 / 3</span></div>
 </section>
 </body>
 </html>

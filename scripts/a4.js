@@ -1,4 +1,4 @@
-/* A4縦2枚の資料（PDF）を作る。
+/* A4縦3枚の対戦資料（PDF）を作る。
    templates/a4.html の <!--@NAME--> を埋め、{{…}} トークンをWeb版と同じ計算で解決し、
    印刷用HTMLを dist/draffia-a4.html に、PDF を pdf/draffia-battle.pdf に書き出す（ヘッドレス Chromium で印刷）。
    使い方: npm run pdf */
@@ -20,6 +20,18 @@ const groups = ['v-good', 'v-mid', 'v-bad'].map(c => rows.filter(r => r.cls === 
 const tally = groups.map(g => g.length ? `${g[0].label}${g.length}` : '').filter(Boolean).join('・');
 const list = groups.filter(g => g.length).map(g => `<p><span class="v ${g[0].cls}">${g[0].label}</span>${g.map(r => r.name).join('、')}</p>`).join('\n      ');
 
+/* 習得技の評価（Web版 §1.6 の表）をそのまま使う */
+const mvStart = body.indexOf('1.6</span>習得技の評価');
+const mvTbl = body.slice(body.indexOf('<tbody>', mvStart), body.indexOf('</tbody>', mvStart));
+const moveRows = [...mvTbl.matchAll(/<tr( class="grp")?>([\s\S]*?)<\/tr>/g)].map(m => {
+  if (m[1]) return `<tr class="grp"><td colspan="5">${m[2].replace(/<[^>]+>/g, '').trim()}</td></tr>`;
+  const cells = [...m[2].matchAll(/<(th|td)[^>]*>([\s\S]*?)<\/\1>/g)].map(c => c[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim());
+  if (cells.length !== 5) throw new Error('習得技の行の形が想定外: ' + m[2].slice(0, 80));
+  cells[4] = cells[4].replace(/実験記録[①-⑩]参照。?/g, '').replace(/（§[^）]*）/g, '').trim();
+  return `<tr><th>${cells[0]}</th><td>${cells[1]}</td><td class="c">${cells[2]}</td><td class="c">${cells[3]}</td><td>${cells[4]}</td></tr>`;
+}).join('\n');
+if ((moveRows.match(/<tr><th>/g) || []).length < 20) throw new Error('習得技の行数が少なすぎる');
+
 /* 採用率の推計（report.config.js）から各項目の1位 */
 const top = (grp, key) => { const g = grp.find(x => x[0] === key); return g ? `${g[1][0][0]}（${g[1][0][1]}%）` : '—'; };
 let adopt = '<table><thead><tr><th></th><th>シングル</th><th>ダブル</th></tr></thead><tbody>';
@@ -27,7 +39,7 @@ for (const k of ['特性', '型', '持ち物', 'テラスタル']) adopt += `<tr
 adopt += '</tbody></table>';
 
 const sprite = `<img src="data:image/png;base64,${fs.readFileSync(P('assets/draffia.png')).toString('base64')}" width="150" height="121" alt="ドラフィアの外観">`;
-const parts = {SPRITE: sprite, MATCH_TALLY: tally, MATCH_LIST: list, ADOPT_TOP: adopt};
+const parts = {SPRITE: sprite, MATCH_TALLY: tally, MATCH_LIST: list, ADOPT_TOP: adopt, MOVES: moveRows};
 for (const k in parts) {
   const tag = `<!--@${k}-->`;
   if (!html.includes(tag)) throw new Error('missing placeholder ' + k);
