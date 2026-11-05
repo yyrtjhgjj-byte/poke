@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ドラフィア ロンドのない世界線</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=block">
+<style>
+/* もしもドラゴニックロンドがなかったら、という仮定の考察（A4縦2枚）。npm run pdf で pdf/draffia-if-no-rondo.pdf に書き出す。
+   数値はWeb版と同じトークン。「ロンドあり」の判定と★はWeb版から自動で入る。紙面には他の資料への言及を入れない。 */
+:root{
+  --paper:#FFFFFF; --ink:#191C23; --ink2:#4E5565; --ink3:#7A8292; --rule:#D3D8E1; --rule2:#E9ECF1;
+  --if:#2C6B74; --ifInk:#1F525A; --ifWash:#E2EFF0; --ghost:#9AA1AE; --ghostWash:#F1F2F5; --stamp:#BE3328;
+  --good:#1F7444; --goodWash:#E1F1E7; --mid:#8A6200; --midWash:#FBEFD2; --bad:#AF3434; --badWash:#F7E1E1;
+  --f-display:'Dela Gothic One','IPAGothic',sans-serif;
+  --f-body:'Zen Kaku Gothic New','IPAPGothic','IPAGothic',sans-serif;
+  --f-mono:'IBM Plex Mono','IPAGothic',monospace;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:8.2pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;padding:10mm 11.5mm 8mm;display:flex;flex-direction:column;gap:3mm;overflow:hidden;break-after:page;position:relative}
+.page:last-child{break-after:auto}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+h1{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.05}
+h1 .name{font-size:28pt}
+h1 .doc{font-size:12pt;color:var(--ifInk);margin-left:8px}
+h2{font-size:11pt;font-weight:900;margin:0 0 1.6mm;display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--ink);padding-bottom:1mm}
+h2 .n{font-family:var(--f-mono);font-size:8pt;color:var(--if);font-weight:600}
+h3{font-size:9pt;font-weight:900;margin:0 0 1mm}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6mm;align-items:start}
+.lead{margin-top:2mm;color:var(--ink2)}
+.plate{border:1px dashed var(--if);border-radius:2px;padding:2.5mm 3mm;text-align:center;position:relative}
+.plate img{display:block;width:144px;height:auto;image-rendering:pixelated}
+.idgrid{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);gap:.6mm 3mm;margin-top:2.5mm;font-size:8.2pt}
+.idgrid dt{font-family:var(--f-mono);font-size:7pt;color:var(--ink3);padding-top:.4mm}
+.idgrid dd{margin:0}
+.chip{display:inline-block;border-radius:2px;padding:0 5px;font-size:7.5pt;font-weight:700;color:#fff;background:#4A3FBF}
+s.gone{color:var(--ink3);text-decoration-color:var(--stamp);text-decoration-thickness:1.5px}
+
+.verdicts{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.verdict{border:1px solid var(--rule);border-radius:2px;padding:2mm 3mm;display:grid;grid-template-columns:auto minmax(0,1fr);gap:3mm;align-items:center}
+.grades{display:flex;align-items:center;gap:1.6mm}
+.grade{width:14mm;height:14mm;border-radius:50%;border:2px solid var(--stamp);color:var(--stamp);display:grid;place-items:center;font-family:var(--f-display);font-size:15pt;transform:rotate(-8deg)}
+.grade.was{width:10mm;height:10mm;font-size:10pt;border:1.5px solid var(--ghost);color:var(--ghost);transform:none;position:relative}
+.grade.was::after{content:"";position:absolute;left:-1mm;right:-1mm;top:50%;border-top:1.5px solid var(--stamp);transform:rotate(-20deg)}
+.arrow{font-family:var(--f-mono);color:var(--ink3);font-size:9pt}
+.verdict h3{margin:0}
+.verdict .rank{font-family:var(--f-mono);font-size:7.2pt;color:var(--ink2);white-space:nowrap}
+.verdict .rank s{color:var(--ink3)}
+
+table{border-collapse:collapse;width:100%;font-size:7.8pt;line-height:1.42}
+th,td{border-bottom:1px solid var(--rule2);padding:.8mm 1.4mm;text-align:left;vertical-align:top}
+thead th{font-family:var(--f-mono);font-size:6.8pt;letter-spacing:.05em;color:var(--ink2);background:var(--rule2);border-bottom:1px solid var(--rule);font-weight:600}
+tbody th{font-weight:700;white-space:nowrap}
+td.n,th.n{font-family:var(--f-mono);white-space:nowrap}
+td.c,th.c{text-align:center}
+td.was{color:var(--ink3);background:var(--ghostWash)}
+thead th.was{color:var(--ink3)}
+thead th.now{background:var(--ifWash);color:var(--ifInk)}
+
+table.lost th:first-child{width:24mm}
+table.lost td:nth-child(2){width:58mm}
+table.lost td:nth-child(3){background:var(--ifWash)}
+
+ol.find{margin:0;padding:0;list-style:none;counter-reset:f;display:grid;gap:1mm}
+ol.find li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2.5mm}
+ol.find li::before{counter-increment:f;content:"所見" counter(f);font-family:var(--f-mono);font-size:6.8pt;font-weight:600;color:var(--ifInk);border:1px solid var(--if);border-radius:2px;padding:0 4px;height:fit-content;margin-top:.4mm;white-space:nowrap}
+
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm}
+.roles div{border:1px solid var(--rule);border-radius:2px;padding:1.4mm 2mm;font-size:7.5pt;line-height:1.45}
+.roles b{display:flex;justify-content:space-between;align-items:baseline;gap:2mm;font-size:8pt;margin-bottom:.5mm}
+.roles .st{font-size:6.8pt;font-weight:700;border-radius:2px;padding:0 4px;white-space:nowrap}
+.roles .keep{border-top:2px solid var(--good)} .roles .keep .st{background:var(--goodWash);color:var(--good)}
+.roles .weak{border-top:2px solid var(--mid)} .roles .weak .st{background:var(--midWash);color:var(--mid)}
+.roles .lose{border-top:2px solid var(--bad);background:var(--ghostWash)} .roles .lose .st{background:var(--badWash);color:var(--bad)}
+
+.v{display:inline-block;border-radius:2px;padding:0 4px;font-size:7.1pt;font-weight:700}
+.v-good{background:var(--goodWash);color:var(--good)} .v-mid{background:var(--midWash);color:var(--mid)} .v-bad{background:var(--badWash);color:var(--bad)}
+td.was .v{opacity:.55}
+table.match{table-layout:fixed}
+table.match th,table.match td{padding:.4mm 1.3mm;line-height:1.36;font-size:7.4pt}
+table.match col.no{width:6mm} table.match col.nm{width:25mm} table.match col.v3{width:15mm}
+table.match thead th{vertical-align:middle;padding:.4mm 1.3mm;letter-spacing:0;font-family:var(--f-body);font-size:6.6pt;white-space:nowrap}
+table.match tbody th{white-space:nowrap}
+table.match tr.flip th,table.match tr.flip td:not(.was){background:#FDF6E6}
+table.match tbody tr.flip th::after{content:"入替";font-family:var(--f-mono);font-size:5.8pt;color:var(--stamp);border:1px solid var(--stamp);border-radius:2px;padding:0 2px;margin-left:3px;vertical-align:1px}
+.tally{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4mm 3mm;font-size:7.8pt;margin-top:1.2mm}
+.tally dt{color:var(--ink3);font-family:var(--f-mono);font-size:7pt;padding-top:.3mm}
+.tally dd{margin:0;font-weight:700}
+
+table.moves{table-layout:fixed}
+table.moves th:nth-child(1){width:28mm}
+table.moves th:nth-child(2),table.moves th:nth-child(3){width:21mm}
+table.moves td.c,table.moves th.c{text-align:center;font-family:var(--f-mono)}
+table.moves th,table.moves td{padding:.45mm 1.3mm;font-size:7.4pt;line-height:1.36}
+
+table.sets{table-layout:fixed}
+table.sets th,table.sets td{padding:.6mm 1.3mm;font-size:7.5pt;line-height:1.38}
+table.sets th:nth-child(1){width:32mm}
+table.sets th:nth-child(2){width:34mm}
+table.sets th:nth-child(3){width:78mm}
+table.sets tr.grp td{background:var(--ifWash);color:var(--ifInk);font-weight:700;font-size:7pt;letter-spacing:.1em;padding:.4mm 1.4mm}
+.tag{font-family:var(--f-mono);font-size:6.5pt;border:1px solid currentColor;border-radius:2px;padding:0 3px;margin-left:4px;color:var(--stamp);font-weight:600}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+table.kv tbody th{width:1%;padding-right:3mm}
+.pri{font-family:var(--f-mono);font-size:6.6pt;color:var(--stamp);border:1px solid currentColor;border-radius:2px;padding:0 3px;margin-left:4px;font-weight:600}
+ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.5mm}
+.note{font-size:7.4pt;color:var(--ink2)}
+.close{border:1px solid var(--if);border-left:4px solid var(--if);border-radius:2px;padding:2mm 3mm;background:var(--ifWash);display:grid;gap:1mm}
+.foot{margin-top:auto;border-top:1.5px solid var(--ink);padding-top:1.5mm;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1mm 8mm;font-family:var(--f-mono);font-size:6.6pt;color:var(--ink3)}
+</style>
+</head>
+<body>
+
+<!-- ======================= 1枚目 ======================= -->
+<section class="page">
+  <div class="head">
+    <div>
+      <h1><span class="name">ドラフィア</span><span class="doc">ロンドのない世界線</span></h1>
+      <p class="lead">もしもドラフィアが専用技ドラゴニックロンドを覚えなかったら。タイプ・特性・種族値・ほかの習得技はそのままに、ロンドだけを取り除いて、SV ランクバトル シーズン41（レギュレーションI、禁止級2体まで）での性能を見直した。数値はLv50・個体値31・SVのダメージ計算式による。</p>
+      <dl class="idgrid">
+        <dt>タイプ</dt><dd><span class="chip">ドラゴン</span></dd>
+        <dt>特性</dt><dd>いかく ／ 夢：ドラゴンスキン</dd>
+        <dt>種族値</dt><dd class="mono" style="grid-column:span 3">{{base line}}</dd>
+        <dt>専用技</dt><dd style="grid-column:span 3"><s class="gone">ドラゴニックロンド</s>　なし。ほかの習得技（すてみタックル・でんこうせっか・アイアンテール・バトンタッチ・ドラゴンエールなど）は同じ</dd>
+      </dl>
+    </div>
+    <div class="plate"><!--@SPRITE--></div>
+  </div>
+
+  <div class="verdicts">
+    <div class="verdict">
+      <div class="grades"><div class="grade was">{{grade S}}</div><span class="arrow">→</span><div class="grade">C+</div></div>
+      <div><h3>シングル</h3><div class="rank">予想順位（定着後） <s>{{rank S settled}}</s> → 40〜60位</div><p>スカーフのすてみタックルで、禁止級の竜を上から1発で落とす掃除役。先制技とフェアリーへの打点がなく、速い相手と妖には出し負ける。</p></div>
+    </div>
+    <div class="verdict">
+      <div class="grades"><div class="grade was">{{grade D}}</div><span class="arrow">→</span><div class="grade">B-</div></div>
+      <div><h3>ダブル</h3><div class="rank">予想順位（定着後） <s>{{rank D settled}}</s> → 25〜40位</div><p>ドラゴンエールで竜の味方を確定急所にする支援役。いかくは撃てるが、先制の交代もねこだましもなく、いかく役としてはガオガエンに及ばない。</p></div>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="n">1</span>ロンドが担っていたもの</h2>
+    <table class="lost">
+      <thead><tr><th></th><th class="was">ロンドあり</th><th class="now">ロンドなし</th></tr></thead>
+      <tbody>
+        <tr><th>先制攻撃</th><td class="was">スキン版は優先度+2・威力{{bp rondo}}の一致竜技</td><td>先制技はでんこうせっか（優先度+1・実質{{bp quickattack skin}}）だけ。ハチマキでもH4パオジアンに{{dmg S1 quickattack chienpao_as pct}}</td></tr>
+        <tr><th>妖・氷への打点</th><td class="was">相性を×2に置き換え。H4ハバタクカミを{{dmg S1 rondo flutter_cs ko}}</td><td>竜技も、スキンで竜になったノーマル技も、フェアリーには無効。抜群を取れるのはアイアンテール（命中75）だけ</td></tr>
+        <tr><th>いかくの出し直し</th><td class="was">いかく版は優先度+1で先に交代し、条件つきで後続のすばやさを上げる</td><td>退く技はバトンタッチ（優先度0）だけ。上から殴られてから退くことになる</td></tr>
+        <tr><th>イーブイ系の強化</th><td class="was">隣のイーブイ系のA・C・S+2</td><td>手段がない。対戦でニンフィアと並べる理由はなくなる</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2><span class="n">2</span>主要所見</h2>
+    <ol class="find">
+      <li><div><b>先手が取れない。</b> 最速でもS{{stat S1 spe}}で、{{spvs S1 koraidon/jolly chienpao/jolly fluttermane/timid miraidon/timid zacianc/jolly calyrexs/timid}}。無振りの耐久では、パオジアンの珠つららおとしで{{hit S1 pao_icicle_lo ko}}、ハバタクカミのムーンフォースで{{hit S1 fm_moon_timid ko}}、ミライドンのりゅうせいぐんで{{hit S1 mir_draco ko}}。先制技の撃ち合いにも負けるため（§4）、撃つ前に落とされる。</div></li>
+      <li><div><b>フェアリーに手が出ない。</b> 一致技はすべてフェアリーに無効で、相手のテラスタルフェアリー1つで竜技が止まる。抜群を取れるのはアイアンテールだけで、ハチマキならH4ハバタクカミを{{dmg S1 irontail flutter_cs ko}}だが、命中75のうえ相手の方が速い。</div></li>
+      <li><div><b>すてみタックルは健在。</b> スキン化で実質威力{{bp doubleedge skin}}の一致技。スカーフならS{{setspe S2}}で{{spvs S2 koraidon/jolly miraidon/timid calyrexs/timid}}。すてみで{{kolist S2 doubleedge koraidon_as miraidon_cs}}、かみくだくで黒バドレックスは{{dmg S2 crunch calyrexs_cs ko}}。</div></li>
+      <li><div><b>ダブルでは「竜の加護」が残る。</b> ドラゴンエールはロンドと無関係で、竜の味方を確定急所にする役はそのまま担える。</div></li>
+    </ol>
+  </div>
+
+
+  <div class="cols">
+    <div>
+      <h2><span class="n">3</span>すばやさ</h2>
+      <table class="kv">
+        <tbody>
+          <tr><th class="n">S{{stat S1 spe}}</th><td>最速。{{spvs S1 urshifur/jolly ogerpon/jolly koraidon/jolly}}</td></tr>
+          <tr><th class="n">S{{setspe S2}}</th><td>最速スカーフ／竜舞+1。{{spvs S2 calyrexs/timid zacianc/jolly}}。禁止級の上を取るにはどちらかが要る</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2><span class="n">4</span>先制技の撃ち合い</h2>
+      <table class="kv">
+        <tbody>
+          <tr><th>しんそく<span class="pri">+2</span></th><td>カイリューのハチマキしんそくが先に入り、H4に{{hit S1 dnite_es full}}</td></tr>
+          <tr><th>こおりのつぶて<span class="pri">+1</span></th><td>でんこうせっかと同じ+1で、{{spcmp S1 chienpao jolly 252}}。パオジアンの珠つぶてでH4は{{hit S1 pao_shard_lo ko}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="n">5</span>評価が変わる技</h2>
+    <table class="moves">
+      <thead><tr><th>技</th><th class="c was">ロンドあり</th><th class="c now">ロンドなし</th><th>理由（★はシングル／ダブルの順）</th></tr></thead>
+      <tbody>
+        <tr data-move="ドラゴニックロンド"><th>ドラゴニックロンド</th><!--@STARS--><td class="c">—</td><td>覚えない</td></tr>
+        <tr data-move="アイアンテール"><th>アイアンテール</th><!--@STARS--><td class="c">★4／★2</td><td>フェアリーに抜群を取れる唯一の技。命中75が重い</td></tr>
+        <tr data-move="でんこうせっか"><th>でんこうせっか</th><!--@STARS--><td class="c">★3／★1</td><td>唯一の先制技。実質{{bp quickattack skin}}で、削れた相手とタスキの処理に使う</td></tr>
+        <tr data-move="りゅうのまい"><th>りゅうのまい</th><!--@STARS--><td class="c">★4／★1</td><td>+1でS{{setspe S3 +1}}。スカーフ以外で禁止級の上を取る手段</td></tr>
+        <tr data-move="バトンタッチ"><th>バトンタッチ</th><!--@STARS--><td class="c">★2／★3</td><td>いかく型が退く唯一の技（優先度0）</td></tr>
+        <tr data-move="つぶらなひとみ"><th>つぶらなひとみ</th><!--@STARS--><td class="c">★1／★4</td><td>優先度+1で攻撃-1。いかく型が先に動ける数少ない技</td></tr>
+        <tr data-move="あくび"><th>あくび</th><!--@STARS--><td class="c">★2／★2</td><td>眠らせても、次のターンに先制で退けない</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>ドラフィア ロンドのない世界線</span><span>1 / 2</span></div>
+</section>
+
+<!-- ======================= 2枚目 ======================= -->
+<section class="page">
+  <div>
+    <h2><span class="n">6</span>シングル：使用率上位20体との対面</h2>
+    <table class="match"><colgroup><col class="no"><col class="nm"><col class="v3"><col class="v3"><col class="v3"><col></colgroup>
+      <thead><tr><th class="n" rowspan="2">順</th><th rowspan="2">ポケモン</th><th class="was c" rowspan="2">ロンドあり<br>鉢巻</th><th class="now c" colspan="2">ロンドなし</th><th rowspan="2">根拠（ロンドなし。相手はH4、ドラフィアの耐久は無振り）</th></tr><tr><th class="now c">鉢巻</th><th class="now c">スカーフ</th></tr></thead>
+      <tbody>
+        <tr data-real="コライドン"><td class="n">1</td><th>コライドン</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-good">有利</span></td><td>鉢巻は{{spcmp S1 koraidon jolly 252}}、晴れげきりんで{{hit S1 kor_outrage ko}}。スカーフなら上からすてみ{{dmg S2 doubleedge koraidon_as ko}}</td></tr>
+        <tr data-real="パオジアン"><td class="n">2</td><th>パオジアン</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-mid">五分</span></td><td>鉢巻は上から珠つららおとし{{hit S1 pao_icicle_lo ko}}。スカーフのすてみは{{dmg S2 doubleedge chienpao_as ko}}</td></tr>
+        <tr data-real="ディンルー"><td class="n">3</td><th>ディンルー</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>HB特化に鉢巻すてみ{{dmg S1 doubleedge tinglu_hb pct}}。カタストロフィとふきとばしで流される</td></tr>
+        <tr data-real="黒バドレックス"><td class="n">4</td><th>黒バドレックス</th><!--@REAL--><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-good">有利</span></td><td>鉢巻は先手を取られ、テラスノーマルで受けて五分。スカーフなら上からかみくだく{{dmg S2 crunch calyrexs_cs ko}}</td></tr>
+        <tr data-real="ミライドン"><td class="n">5</td><th>ミライドン</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-good">有利</span></td><td>鉢巻は上からりゅうせいぐん{{hit S1 mir_draco ko}}。スカーフなら上からすてみ{{dmg S2 doubleedge miraidon_cs ko}}</td></tr>
+        <tr data-real="ハバタクカミ"><td class="n">6</td><th>ハバタクカミ</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-mid">五分</span></td><td>竜技は無効。スカーフのアイアンテールで{{dmg S2 irontail flutter_cs ko}}だが命中75。鉢巻は撃つ前に落ちる</td></tr>
+        <tr data-real="連撃ウーラオス"><td class="n">7</td><th>連撃ウーラオス</th><!--@REAL--><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>鉢巻なら先手ですてみ{{dmg S1 doubleedge urshifur_as ko}}。スカーフは{{dmg S2 doubleedge urshifur_as ko}}で、インファイトを返される</td></tr>
+        <tr data-real="霊獣ランドロス"><td class="n">8</td><th>霊獣ランドロス</th><!--@REAL--><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td>いかくを受けたすてみはHB特化に、鉢巻{{dmg S1 doubleedge landot_hb stage=-1 pct}}・スカーフ{{dmg S2 doubleedge landot_hb stage=-1 pct}}</td></tr>
+        <tr data-real="ホウオウ"><td class="n">9</td><th>ホウオウ</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>HB特化に鉢巻すてみ{{dmg S1 doubleedge hooh_hb pct}}。さいせいりょくとやけどで受けられる</td></tr>
+        <tr data-real="ヘイラッシャ"><td class="n">10</td><th>ヘイラッシャ</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>てんねんで竜舞が無効。鉢巻すてみ{{dmg S1 doubleedge dondozo_hb pct}}。あくびとじわれ</td></tr>
+        <tr data-real="ザシアン(王)"><td class="n">11</td><th>ザシアン(王)</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>すてみは無効、鉢巻アイアンテールでも{{dmg S1 irontail zacianc_as pct}}。+1じゃれつくで{{hit S1 zac_pr ko}}</td></tr>
+        <tr data-real="カイリュー"><td class="n">12</td><th>カイリュー</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>先にしんそくで{{hit S1 dnite_es ko}}。すてみはマルチスケイル込みで{{dmg S1 doubleedge dragonite_h ko}}</td></tr>
+        <tr data-real="キラフロル"><td class="n">13</td><th>キラフロル</th><!--@REAL--><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-mid">五分</span></td><td>上からすてみ：鉢巻{{dmg S1 doubleedge glimmora_cs ko}}、スカーフ{{dmg S2 doubleedge glimmora_cs ko}}（タスキ以外）</td></tr>
+        <tr data-real="アカツキガチグマ"><td class="n">14</td><th>アカツキガチグマ</th><!--@REAL--><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td>ブラッドムーンで{{hit S1 ursb_bm ko}}。H252へのすてみは鉢巻{{dmg S1 doubleedge ursalunab_h pct}}・スカーフ{{dmg S2 doubleedge ursalunab_h pct}}</td></tr>
+        <tr data-real="カイオーガ"><td class="n">15</td><th>カイオーガ</th><!--@REAL--><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>鉢巻すてみは{{dmg S1 doubleedge kyogre_cs ko}}。スカーフは{{dmg S2 doubleedge kyogre_cs ko}}で、れいとうビーム（{{hit S2 kyo_icebeam ko}}）を返される</td></tr>
+        <tr data-real="オーロンゲ"><td class="n">16</td><th>オーロンゲ</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>竜技は無効。HB特化に鉢巻アイアンテールで{{dmg S1 irontail grimmsnarl_hb ko}}。その間に壁を張られる</td></tr>
+        <tr data-real="ミミッキュ"><td class="n">17</td><th>ミミッキュ</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>竜技は無効。アイアンテール（命中75）が2発要り、じゃれつくで{{hit S1 mimi_pr ko}}</td></tr>
+        <tr data-real="オーガポン"><td class="n">18</td><th>オーガポン</th><!--@REAL--><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-good">有利</span></td><td>草・水・炎のツタこんぼうを半減。すてみ：鉢巻{{dmg S1 doubleedge ogerpon_as ko}}、スカーフ{{dmg S2 doubleedge ogerpon_as ko}}</td></tr>
+        <tr data-real="グライオン"><td class="n">19</td><th>グライオン</th><!--@REAL--><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td>すてみは鉢巻{{dmg S1 doubleedge gliscor_hb pct}}・スカーフ{{dmg S2 doubleedge gliscor_hb pct}}。ポイズンヒールで長引く</td></tr>
+        <tr data-real="キョジオーン"><td class="n">20</td><th>キョジオーン</th><!--@REAL--><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>鉢巻すてみ{{dmg S1 doubleedge garganacl_hb pct}}。しおづけで削られ続ける</td></tr>
+      </tbody>
+    </table>
+    <dl class="tally">
+      <dt>ロンドあり（鉢巻）</dt><dd><!--@TALLY_REAL--></dd>
+      <dt>ロンドなし（鉢巻）</dt><dd><!--@TALLY_BAND-->　入れ替わり<!--@FLIPS-->体</dd>
+      <dt>ロンドなし（スカーフ）</dt><dd><!--@TALLY_SCARF-->　有利のうち3体は使用率1・4・5位の禁止級</dd>
+    </dl>
+  </div>
+
+
+  <div>
+    <h2><span class="n">7</span>ダブルの役割はどう残るか</h2>
+    <div class="roles">
+      <div class="keep"><b>竜の加護<span class="st">残る</span></b>ドラゴンエール＋ピントレンズで、竜の味方の攻撃がすべて急所になる。この世界線での主な仕事。</div>
+      <div class="weak"><b>いかくサイクル<span class="st">弱まる</span></b>いかくは撃てるが、退く技はバトンタッチ（優先度0）だけ。後続のすばやさも上がらない。</div>
+      <div class="lose"><b>妖・氷の先制処理<span class="st">消える</span></b>竜技はフェアリーに無効。エルフーン・ハバタクカミに抜群を取れるのはアイアンテールだけ。</div>
+      <div class="lose"><b>ブイズの強化<span class="st">消える</span></b>イーブイ系を強化する技がない。ニンフィアと組む構築は成立しない。</div>
+    </div>
+    <p class="note" style="margin-top:1.2mm">いかく役としては、ねこだまし・すてゼリフ・はたきおとすを持つガオガエンに大きく劣る。それでもドラゴンタイプで水・炎・電気・草を半減し、エールとワイドブレイカーを持つ点は、ガオガエンにない持ち味として残る。</p>
+  </div>
+  <div>
+    <h2><span class="n">8</span>この世界線の型</h2>
+    <table class="sets">
+      <thead><tr><th>型</th><th>持ち物</th><th>技</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="4">シングル（いずれもドラゴンスキン・{{nat S1}} {{ev S1}}）</td></tr>
+        <tr><th>竜皮スカーフ<span class="tag">本命</span></th><td>スカーフ（S{{setspe S2}}）</td><td>すてみ・かみくだく・アイアンテール・くさわけ</td><td>禁止級を上から落とす</td></tr>
+        <tr><th>竜皮ハチマキ</th><td>こだわりハチマキ</td><td>すてみ・かみくだく・アイアンテール・でんこうせっか</td><td>遅い相手を1発で</td></tr>
+        <tr><th>竜舞アタッカー</th><td>珠・テラス竜</td><td>りゅうのまい・すてみ・かみくだく・アイアンテール</td><td>+1でS{{setspe S3 +1}}</td></tr>
+        <tr class="grp"><td colspan="4">ダブル（いずれもいかく・{{nat D1}} {{ev D1}}）</td></tr>
+        <tr><th>竜の加護<span class="tag">本命</span></th><td>メンタルハーブ</td><td>ドラゴンエール・てだすけ・ワイドブレイカー・まもる</td><td>竜の味方を確定急所に</td></tr>
+        <tr><th>いかく支援</th><td>オボンのみ</td><td>ワイドブレイカー・つぶらなひとみ・バトンタッチ・まもる</td><td>物理を下げて退く</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="close">
+    <h3 style="margin:0">結論：ロンドは評価の土台だった</h3>
+    <p>ロンドを外すと、上位20体との対面（鉢巻同士）で有利が<!--@GOOD_REAL-->体から<!--@GOOD_BAND-->体に減る。入れ替わるのは、先手を取れなくなるコライドン・パオジアン・ミライドン・カイリュー、フェアリーに打点がなくなるオーロンゲ・ミミッキュ、その両方のハバタクカミである。ロンドは強みを上乗せする技ではなく、速い禁止級と妖・氷への回答そのものだった。</p>
+    <p>ロンドのないドラフィアは「すてみタックルが強い、紙耐久の竜アタッカー」になる。耐久・マルチスケイル・しんそくを持つカイリューに多くの点で及ばず、勝るのは素早さとすてみの威力。シングルはスカーフの掃除役、ダブルはエールの支援役として、それぞれ1つの仕事に絞られる。</p>
+  </div>
+
+  <div class="foot"><span>計算：Lv50・個体値31・SVダメージ式　環境：S41 レギュI（2026-11-03時点）</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>

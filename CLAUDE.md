@@ -33,7 +33,7 @@
 2. `src/data.js` の `SP.draffia`（`b` 種族値、`t` タイプ、`skin` 変換先）と `DM`（技）を更新。
    - 専用技の挙動：`src/core.js` の `drfAtk`（`mv.rondo` 分岐。ロンドは物理技）と `src/engine.js` の `eff(…, {rondo})`（妖・氷を×2に上書き）。
 3. 型の配分を変えるなら `src/sets.js`。ダブル耐久型は `scripts/analysis/opt.js` で探索できる。
-4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md` → `pdf/` の PDF 2点。
+4. `npm run all`：照合 13/13 → `dist/draffia.html` と `notes/claims.md` → `notes/calc-snapshot.md` → `pdf/` の PDF 3点。
 5. `git diff notes/claims.md` で、本文中のどの数値が変わったかを見る。値の前後の判定（有利・不利、「耐える」「抜ける」などの言い回し）が数値と食い違っていないかを確認し、`templates/body.html` を直す。
 6. 主観の値（総合評価、予想順位、レーダー、採用率）は `src/report.config.js` で見直す。
 7. `python3 scripts/look.py` は1回だけ。エラーとはみ出しがなければ公開する。Python の playwright が無い環境では `pip install playwright` のうえ `--chrome /opt/pw-browsers/chromium` を付ける。
@@ -79,6 +79,15 @@
 - 中身は設定（spec）と §8 記録庫の物語から取る。新しい設定は作らない。物語からの引用は一字一句そのまま。
 - 種族値のバーは `{{!base …}}` で自動。タイプ相性・性格・わざの説明は手書き。
 - イラストは PDF 用の JPEG（`assets/draffia-sylveon.jpg`）を使う（WebP だと Chromium が再圧縮して PDF が数MBになる）。
+
+## ロンドのない世界線（PDF）
+
+- 「専用技ドラゴニックロンドを覚えなかったら」という仮定の考察（依頼者の思いつき、2026-11-05）。A4縦2枚。`templates/ifworld.html` → `scripts/ifworld.js` → `pdf/draffia-if-no-rondo.pdf`（印刷前のHTMLは `dist/draffia-if.html`、`npm run pdf` で続けて作る）。
+- 前提は「ロンドだけを取り除き、タイプ・特性・種族値・ほかの習得技は現行のまま」。現行の仕様を変えたら、この資料も現行の仕様からロンドを抜いた姿として追従する。
+- この資料だけは「ロンドあり」との比較が主題なので、比較の文言を紙面に書いてよい。ほかの PDF と同じく、Web版の存在や版の話（v1・v4 など）は書かない。
+- 自動で入るもの：「ロンドあり」の対面判定（Web版 §2.1 `tbl-s-match` から名前で引く）、評価が変わる技の「ロンドあり」の★（§1.6 から技名で引く）、対面の集計と入れ替わり数、数値トークン。判定が入れ替わった行には印が付く。
+- 計算は既存の型を流用する（鉢巻＝S1、スカーフ＝S2、竜舞＝S3、ダブル＝D1）。§8 の型の表は S1・S2・S3 の性格・努力値が同じ前提で見出し行にまとめており、揃っていなければ `ifworld.js` が止まる。
+- 手書きのもの：ロンドなしの判定（鉢巻・スカーフ）と根拠、評価（シングルC+・ダブルB-）と予想順位、ロンドなしの★、型、結論の文（入れ替わる7体の内訳）。性能やWeb版の対面表を変えたら見直す。
 
 ## 数値トークン
 

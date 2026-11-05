@@ -39,7 +39,7 @@ pdf/         PDF の成果物（npm run pdf / npm run all で更新。中身は 
 
 ```bash
 npm install            # 照合用の @smogon/calc を入れる
-npm run all            # 照合 → ビルド → スナップショット
+npm run all            # 照合 → ビルド → スナップショット → PDF
 python3 scripts/look.py   # 任意。要 Playwright
 ```
 

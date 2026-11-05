@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ドラフィア ロンドのない世界線</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=block">
+<style>
+/* もしもドラゴニックロンドがなかったら、という仮定の考察（A4縦2枚）。npm run pdf で pdf/draffia-if-no-rondo.pdf に書き出す。
+   数値はWeb版と同じトークン。「ロンドあり」の判定と★はWeb版から自動で入る。紙面には他の資料への言及を入れない。 */
+:root{
+  --paper:#FFFFFF; --ink:#191C23; --ink2:#4E5565; --ink3:#7A8292; --rule:#D3D8E1; --rule2:#E9ECF1;
+  --if:#2C6B74; --ifInk:#1F525A; --ifWash:#E2EFF0; --ghost:#9AA1AE; --ghostWash:#F1F2F5; --stamp:#BE3328;
+  --good:#1F7444; --goodWash:#E1F1E7; --mid:#8A6200; --midWash:#FBEFD2; --bad:#AF3434; --badWash:#F7E1E1;
+  --f-display:'Dela Gothic One','IPAGothic',sans-serif;
+  --f-body:'Zen Kaku Gothic New','IPAPGothic','IPAGothic',sans-serif;
+  --f-mono:'IBM Plex Mono','IPAGothic',monospace;
+}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:8.2pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;padding:10mm 11.5mm 8mm;display:flex;flex-direction:column;gap:3mm;overflow:hidden;break-after:page;position:relative}
+.page:last-child{break-after:auto}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+h1{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.05}
+h1 .name{font-size:28pt}
+h1 .doc{font-size:12pt;color:var(--ifInk);margin-left:8px}
+h2{font-size:11pt;font-weight:900;margin:0 0 1.6mm;display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--ink);padding-bottom:1mm}
+h2 .n{font-family:var(--f-mono);font-size:8pt;color:var(--if);font-weight:600}
+h3{font-size:9pt;font-weight:900;margin:0 0 1mm}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6mm;align-items:start}
+.lead{margin-top:2mm;color:var(--ink2)}
+.plate{border:1px dashed var(--if);border-radius:2px;padding:2.5mm 3mm;text-align:center;position:relative}
+.plate img{display:block;width:144px;height:auto;image-rendering:pixelated}
+.idgrid{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);gap:.6mm 3mm;margin-top:2.5mm;font-size:8.2pt}
+.idgrid dt{font-family:var(--f-mono);font-size:7pt;color:var(--ink3);padding-top:.4mm}
+.idgrid dd{margin:0}
+.chip{display:inline-block;border-radius:2px;padding:0 5px;font-size:7.5pt;font-weight:700;color:#fff;background:#4A3FBF}
+s.gone{color:var(--ink3);text-decoration-color:var(--stamp);text-decoration-thickness:1.5px}
+
+.verdicts{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.verdict{border:1px solid var(--rule);border-radius:2px;padding:2mm 3mm;display:grid;grid-template-columns:auto minmax(0,1fr);gap:3mm;align-items:center}
+.grades{display:flex;align-items:center;gap:1.6mm}
+.grade{width:14mm;height:14mm;border-radius:50%;border:2px solid var(--stamp);color:var(--stamp);display:grid;place-items:center;font-family:var(--f-display);font-size:15pt;transform:rotate(-8deg)}
+.grade.was{width:10mm;height:10mm;font-size:10pt;border:1.5px solid var(--ghost);color:var(--ghost);transform:none;position:relative}
+.grade.was::after{content:"";position:absolute;left:-1mm;right:-1mm;top:50%;border-top:1.5px solid var(--stamp);transform:rotate(-20deg)}
+.arrow{font-family:var(--f-mono);color:var(--ink3);font-size:9pt}
+.verdict h3{margin:0}
+.verdict .rank{font-family:var(--f-mono);font-size:7.2pt;color:var(--ink2);white-space:nowrap}
+.verdict .rank s{color:var(--ink3)}
+
+table{border-collapse:collapse;width:100%;font-size:7.8pt;line-height:1.42}
+th,td{border-bottom:1px solid var(--rule2);padding:.8mm 1.4mm;text-align:left;vertical-align:top}
+thead th{font-family:var(--f-mono);font-size:6.8pt;letter-spacing:.05em;color:var(--ink2);background:var(--rule2);border-bottom:1px solid var(--rule);font-weight:600}
+tbody th{font-weight:700;white-space:nowrap}
+td.n,th.n{font-family:var(--f-mono);white-space:nowrap}
+td.c,th.c{text-align:center}
+td.was{color:var(--ink3);background:var(--ghostWash)}
+thead th.was{color:var(--ink3)}
+thead th.now{background:var(--ifWash);color:var(--ifInk)}
+
+table.lost th:first-child{width:24mm}
+table.lost td:nth-child(2){width:58mm}
+table.lost td:nth-child(3){background:var(--ifWash)}
+
+ol.find{margin:0;padding:0;list-style:none;counter-reset:f;display:grid;gap:1mm}
+ol.find li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2.5mm}
+ol.find li::before{counter-increment:f;content:"所見" counter(f);font-family:var(--f-mono);font-size:6.8pt;font-weight:600;color:var(--ifInk);border:1px solid var(--if);border-radius:2px;padding:0 4px;height:fit-content;margin-top:.4mm;white-space:nowrap}
+
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm}
+.roles div{border:1px solid var(--rule);border-radius:2px;padding:1.4mm 2mm;font-size:7.5pt;line-height:1.45}
+.roles b{display:flex;justify-content:space-between;align-items:baseline;gap:2mm;font-size:8pt;margin-bottom:.5mm}
+.roles .st{font-size:6.8pt;font-weight:700;border-radius:2px;padding:0 4px;white-space:nowrap}
+.roles .keep{border-top:2px solid var(--good)} .roles .keep .st{background:var(--goodWash);color:var(--good)}
+.roles .weak{border-top:2px solid var(--mid)} .roles .weak .st{background:var(--midWash);color:var(--mid)}
+.roles .lose{border-top:2px solid var(--bad);background:var(--ghostWash)} .roles .lose .st{background:var(--badWash);color:var(--bad)}
+
+.v{display:inline-block;border-radius:2px;padding:0 4px;font-size:7.1pt;font-weight:700}
+.v-good{background:var(--goodWash);color:var(--good)} .v-mid{background:var(--midWash);color:var(--mid)} .v-bad{background:var(--badWash);color:var(--bad)}
+td.was .v{opacity:.55}
+table.match{table-layout:fixed}
+table.match th,table.match td{padding:.4mm 1.3mm;line-height:1.36;font-size:7.4pt}
+table.match col.no{width:6mm} table.match col.nm{width:25mm} table.match col.v3{width:15mm}
+table.match thead th{vertical-align:middle;padding:.4mm 1.3mm;letter-spacing:0;font-family:var(--f-body);font-size:6.6pt;white-space:nowrap}
+table.match tbody th{white-space:nowrap}
+table.match tr.flip th,table.match tr.flip td:not(.was){background:#FDF6E6}
+table.match tbody tr.flip th::after{content:"入替";font-family:var(--f-mono);font-size:5.8pt;color:var(--stamp);border:1px solid var(--stamp);border-radius:2px;padding:0 2px;margin-left:3px;vertical-align:1px}
+.tally{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4mm 3mm;font-size:7.8pt;margin-top:1.2mm}
+.tally dt{color:var(--ink3);font-family:var(--f-mono);font-size:7pt;padding-top:.3mm}
+.tally dd{margin:0;font-weight:700}
+
+table.moves{table-layout:fixed}
+table.moves th:nth-child(1){width:28mm}
+table.moves th:nth-child(2),table.moves th:nth-child(3){width:21mm}
+table.moves td.c,table.moves th.c{text-align:center;font-family:var(--f-mono)}
+table.moves th,table.moves td{padding:.45mm 1.3mm;font-size:7.4pt;line-height:1.36}
+
+table.sets{table-layout:fixed}
+table.sets th,table.sets td{padding:.6mm 1.3mm;font-size:7.5pt;line-height:1.38}
+table.sets th:nth-child(1){width:32mm}
+table.sets th:nth-child(2){width:34mm}
+table.sets th:nth-child(3){width:78mm}
+table.sets tr.grp td{background:var(--ifWash);color:var(--ifInk);font-weight:700;font-size:7pt;letter-spacing:.1em;padding:.4mm 1.4mm}
+.tag{font-family:var(--f-mono);font-size:6.5pt;border:1px solid currentColor;border-radius:2px;padding:0 3px;margin-left:4px;color:var(--stamp);font-weight:600}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+table.kv tbody th{width:1%;padding-right:3mm}
+.pri{font-family:var(--f-mono);font-size:6.6pt;color:var(--stamp);border:1px solid currentColor;border-radius:2px;padding:0 3px;margin-left:4px;font-weight:600}
+ul.pts{margin:0;padding-left:1.1em;display:grid;gap:.5mm}
+.note{font-size:7.4pt;color:var(--ink2)}
+.close{border:1px solid var(--if);border-left:4px solid var(--if);border-radius:2px;padding:2mm 3mm;background:var(--ifWash);display:grid;gap:1mm}
+.foot{margin-top:auto;border-top:1.5px solid var(--ink);padding-top:1.5mm;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1mm 8mm;font-family:var(--f-mono);font-size:6.6pt;color:var(--ink3)}
+</style>
+</head>
+<body>
+
+<!-- ======================= 1枚目 ======================= -->
+<section class="page">
+  <div class="head">
+    <div>
+      <h1><span class="name">ドラフィア</span><span class="doc">ロンドのない世界線</span></h1>
+      <p class="lead">もしもドラフィアが専用技ドラゴニックロンドを覚えなかったら。タイプ・特性・種族値・ほかの習得技はそのままに、ロンドだけを取り除いて、SV ランクバトル シーズン41（レギュレーションI、禁止級2体まで）での性能を見直した。数値はLv50・個体値31・SVのダメージ計算式による。</p>
+      <dl class="idgrid">
+        <dt>タイプ</dt><dd><span class="chip">ドラゴン</span></dd>
+        <dt>特性</dt><dd>いかく ／ 夢：ドラゴンスキン</dd>
+        <dt>種族値</dt><dd class="mono" style="grid-column:span 3">H95 A130 B65 C60 D65 S110 ／ 525</dd>
+        <dt>専用技</dt><dd style="grid-column:span 3"><s class="gone">ドラゴニックロンド</s>　なし。ほかの習得技（すてみタックル・でんこうせっか・アイアンテール・バトンタッチ・ドラゴンエールなど）は同じ</dd>
+      </dl>
+    </div>
+    <div class="plate"><img src="data:image/png;base64,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" width="144" height="116" alt="ドラフィアの外観"></div>
+  </div>
+
+  <div class="verdicts">
+    <div class="verdict">
+      <div class="grades"><div class="grade was">A-</div><span class="arrow">→</span><div class="grade">C+</div></div>
+      <div><h3>シングル</h3><div class="rank">予想順位（定着後） <s>20〜30位</s> → 40〜60位</div><p>スカーフのすてみタックルで、禁止級の竜を上から1発で落とす掃除役。先制技とフェアリーへの打点がなく、速い相手と妖には出し負ける。</p></div>
+    </div>
+    <div class="verdict">
+      <div class="grades"><div class="grade was">A+</div><span class="arrow">→</span><div class="grade">B-</div></div>
+      <div><h3>ダブル</h3><div class="rank">予想順位（定着後） <s>6〜12位</s> → 25〜40位</div><p>ドラゴンエールで竜の味方を確定急所にする支援役。いかくは撃てるが、先制の交代もねこだましもなく、いかく役としてはガオガエンに及ばない。</p></div>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="n">1</span>ロンドが担っていたもの</h2>
+    <table class="lost">
+      <thead><tr><th></th><th class="was">ロンドあり</th><th class="now">ロンドなし</th></tr></thead>
+      <tbody>
+        <tr><th>先制攻撃</th><td class="was">スキン版は優先度+2・威力75の一致竜技</td><td>先制技はでんこうせっか（優先度+1・実質48）だけ。ハチマキでもH4パオジアンに48〜57%</td></tr>
+        <tr><th>妖・氷への打点</th><td class="was">相性を×2に置き換え。H4ハバタクカミを確定1発</td><td>竜技も、スキンで竜になったノーマル技も、フェアリーには無効。抜群を取れるのはアイアンテール（命中75）だけ</td></tr>
+        <tr><th>いかくの出し直し</th><td class="was">いかく版は優先度+1で先に交代し、条件つきで後続のすばやさを上げる</td><td>退く技はバトンタッチ（優先度0）だけ。上から殴られてから退くことになる</td></tr>
+        <tr><th>イーブイ系の強化</th><td class="was">隣のイーブイ系のA・C・S+2</td><td>手段がない。対戦でニンフィアと並べる理由はなくなる</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2><span class="n">2</span>主要所見</h2>
+    <ol class="find">
+      <li><div><b>先手が取れない。</b> 最速でもS178で、コライドン（205）、パオジアン（205）、ハバタクカミ（205）、ミライドン（205）、ザシアン(王)（220）、黒バドレックス（222）より遅い。無振りの耐久では、パオジアンの珠つららおとしで確定1発、ハバタクカミのムーンフォースで確定1発、ミライドンのりゅうせいぐんで確定1発。先制技の撃ち合いにも負けるため（§4）、撃つ前に落とされる。</div></li>
+      <li><div><b>フェアリーに手が出ない。</b> 一致技はすべてフェアリーに無効で、相手のテラスタルフェアリー1つで竜技が止まる。抜群を取れるのはアイアンテールだけで、ハチマキならH4ハバタクカミを確定1発だが、命中75のうえ相手の方が速い。</div></li>
+      <li><div><b>すてみタックルは健在。</b> スキン化で実質威力144の一致技。スカーフならS267でコライドン（205）、ミライドン（205）、黒バドレックス（222）より速い。すてみでコライドンとミライドンは確定1発、かみくだくで黒バドレックスは確定1発。</div></li>
+      <li><div><b>ダブルでは「竜の加護」が残る。</b> ドラゴンエールはロンドと無関係で、竜の味方を確定急所にする役はそのまま担える。</div></li>
+    </ol>
+  </div>
+
+
+  <div class="cols">
+    <div>
+      <h2><span class="n">3</span>すばやさ</h2>
+      <table class="kv">
+        <tbody>
+          <tr><th class="n">S178</th><td>最速。連撃ウーラオス（163）より速く、オーガポン（178）と同速で、コライドン（205）より遅い</td></tr>
+          <tr><th class="n">S267</th><td>最速スカーフ／竜舞+1。黒バドレックス（222）、ザシアン(王)（220）より速い。禁止級の上を取るにはどちらかが要る</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2><span class="n">4</span>先制技の撃ち合い</h2>
+      <table class="kv">
+        <tbody>
+          <tr><th>しんそく<span class="pri">+2</span></th><td>カイリューのハチマキしんそくが先に入り、H4に94〜113%（乱数1発 68.8%）</td></tr>
+          <tr><th>こおりのつぶて<span class="pri">+1</span></th><td>でんこうせっかと同じ+1で、相手が先手（205対178）。パオジアンの珠つぶてでH4は確定1発</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2><span class="n">5</span>評価が変わる技</h2>
+    <table class="moves">
+      <thead><tr><th>技</th><th class="c was">ロンドあり</th><th class="c now">ロンドなし</th><th>理由（★はシングル／ダブルの順）</th></tr></thead>
+      <tbody>
+        <tr><th>ドラゴニックロンド</th><td class="c was">★5／★5</td><td class="c">—</td><td>覚えない</td></tr>
+        <tr><th>アイアンテール</th><td class="c was">★2／★1</td><td class="c">★4／★2</td><td>フェアリーに抜群を取れる唯一の技。命中75が重い</td></tr>
+        <tr><th>でんこうせっか</th><td class="c was">★1／★1</td><td class="c">★3／★1</td><td>唯一の先制技。実質48で、削れた相手とタスキの処理に使う</td></tr>
+        <tr><th>りゅうのまい</th><td class="c was">★3／★1</td><td class="c">★4／★1</td><td>+1でS267。スカーフ以外で禁止級の上を取る手段</td></tr>
+        <tr><th>バトンタッチ</th><td class="c was">★1／—</td><td class="c">★2／★3</td><td>いかく型が退く唯一の技（優先度0）</td></tr>
+        <tr><th>つぶらなひとみ</th><td class="c was">★1／★3</td><td class="c">★1／★4</td><td>優先度+1で攻撃-1。いかく型が先に動ける数少ない技</td></tr>
+        <tr><th>あくび</th><td class="c was">★3／★2</td><td class="c">★2／★2</td><td>眠らせても、次のターンに先制で退けない</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>ドラフィア ロンドのない世界線</span><span>1 / 2</span></div>
+</section>
+
+<!-- ======================= 2枚目 ======================= -->
+<section class="page">
+  <div>
+    <h2><span class="n">6</span>シングル：使用率上位20体との対面</h2>
+    <table class="match"><colgroup><col class="no"><col class="nm"><col class="v3"><col class="v3"><col class="v3"><col></colgroup>
+      <thead><tr><th class="n" rowspan="2">順</th><th rowspan="2">ポケモン</th><th class="was c" rowspan="2">ロンドあり<br>鉢巻</th><th class="now c" colspan="2">ロンドなし</th><th rowspan="2">根拠（ロンドなし。相手はH4、ドラフィアの耐久は無振り）</th></tr><tr><th class="now c">鉢巻</th><th class="now c">スカーフ</th></tr></thead>
+      <tbody>
+        <tr class="flip"><td class="n">1</td><th>コライドン</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-good">有利</span></td><td>鉢巻は相手が先手（205対178）、晴れげきりんで確定1発。スカーフなら上からすてみ確定1発</td></tr>
+        <tr class="flip"><td class="n">2</td><th>パオジアン</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-mid">五分</span></td><td>鉢巻は上から珠つららおとし確定1発。スカーフのすてみは乱数1発（75%）</td></tr>
+        <tr><td class="n">3</td><th>ディンルー</th><td class="c was"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>HB特化に鉢巻すてみ43〜52%。カタストロフィとふきとばしで流される</td></tr>
+        <tr><td class="n">4</td><th>黒バドレックス</th><td class="c was"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-good">有利</span></td><td>鉢巻は先手を取られ、テラスノーマルで受けて五分。スカーフなら上からかみくだく確定1発</td></tr>
+        <tr class="flip"><td class="n">5</td><th>ミライドン</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-good">有利</span></td><td>鉢巻は上からりゅうせいぐん確定1発。スカーフなら上からすてみ確定1発</td></tr>
+        <tr class="flip"><td class="n">6</td><th>ハバタクカミ</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-mid">五分</span></td><td>竜技は無効。スカーフのアイアンテールで確定1発だが命中75。鉢巻は撃つ前に落ちる</td></tr>
+        <tr><td class="n">7</td><th>連撃ウーラオス</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>鉢巻なら先手ですてみ確定1発。スカーフは確定2発で、インファイトを返される</td></tr>
+        <tr><td class="n">8</td><th>霊獣ランドロス</th><td class="c was"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td>いかくを受けたすてみはHB特化に、鉢巻47〜58%・スカーフ32〜39%</td></tr>
+        <tr><td class="n">9</td><th>ホウオウ</th><td class="c was"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>HB特化に鉢巻すてみ66〜79%。さいせいりょくとやけどで受けられる</td></tr>
+        <tr><td class="n">10</td><th>ヘイラッシャ</th><td class="c was"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>てんねんで竜舞が無効。鉢巻すてみ47〜57%。あくびとじわれ</td></tr>
+        <tr><td class="n">11</td><th>ザシアン(王)</th><td class="c was"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>すてみは無効、鉢巻アイアンテールでも45〜54%。+1じゃれつくで確定1発</td></tr>
+        <tr class="flip"><td class="n">12</td><th>カイリュー</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>先にしんそくで乱数1発（68.8%）。すてみはマルチスケイル込みで乱数1発（81.3%）</td></tr>
+        <tr><td class="n">13</td><th>キラフロル</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-mid">五分</span></td><td>上からすてみ：鉢巻確定1発、スカーフ乱数1発（6.3%）（タスキ以外）</td></tr>
+        <tr><td class="n">14</td><th>アカツキガチグマ</th><td class="c was"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td>ブラッドムーンで確定1発。H252へのすてみは鉢巻72〜85%・スカーフ48〜58%</td></tr>
+        <tr><td class="n">15</td><th>カイオーガ</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>鉢巻すてみは確定1発。スカーフは確定2発で、れいとうビーム（確定1発）を返される</td></tr>
+        <tr class="flip"><td class="n">16</td><th>オーロンゲ</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>竜技は無効。HB特化に鉢巻アイアンテールで確定2発。その間に壁を張られる</td></tr>
+        <tr class="flip"><td class="n">17</td><th>ミミッキュ</th><td class="c was"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>竜技は無効。アイアンテール（命中75）が2発要り、じゃれつくで乱数1発（93.8%）</td></tr>
+        <tr><td class="n">18</td><th>オーガポン</th><td class="c was"><span class="v v-good">有利</span></td><td class="c"><span class="v v-good">有利</span></td><td class="c"><span class="v v-good">有利</span></td><td>草・水・炎のツタこんぼうを半減。すてみ：鉢巻確定1発、スカーフ乱数1発（50%）</td></tr>
+        <tr><td class="n">19</td><th>グライオン</th><td class="c was"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-mid">五分</span></td><td class="c"><span class="v v-bad">不利</span></td><td>すてみは鉢巻63〜76%・スカーフ41〜51%。ポイズンヒールで長引く</td></tr>
+        <tr><td class="n">20</td><th>キョジオーン</th><td class="c was"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td class="c"><span class="v v-bad">不利</span></td><td>鉢巻すてみ53〜64%。しおづけで削られ続ける</td></tr>
+      </tbody>
+    </table>
+    <dl class="tally">
+      <dt>ロンドあり（鉢巻）</dt><dd>有利10・五分5・不利5</dd>
+      <dt>ロンドなし（鉢巻）</dt><dd>有利4・五分4・不利12　入れ替わり7体</dd>
+      <dt>ロンドなし（スカーフ）</dt><dd>有利4・五分3・不利13　有利のうち3体は使用率1・4・5位の禁止級</dd>
+    </dl>
+  </div>
+
+
+  <div>
+    <h2><span class="n">7</span>ダブルの役割はどう残るか</h2>
+    <div class="roles">
+      <div class="keep"><b>竜の加護<span class="st">残る</span></b>ドラゴンエール＋ピントレンズで、竜の味方の攻撃がすべて急所になる。この世界線での主な仕事。</div>
+      <div class="weak"><b>いかくサイクル<span class="st">弱まる</span></b>いかくは撃てるが、退く技はバトンタッチ（優先度0）だけ。後続のすばやさも上がらない。</div>
+      <div class="lose"><b>妖・氷の先制処理<span class="st">消える</span></b>竜技はフェアリーに無効。エルフーン・ハバタクカミに抜群を取れるのはアイアンテールだけ。</div>
+      <div class="lose"><b>ブイズの強化<span class="st">消える</span></b>イーブイ系を強化する技がない。ニンフィアと組む構築は成立しない。</div>
+    </div>
+    <p class="note" style="margin-top:1.2mm">いかく役としては、ねこだまし・すてゼリフ・はたきおとすを持つガオガエンに大きく劣る。それでもドラゴンタイプで水・炎・電気・草を半減し、エールとワイドブレイカーを持つ点は、ガオガエンにない持ち味として残る。</p>
+  </div>
+  <div>
+    <h2><span class="n">8</span>この世界線の型</h2>
+    <table class="sets">
+      <thead><tr><th>型</th><th>持ち物</th><th>技</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="4">シングル（いずれもドラゴンスキン・ようき H4 A252 S252）</td></tr>
+        <tr><th>竜皮スカーフ<span class="tag">本命</span></th><td>スカーフ（S267）</td><td>すてみ・かみくだく・アイアンテール・くさわけ</td><td>禁止級を上から落とす</td></tr>
+        <tr><th>竜皮ハチマキ</th><td>こだわりハチマキ</td><td>すてみ・かみくだく・アイアンテール・でんこうせっか</td><td>遅い相手を1発で</td></tr>
+        <tr><th>竜舞アタッカー</th><td>珠・テラス竜</td><td>りゅうのまい・すてみ・かみくだく・アイアンテール</td><td>+1でS267</td></tr>
+        <tr class="grp"><td colspan="4">ダブル（いずれもいかく・しんちょう H252 B60 D196）</td></tr>
+        <tr><th>竜の加護<span class="tag">本命</span></th><td>メンタルハーブ</td><td>ドラゴンエール・てだすけ・ワイドブレイカー・まもる</td><td>竜の味方を確定急所に</td></tr>
+        <tr><th>いかく支援</th><td>オボンのみ</td><td>ワイドブレイカー・つぶらなひとみ・バトンタッチ・まもる</td><td>物理を下げて退く</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="close">
+    <h3 style="margin:0">結論：ロンドは評価の土台だった</h3>
+    <p>ロンドを外すと、上位20体との対面（鉢巻同士）で有利が10体から4体に減る。入れ替わるのは、先手を取れなくなるコライドン・パオジアン・ミライドン・カイリュー、フェアリーに打点がなくなるオーロンゲ・ミミッキュ、その両方のハバタクカミである。ロンドは強みを上乗せする技ではなく、速い禁止級と妖・氷への回答そのものだった。</p>
+    <p>ロンドのないドラフィアは「すてみタックルが強い、紙耐久の竜アタッカー」になる。耐久・マルチスケイル・しんそくを持つカイリューに多くの点で及ばず、勝るのは素早さとすてみの威力。シングルはスカーフの掃除役、ダブルはエールの支援役として、それぞれ1つの仕事に絞られる。</p>
+  </div>
+
+  <div class="foot"><span>計算：Lv50・個体値31・SVダメージ式　環境：S41 レギュI（2026-11-03時点）</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>
